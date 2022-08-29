@@ -48,17 +48,17 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyBQHC3BV9XHXXTtBRXJdQyP0Ubxo9DCi6I',
-    appId: '1:1072576326962:web:326b6a09dedb7dee2cfb2b',
+    appId: '1:1072576326962:web:70d8f720a42b0e852cfb2b',
     messagingSenderId: '1072576326962',
     projectId: 'biteshaq',
     authDomain: 'biteshaq.firebaseapp.com',
     storageBucket: 'biteshaq.appspot.com',
-    measurementId: 'G-YPHNKLFHBX',
+    measurementId: 'G-81JRJ8PKG7',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDGT-sZHfHfAsgsv2pvguYm2puCsWXiO2o',
-    appId: '1:1072576326962:android:7c4fb1b4e13ac8e42cfb2b',
+    appId: '1:1072576326962:android:6bd0426ff80d21b32cfb2b',
     messagingSenderId: '1072576326962',
     projectId: 'biteshaq',
     storageBucket: 'biteshaq.appspot.com',
@@ -66,12 +66,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyARX1ynG1WDaNDBQMbmja3gsqnBdK_r5ag',
-    appId: '1:1072576326962:ios:67fac36f8aff543d2cfb2b',
+    appId: '1:1072576326962:ios:0d0c47a11136094d2cfb2b',
     messagingSenderId: '1072576326962',
     projectId: 'biteshaq',
     storageBucket: 'biteshaq.appspot.com',
     iosClientId:
-        '1072576326962-d9q1ugpsevfjinr28ahr8dm0bvd3c4ij.apps.googleusercontent.com',
-    iosBundleId: 'com.r2am9d.biteshaq',
+        '1072576326962-n0srf7f67kdq0p588uf7fhq8pfpddebm.apps.googleusercontent.com',
+    iosBundleId: 'com.r2am9d.apps.biteshaq',
   );
 }

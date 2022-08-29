@@ -7,10 +7,10 @@ import 'package:json_theme/json_theme.dart';
 class AppTheme {
   AppTheme._internal();
 
-  static AppTheme? _instance;
   static String? _themeString;
   static dynamic _themeJson;
   static ThemeData? _theme;
+  static final AppTheme _instance = AppTheme._internal();
 
   static Future<AppTheme> get instance async {
     _themeString =
@@ -18,8 +18,7 @@ class AppTheme {
     _themeJson = jsonDecode(_themeString!);
     _theme = ThemeDecoder.decodeThemeData(_themeJson);
 
-    _instance ??= AppTheme._internal();
-    return _instance!;
+    return _instance;
   }
 
   ThemeData get theme => _theme!;
