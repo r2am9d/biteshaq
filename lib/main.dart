@@ -1,12 +1,11 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:biteshaq/src/themes/app_theme.dart';
+import 'package:biteshaq/src/router/app_router.dart';
 import 'package:biteshaq/src/utils/firebase_options.dart';
 import 'package:biteshaq/src/features/home/screens/home_screen.dart';
-
-import 'package:biteshaq/src/features/home/repositories/home_repository.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -17,22 +16,25 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({
-    required this.theme,
-    Key? key,
-  }) : super(key: key);
+  MyApp({super.key, required this.theme});
 
   final ThemeData theme;
+  final BeamerDelegate _routerDelegate = BeamerDelegate(
+    initialPath: AppRouter.homeRoute,
+    locationBuilder: RoutesLocationBuilder(
+      routes: {
+        '*': (context, state, data) => HomeScreen(),
+      },
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
-      create: (context) => HomeRepository(),
-      child: MaterialApp(
-        title: 'Biteshaq',
-        theme: theme,
-        home: const HomeScreen(title: 'Home Page'),
-      ),
+    return MaterialApp.router(
+      theme: theme,
+      title: 'Biteshaq',
+      routerDelegate: _routerDelegate,
+      routeInformationParser: BeamerParser(),
     );
   }
 }
