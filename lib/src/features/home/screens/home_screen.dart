@@ -27,7 +27,12 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: const Text('Biteshaq'),
+        title: const Text(
+          'Biteshaq',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         leading: IconButton(
           onPressed: () {},
           splashRadius: 24,

@@ -1,5 +1,5 @@
-import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:beamer/beamer.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:biteshaq/src/themes/app_theme.dart';
@@ -16,7 +16,10 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key, required this.theme});
+  MyApp({
+    super.key,
+    required this.theme,
+  });
 
   final ThemeData theme;
   final BeamerDelegate _routerDelegate = BeamerDelegate(

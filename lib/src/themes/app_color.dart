@@ -28,4 +28,12 @@ class AppColor {
 
   static const black = Color(0xFF000000);
   static const white = Color(0xFFFFFFFF);
+
+  static const red = Color(0xFFC62828);
+  static const green = Color(0xFF2E7D32);
+  static const yellow = Color(0xFFF9A825);
+
+  static const gold = Color(0xFFFFD700);
+  static const silver = Color(0xFFC0C0C0);
+  static const bronze = Color(0xFF967444);
 }

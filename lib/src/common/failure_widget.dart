@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:biteshaq/src/themes/app_color.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 class FailureWidget extends StatelessWidget {
   const FailureWidget({super.key});
 
@@ -7,25 +10,20 @@ class FailureWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 400,
-        width: 400,
         decoration: const BoxDecoration(
-          color: Colors.red,
-          shape: BoxShape.circle,
+          color: AppColor.red,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(
-              Icons.warning,
-              color: Colors.white,
-              size: 86,
+          children: const <Widget>[
+            FaIcon(
+              color: AppColor.white,
+              FontAwesomeIcons.solidCircleExclamation,
             ),
             Text(
-              'Unexpected error occured.',
+              'Unexpected error occured',
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 48,
+                color: AppColor.white,
               ),
               textAlign: TextAlign.center,
             ),
