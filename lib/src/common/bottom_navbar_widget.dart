@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
 import 'package:biteshaq/src/locations/cook_location.dart';
 import 'package:biteshaq/src/locations/game_location.dart';
@@ -57,42 +58,55 @@ class _BottomNavbarWidgetState extends State<BottomNavbarWidget> {
   Widget build(BuildContext context) {
     _tabIndex = _determineTabIndex(_beamerDelegate.currentBeamLocation);
 
-    return SalomonBottomBar(
-      currentIndex: _tabIndex,
-      onTap: (index) {
-        String route = '';
-        switch (index) {
-          case 0:
-            route = AppRouter.recipeRoute;
-            break;
-          case 1:
-            route = AppRouter.cookRoute;
-            break;
-          case 2:
-            route = AppRouter.gameRoute;
-            break;
-          default:
-        }
+    return Container(
+      decoration: const BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            width: .2,
+            color: AppColor.secondary,
+          ),
+        ),
+      ),
+      child: SalomonBottomBar(
+        currentIndex: _tabIndex,
+        onTap: (index) {
+          String route = '';
+          switch (index) {
+            case 0:
+              route = AppRouter.recipeRoute;
+              break;
+            case 1:
+              route = AppRouter.cookRoute;
+              break;
+            case 2:
+              route = AppRouter.gameRoute;
+              break;
+            default:
+          }
 
-        _beamerDelegate.beamToNamed(route);
-      },
-      items: [
-        SalomonBottomBarItem(
-          icon: const FaIcon(FontAwesomeIcons.scroll),
-          title: const Text('Recipe'),
-          selectedColor: Colors.brown,
-        ),
-        SalomonBottomBarItem(
-          icon: const FaIcon(FontAwesomeIcons.utensils),
-          title: const Text('Cook'),
-          selectedColor: Colors.brown,
-        ),
-        SalomonBottomBarItem(
-          icon: const FaIcon(FontAwesomeIcons.gamepad),
-          title: const Text('Game'),
-          selectedColor: Colors.brown,
-        ),
-      ],
+          _beamerDelegate.beamToNamed(route);
+        },
+        items: [
+          SalomonBottomBarItem(
+            title: const Text('Recipe'),
+            selectedColor: AppColor.secondary,
+            icon: const FaIcon(FontAwesomeIcons.lightScroll),
+            activeIcon: const FaIcon(FontAwesomeIcons.solidScroll),
+          ),
+          SalomonBottomBarItem(
+            title: const Text('Cook'),
+            selectedColor: AppColor.secondary,
+            icon: const FaIcon(FontAwesomeIcons.lightHatChef),
+            activeIcon: const FaIcon(FontAwesomeIcons.solidHatChef),
+          ),
+          SalomonBottomBarItem(
+            title: const Text('Game'),
+            selectedColor: AppColor.secondary,
+            icon: const FaIcon(FontAwesomeIcons.lightGamepadModern),
+            activeIcon: const FaIcon(FontAwesomeIcons.solidGamepadModern),
+          ),
+        ],
+      ),
     );
   }
 

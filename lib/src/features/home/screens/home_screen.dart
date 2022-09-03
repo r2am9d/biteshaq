@@ -1,5 +1,6 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:biteshaq/src/locations/recipe_location.dart';
 import 'package:biteshaq/src/locations/cook_location.dart';
@@ -27,6 +28,19 @@ class HomeScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         title: const Text('Biteshaq'),
+        leading: IconButton(
+          onPressed: () {},
+          splashRadius: 24,
+          icon: const FaIcon(FontAwesomeIcons.lightForkKnife),
+        ),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {},
+            splashRadius: 24,
+            icon: const FaIcon(FontAwesomeIcons.lightCircleUser),
+          ),
+          const SizedBox(width: 10),
+        ],
       ),
       body: Beamer(
         key: _beamerKey,
