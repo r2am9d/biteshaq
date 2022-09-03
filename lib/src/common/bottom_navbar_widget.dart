@@ -44,6 +44,10 @@ class BottomNavbarWidget extends HookWidget {
     return Container(
       decoration: const BoxDecoration(
         color: AppColor.primary,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16.0),
+          topRight: Radius.circular(16.0),
+        ),
       ),
       child: SalomonBottomBar(
         currentIndex: tabIndex,
