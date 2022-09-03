@@ -18,21 +18,21 @@ class _BeamerDelegateHook extends Hook<BeamerDelegate> {
 
 class _BeamerDelegateHookState
     extends HookState<BeamerDelegate, _BeamerDelegateHook> {
-  BeamerDelegate? _beamerDelegate;
+  late BeamerDelegate _beamerDelegate;
 
   void _setStateListener() => setState(() {});
 
   @override
   void initHook() {
     _beamerDelegate = hook.beamerKey.currentState!.routerDelegate;
-    _beamerDelegate!.addListener(_setStateListener);
+    _beamerDelegate.addListener(_setStateListener);
   }
 
   @override
-  BeamerDelegate build(BuildContext context) => _beamerDelegate!;
+  BeamerDelegate build(BuildContext context) => _beamerDelegate;
 
   @override
   void dispose() {
-    _beamerDelegate!.removeListener(_setStateListener);
+    _beamerDelegate.removeListener(_setStateListener);
   }
 }
