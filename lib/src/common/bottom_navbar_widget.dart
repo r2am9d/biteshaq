@@ -1,16 +1,13 @@
 import 'package:badges/badges.dart';
 import 'package:beamer/beamer.dart';
-import 'package:biteshaq/src/hooks/beamer_delegate_hook.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'package:biteshaq/src/utils/app_utils.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
-import 'package:biteshaq/src/router/app_router.dart';
-import 'package:biteshaq/src/locations/cook_location.dart';
-import 'package:biteshaq/src/locations/game_location.dart';
-import 'package:biteshaq/src/locations/recipe_location.dart';
+import 'package:biteshaq/src/hooks/beamer_delegate_hook.dart';
 
 class BottomNavbarWidget extends HookWidget {
   const BottomNavbarWidget({
@@ -23,23 +20,10 @@ class BottomNavbarWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final beamerDelegate = useBeamerDelegate(beamerKey: beamerKey);
-    final tabIndex = useMemoized(() {
-      int ref = 0;
-      switch (beamerDelegate.currentBeamLocation.runtimeType) {
-        case RecipeLocation:
-          ref = 0;
-          break;
-        case CookLocation:
-          ref = 1;
-          break;
-        case GameLocation:
-          ref = 2;
-          break;
-        default:
-      }
-
-      return ref;
-    }, [beamerDelegate.currentBeamLocation]);
+    final tabIndex = useMemoized(
+      () => AppUtils.determineTabIndex(beamerDelegate.currentBeamLocation),
+      [beamerDelegate.currentBeamLocation],
+    );
 
     return Container(
       decoration: const BoxDecoration(
@@ -52,21 +36,9 @@ class BottomNavbarWidget extends HookWidget {
       child: SalomonBottomBar(
         currentIndex: tabIndex,
         onTap: (index) {
-          String route = '';
-          switch (index) {
-            case 0:
-              route = AppRouter.recipeRoute;
-              break;
-            case 1:
-              route = AppRouter.cookRoute;
-              break;
-            case 2:
-              route = AppRouter.gameRoute;
-              break;
-            default:
-          }
-
-          beamerDelegate.beamToNamed(route);
+          beamerDelegate.beamToNamed(
+            AppUtils.determineRoute(index),
+          );
         },
         items: [
           SalomonBottomBarItem(

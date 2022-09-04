@@ -22,6 +22,8 @@ class RecipeScreen extends StatelessWidget {
           physics: const BouncingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
+          scrollBehavior:
+              ScrollConfiguration.of(context).copyWith(scrollbars: false),
           slivers: <Widget>[
             SliverAppBar(
               elevation: 0,
