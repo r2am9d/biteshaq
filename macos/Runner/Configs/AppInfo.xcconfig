@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = biteshaq
+PRODUCT_NAME = Biteshaq;
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.r2am9d.biteshaq
+PRODUCT_BUNDLE_IDENTIFIER = com.r2am9d.apps.biteshaq;
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2022 Biteshaq. All rights reserved.

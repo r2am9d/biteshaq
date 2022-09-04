@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1072576326962:android:7c4fb1b4e13ac8e42cfb2b",
+        "mobilesdk_app_id": "1:1072576326962:android:6bd0426ff80d21b32cfb2b",
         "android_client_info": {
-          "package_name": "com.r2am9d.biteshaq"
+          "package_name": "com.r2am9d.apps.biteshaq"
         }
       },
       "oauth_client": [

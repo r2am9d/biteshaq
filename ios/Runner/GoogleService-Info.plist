@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1072576326962-d9q1ugpsevfjinr28ahr8dm0bvd3c4ij.apps.googleusercontent.com</string>
+	<string>1072576326962-n0srf7f67kdq0p588uf7fhq8pfpddebm.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1072576326962-d9q1ugpsevfjinr28ahr8dm0bvd3c4ij</string>
+	<string>com.googleusercontent.apps.1072576326962-n0srf7f67kdq0p588uf7fhq8pfpddebm</string>
 	<key>API_KEY</key>
 	<string>AIzaSyARX1ynG1WDaNDBQMbmja3gsqnBdK_r5ag</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.r2am9d.biteshaq</string>
+	<string>com.r2am9d.apps.biteshaq</string>
 	<key>PROJECT_ID</key>
 	<string>biteshaq</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1072576326962:ios:67fac36f8aff543d2cfb2b</string>
+	<string>1:1072576326962:ios:0d0c47a11136094d2cfb2b</string>
 </dict>
 </plist>
