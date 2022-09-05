@@ -8,7 +8,7 @@ class GameLocation extends BeamLocation<BeamState> {
   @override
   List<String> get pathPatterns {
     return [
-      AppRouter.gameRoute,
+      AppRouter().gameRoute,
     ];
   }
 

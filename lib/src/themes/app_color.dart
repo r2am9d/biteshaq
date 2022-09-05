@@ -7,39 +7,39 @@ class AppColor {
 
   factory AppColor() => _instance;
 
-  static const primary = Color(0xFF246c8a);
-  static const secondary = Color(0xFF93571f);
-  static const primaryColorLight = Color(0xFFBBDEFB);
-  static const primaryColorDark = Color(0xFF1976D2);
-  static const backgroundColor = Color(0xFFFCFBFD);
-  static const bottomAppBarColor = Color(0xFFFEFFFF);
-  static const canvasColor = Color(0xFFFCFBFD);
-  static const cardColor = Color(0xFFFEFFFF);
-  static const dialogBackgroundColor = Color(0xFFFCFBFD);
-  static const disabledColor = Color(0xFF000000);
-  static const dividerColor = Color(0xFF000000);
-  static const errorColor = Color(0xFFB00020);
-  static const focusColor = Color(0xFF000000);
-  static const highlightColor = Color(0xFFBCBCBC);
-  static const hintColor = Color(0xFF000000);
-  static const hoverColor = Color(0xFF000000);
-  static const indicatorColor = Color(0xFFFFFFFF);
-  static const scaffoldBackgroundColor = Color(0xFFFCFBFD);
-  static const secondaryHeaderColor = Color(0xFFE3F2FD);
-  static const selectedRowColor = Color(0xFFF5F5F5);
-  static const shadowColor = Color(0xFF000000);
-  static const splashColor = Color(0xFFC8C8C8);
-  static const toggleableActiveColor = Color(0xFF93571F);
-  static const unselectedWidgetColor = Color(0xFF000000);
+  Color get primary => const Color(0xFF246c8a);
+  Color get secondary => const Color(0xFF93571f);
+  Color get primaryColorLight => const Color(0xFFBBDEFB);
+  Color get primaryColorDark => const Color(0xFF1976D2);
+  Color get backgroundColor => const Color(0xFFFCFBFD);
+  Color get bottomAppBarColor => const Color(0xFFFEFFFF);
+  Color get canvasColor => const Color(0xFFFCFBFD);
+  Color get cardColor => const Color(0xFFFEFFFF);
+  Color get dialogBackgroundColor => const Color(0xFFFCFBFD);
+  Color get disabledColor => const Color(0xFF000000);
+  Color get dividerColor => const Color(0xFF000000);
+  Color get errorColor => const Color(0xFFB00020);
+  Color get focusColor => const Color(0xFF000000);
+  Color get highlightColor => const Color(0xFFBCBCBC);
+  Color get hintColor => const Color(0xFF000000);
+  Color get hoverColor => const Color(0xFF000000);
+  Color get indicatorColor => const Color(0xFFFFFFFF);
+  Color get scaffoldBackgroundColor => const Color(0xFFFCFBFD);
+  Color get secondaryHeaderColor => const Color(0xFFE3F2FD);
+  Color get selectedRowColor => const Color(0xFFF5F5F5);
+  Color get shadowColor => const Color(0xFF000000);
+  Color get splashColor => const Color(0xFFC8C8C8);
+  Color get toggleableActiveColor => const Color(0xFF93571F);
+  Color get unselectedWidgetColor => const Color(0xFF000000);
 
-  static const black = Color(0xFF000000);
-  static const white = Color(0xFFFFFFFF);
+  Color get black => const Color(0xFF000000);
+  Color get white => const Color(0xFFFFFFFF);
 
-  static const red = Color(0xFFC62828);
-  static const green = Color(0xFF2E7D32);
-  static const yellow = Color(0xFFF9A825);
+  Color get red => const Color(0xFFC62828);
+  Color get green => const Color(0xFF2E7D32);
+  Color get yellow => const Color(0xFFF9A825);
 
-  static const gold = Color(0xFFFFD700);
-  static const silver = Color(0xFFC0C0C0);
-  static const bronze = Color(0xFF967444);
+  Color get gold => const Color(0xFFFFD700);
+  Color get silver => const Color(0xFFC0C0C0);
+  Color get bronze => const Color(0xFF967444);
 }

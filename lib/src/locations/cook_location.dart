@@ -9,8 +9,8 @@ class CookLocation extends BeamLocation<BeamState> {
   @override
   List<String> get pathPatterns {
     return [
-      AppRouter.cookRoute,
-      AppRouter.cookViewRoute,
+      AppRouter().cookRoute,
+      AppRouter().cookViewRoute,
     ];
   }
 

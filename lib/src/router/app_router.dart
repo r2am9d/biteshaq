@@ -1,18 +1,18 @@
 class AppRouter {
   AppRouter._internal();
 
-  // Named Routes
-  static const homeRoute = '/';
-
-  static const recipeRoute = '/recipe';
-  static const recipeViewRoute = '/recipe/:id';
-
-  static const cookRoute = '/cook';
-  static const cookViewRoute = '/cook/:id';
-
-  static const gameRoute = '/game';
-
   static final AppRouter _instance = AppRouter._internal();
 
-  static AppRouter get instance => _instance;
+  factory AppRouter() => _instance;
+
+  // Named Routes
+  String get homeRoute => '/';
+
+  String get recipeRoute => '/recipe';
+  String get recipeViewRoute => '/recipe/:id';
+
+  String get cookRoute => '/cook';
+  String get cookViewRoute => '/cook/:id';
+
+  String get gameRoute => '/game';
 }

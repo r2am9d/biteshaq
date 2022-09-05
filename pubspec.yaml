@@ -48,6 +48,7 @@ dependencies:
   flutter_hooks: ^0.18.5+1
   connectivity_plus: ^2.1.0
   drift: ^2.1.0
+  google_mobile_ads: ^2.0.1
 
 dependency_overrides:
   font_awesome_flutter:

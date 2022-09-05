@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'package:biteshaq/src/themes/app_theme.dart';
 import 'package:biteshaq/src/router/app_router.dart';
@@ -12,6 +13,7 @@ import 'package:biteshaq/src/features/home/screens/home_screen.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  await MobileAds.instance.initialize();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
 
   final ThemeData theme;
   final BeamerDelegate _routerDelegate = BeamerDelegate(
-    initialPath: AppRouter.homeRoute,
+    initialPath: AppRouter().homeRoute,
     locationBuilder: RoutesLocationBuilder(
       routes: {
         '*': (context, state, data) {
@@ -49,6 +51,9 @@ class MyApp extends StatelessWidget {
       title: 'Biteshaq',
       routerDelegate: _routerDelegate,
       routeInformationParser: BeamerParser(),
+      backButtonDispatcher: BeamerBackButtonDispatcher(
+        delegate: _routerDelegate,
+      ),
     );
   }
 }

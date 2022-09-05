@@ -9,8 +9,8 @@ class RecipeLocation extends BeamLocation<BeamState> {
   @override
   List<String> get pathPatterns {
     return [
-      AppRouter.recipeRoute,
-      AppRouter.recipeViewRoute,
+      AppRouter().recipeRoute,
+      AppRouter().recipeViewRoute,
     ];
   }
 
@@ -28,6 +28,7 @@ class RecipeLocation extends BeamLocation<BeamState> {
           key: ValueKey('recipe-view'),
           title: 'Recipe View',
           child: RecipeViewScreen(),
+          type: BeamPageType.slideRightTransition,
         ),
     ];
   }

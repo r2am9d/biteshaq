@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:biteshaq/src/themes/app_color.dart';
+import 'package:biteshaq/src/common/app_ad_widget.dart';
 import 'package:biteshaq/src/locations/recipe_location.dart';
 import 'package:biteshaq/src/locations/cook_location.dart';
 import 'package:biteshaq/src/locations/game_location.dart';
@@ -43,17 +44,17 @@ class HomeScreen extends StatelessWidget {
                     child: Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const <Widget>[
+                        children: <Widget>[
                           FaIcon(
                             size: 16.0,
-                            color: AppColor.red,
+                            color: AppColor().red,
                             FontAwesomeIcons.wifiSlash,
                           ),
-                          SizedBox(width: 8.0),
+                          const SizedBox(width: 8.0),
                           Text(
                             'You are currently offline :\'(',
                             style: TextStyle(
-                              color: AppColor.red,
+                              color: AppColor().red,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -91,6 +92,9 @@ class HomeScreen extends StatelessWidget {
             key: _beamerKey,
             routerDelegate: _routerDelegate,
           ),
+          persistentFooterButtons: const <Widget>[
+            AppAdWidget(),
+          ],
           bottomNavigationBar: BottomNavbarWidget(
             beamerKey: _beamerKey,
           ),

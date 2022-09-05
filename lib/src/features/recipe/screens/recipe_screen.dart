@@ -1,13 +1,14 @@
 import 'package:flag/flag.dart';
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:biteshaq/src/utils/app_utils.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
+import 'package:biteshaq/src/router/app_router.dart';
 import 'package:biteshaq/src/common/failure_widget.dart';
 import 'package:biteshaq/src/common/loading_widget.dart';
-import 'package:biteshaq/src/common/ink_well_splash_widget.dart';
 
 class RecipeScreen extends StatelessWidget {
   const RecipeScreen({super.key});
@@ -56,7 +57,10 @@ class RecipeScreen extends StatelessWidget {
                 primary: false,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return _RecipeCard(title: 'Recipe ${index + 1}');
+                  return _RecipeCard(
+                    title: 'Recipe ${index + 1}',
+                    recipeScreenContext: context,
+                  );
                 },
               ),
             ),
@@ -68,9 +72,13 @@ class RecipeScreen extends StatelessWidget {
 }
 
 class _RecipeCard extends StatelessWidget {
-  const _RecipeCard({required this.title});
+  const _RecipeCard({
+    required this.title,
+    required this.recipeScreenContext,
+  });
 
   final String title;
+  final BuildContext recipeScreenContext;
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +121,7 @@ class _RecipeCard extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
-                    color: AppColor.black.withOpacity(.35),
+                    color: AppColor().black.withOpacity(.35),
                     backgroundBlendMode: BlendMode.overlay,
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(8.0),
@@ -129,10 +137,10 @@ class _RecipeCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              const Text(
+                              Text(
                                 'Special Grilled Chicken',
                                 style: TextStyle(
-                                  color: AppColor.white,
+                                  color: AppColor().white,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -148,21 +156,21 @@ class _RecipeCard extends StatelessWidget {
                                     borderRadius: 6.0,
                                     fit: BoxFit.fill,
                                   ),
-                                  const Text(
+                                  Text(
                                     'Chef Cardo',
                                     style: TextStyle(
                                       fontSize: 10.0,
-                                      color: AppColor.white,
+                                      color: AppColor().white,
                                     ),
                                   ),
-                                  const FaIcon(
+                                  FaIcon(
                                     size: 8.0,
-                                    color: AppColor.green,
+                                    color: AppColor().green,
                                     FontAwesomeIcons.solidShieldCheck,
                                   ),
-                                  const FaIcon(
+                                  FaIcon(
                                     size: 8.0,
-                                    color: AppColor.yellow,
+                                    color: AppColor().yellow,
                                     FontAwesomeIcons.solidGem,
                                   ),
                                 ],
@@ -186,9 +194,13 @@ class _RecipeCard extends StatelessWidget {
             Positioned.fill(
               child: Material(
                 color: Colors.transparent,
-                child: InkWellSplashWidget(
-                  onTap: () {},
+                child: InkWell(
+                  onTap: () {
+                    recipeScreenContext
+                        .beamToNamed(AppRouter().recipeViewRoute);
+                  },
                   onDoubleTap: () {},
+                  splashColor: AppColor().primary.withOpacity(0.15),
                 ),
               ),
             ),

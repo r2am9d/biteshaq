@@ -24,18 +24,18 @@ class AppUtils {
 
     if (rating <= 2.9) {
       color = {
-        'bgColor': AppColor.bronze,
-        'textColor': AppColor.white,
+        'bgColor': AppColor().bronze,
+        'textColor': AppColor().white,
       };
     } else if (rating >= 3 && rating <= 3.9) {
       color = {
-        'bgColor': AppColor.silver,
-        'textColor': AppColor.black,
+        'bgColor': AppColor().silver,
+        'textColor': AppColor().black,
       };
     } else if (rating >= 4) {
       color = {
-        'bgColor': AppColor.gold,
-        'textColor': AppColor.black,
+        'bgColor': AppColor().gold,
+        'textColor': AppColor().black,
       };
     }
 
@@ -65,13 +65,13 @@ class AppUtils {
     String route = '';
     switch (tabIndex) {
       case 0:
-        route = AppRouter.recipeRoute;
+        route = AppRouter().recipeRoute;
         break;
       case 1:
-        route = AppRouter.cookRoute;
+        route = AppRouter().cookRoute;
         break;
       case 2:
-        route = AppRouter.gameRoute;
+        route = AppRouter().gameRoute;
         break;
       default:
     }
