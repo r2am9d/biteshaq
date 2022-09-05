@@ -23,7 +23,8 @@ class RecipeLocation extends BeamLocation<BeamState> {
         child: RecipeScreen(),
         type: BeamPageType.noTransition,
       ),
-      if (state.pathParameters.containsKey('id'))
+      if (state.pathPatternSegments.contains('view') &&
+          state.pathParameters.containsKey('id'))
         const BeamPage(
           key: ValueKey('recipe-view'),
           title: 'Recipe View',

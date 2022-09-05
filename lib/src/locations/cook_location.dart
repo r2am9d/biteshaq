@@ -23,11 +23,13 @@ class CookLocation extends BeamLocation<BeamState> {
         child: CookScreen(),
         type: BeamPageType.noTransition,
       ),
-      if (state.pathParameters.containsKey('id'))
+      if (state.pathPatternSegments.contains('view') &&
+          state.pathParameters.containsKey('id'))
         const BeamPage(
           key: ValueKey('cook-view'),
           title: 'Cook View',
           child: CookViewScreen(),
+          type: BeamPageType.slideRightTransition,
         ),
     ];
   }

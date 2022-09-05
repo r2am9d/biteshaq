@@ -9,10 +9,10 @@ class AppRouter {
   String get homeRoute => '/';
 
   String get recipeRoute => '/recipe';
-  String get recipeViewRoute => '/recipe/:id';
+  String get recipeViewRoute => '/recipe/view/:id';
 
   String get cookRoute => '/cook';
-  String get cookViewRoute => '/cook/:id';
+  String get cookViewRoute => '/cook/view/:id';
 
   String get gameRoute => '/game';
 }
