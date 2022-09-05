@@ -84,7 +84,12 @@ flutter {
 }
 
 dependencies {
+    implementation "androidx.multidex:multidex:2.0.1"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "com.google.android.gms:play-services-ads:21.1.0"
-    implementation "androidx.multidex:multidex:2.0.1"
+
+    implementation "com.google.firebase:firebase-appcheck-debug:16.0.1"
+
+    implementation platform("com.google.firebase:firebase-bom:30.4.0")
+    implementation "com.google.firebase:firebase-appcheck-playintegrity"
 }

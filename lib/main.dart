@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 
 import 'package:biteshaq/src/themes/app_theme.dart';
 import 'package:biteshaq/src/router/app_router.dart';
@@ -16,6 +17,7 @@ void main() async {
   await MobileAds.instance.initialize();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await FirebaseAppCheck.instance.activate();
 
   AppTheme appTheme = await AppTheme.instance;
   runApp(MyApp(theme: appTheme.theme));
