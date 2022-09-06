@@ -8,7 +8,7 @@ class AppColor {
   factory AppColor() => _instance;
 
   Color get primary => const Color(0xFF246c8a);
-  Color get secondary => const Color(0xFF93571f);
+  Color get secondary => const Color(0xFF8a4324); // 93571f
   Color get primaryColorLight => const Color(0xFFBBDEFB);
   Color get primaryColorDark => const Color(0xFF1976D2);
   Color get backgroundColor => const Color(0xFFFCFBFD);
