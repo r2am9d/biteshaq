@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "683488262101",
+    "project_id": "biteshaq-dev",
+    "storage_bucket": "biteshaq-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683488262101:android:ab0cadff66556e7ea22f5c",
+        "android_client_info": {
+          "package_name": "com.r2am9d.apps.biteshaq.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "683488262101-3ih5km8i3bsulkvlv36h13vbq71b5cjd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_vit-OOzeT9TFaEkZrR8hLvDsjjBKRDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "683488262101-3ih5km8i3bsulkvlv36h13vbq71b5cjd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "683488262101-epjhh7tiu3neq91dfnedojdgbuhfogff.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.r2am9d.apps.biteshaq.dev"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
