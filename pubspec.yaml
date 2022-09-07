@@ -37,7 +37,7 @@ dependencies:
   # UI/UX
   flag: ^6.0.0
   badges: ^2.0.3
-  json_theme: ^4.0.0+8
+  json_theme: ^4.0.1+1
   cupertino_icons: ^1.0.5
   salomon_bottom_bar: ^3.3.1
   cached_network_image: ^3.2.1
