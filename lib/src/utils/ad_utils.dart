@@ -2,13 +2,13 @@ import 'dart:io' show Platform;
 
 import 'package:biteshaq/src/constants/app_constants.dart';
 
-class AdHelper {
-  AdHelper._internal();
+class AdUtils {
+  AdUtils._internal();
 
   static late String _platform;
-  static final AdHelper _instance = AdHelper._internal();
+  static final AdUtils _instance = AdUtils._internal();
 
-  factory AdHelper() {
+  factory AdUtils() {
     if (Platform.isAndroid) {
       _platform = 'android';
     } else if (Platform.isIOS) {

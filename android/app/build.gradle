@@ -77,6 +77,20 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
+    flavorDimensions "default"
+    productFlavors {
+        dev {
+            dimension "default"
+            resValue "string", "APP_NAME", "Biteshaq Dev"
+            applicationIdSuffix ".dev"
+        }
+        prod {
+            dimension "default"
+            resValue "string", "APP_NAME", "Biteshaq"
+            applicationIdSuffix ""
+        }
+    }
 }
 
 flutter {

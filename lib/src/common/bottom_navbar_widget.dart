@@ -21,7 +21,7 @@ class BottomNavbarWidget extends HookWidget {
   Widget build(BuildContext context) {
     final beamerDelegate = useBeamerDelegate(beamerKey: beamerKey);
     final tabIndex = useMemoized(
-      () => AppUtils.determineTabIndex(beamerDelegate.currentBeamLocation),
+      () => AppUtils().determineTabIndex(beamerDelegate.currentBeamLocation),
       [beamerDelegate.currentBeamLocation],
     );
 
@@ -37,7 +37,7 @@ class BottomNavbarWidget extends HookWidget {
         currentIndex: tabIndex,
         onTap: (index) {
           beamerDelegate.beamToNamed(
-            AppUtils.determineRoute(index),
+            AppUtils().determineRoute(index),
           );
         },
         items: [

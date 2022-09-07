@@ -183,7 +183,7 @@ class _RecipeCard extends StatelessWidget {
                       Expanded(
                         flex: 3,
                         child: _RecipeRating(
-                          rating: AppUtils.randomizeRating(),
+                          rating: AppUtils().randomizeRating(),
                         ),
                       ),
                     ],
@@ -218,7 +218,7 @@ class _RecipeRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, Color> color = AppUtils.determineColor(rating);
+    Map<String, Color> color = AppUtils().determineColor(rating);
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 4.0),

@@ -16,10 +16,10 @@ class AppUtils {
 
   factory AppUtils() => _instance;
 
-  static double randomizeRating() =>
+  double randomizeRating() =>
       double.parse(((Random().nextDouble() * 4.0) + 1.0).toStringAsFixed(1));
 
-  static Map<String, Color> determineColor(rating) {
+  Map<String, Color> determineColor(rating) {
     Map<String, Color> color = {};
 
     if (rating <= 2.9) {
@@ -42,7 +42,7 @@ class AppUtils {
     return color;
   }
 
-  static int determineTabIndex(
+  int determineTabIndex(
       BeamLocation<RouteInformationSerializable<dynamic>> location) {
     int ref = 0;
     switch (location.runtimeType) {
@@ -61,7 +61,7 @@ class AppUtils {
     return ref;
   }
 
-  static String determineRoute(int tabIndex) {
+  String determineRoute(int tabIndex) {
     String route = '';
     switch (tabIndex) {
       case 0:

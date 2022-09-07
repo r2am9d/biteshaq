@@ -3,17 +3,19 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/common/app_ad_widget.dart';
-import 'package:biteshaq/src/locations/recipe_location.dart';
+import 'package:biteshaq/src/hooks/package_info_hook.dart';
 import 'package:biteshaq/src/locations/cook_location.dart';
 import 'package:biteshaq/src/locations/game_location.dart';
+import 'package:biteshaq/src/locations/recipe_location.dart';
 import 'package:biteshaq/src/common/bottom_navbar_widget.dart';
 import 'package:biteshaq/src/features/home/bloc/network_bloc.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends HookWidget {
   HomeScreen({super.key});
 
   final GlobalKey<BeamerState> _beamerKey = GlobalKey<BeamerState>();
@@ -29,6 +31,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final packageInfo = usePackageInfo();
+
     return BlocBuilder<NetworkBloc, NetworkState>(
       builder: (context, state) => SafeArea(
         child: Scaffold(
@@ -65,9 +69,9 @@ class HomeScreen extends StatelessWidget {
                 AppBar(
                   elevation: 0,
                   centerTitle: true,
-                  title: const Text(
-                    'Biteshaq',
-                    style: TextStyle(
+                  title: Text(
+                    packageInfo.appName,
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
