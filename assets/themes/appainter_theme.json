@@ -27,14 +27,14 @@
       "outline": "#ff000000",
       "primary": "#ff246c8a",
       "primaryContainer": "#ff246c8a",
-      "secondary": "#ff93571f",
-      "secondaryContainer": "#ff93571f",
+      "secondary": "#ff8a4324",
+      "secondaryContainer": "#ff8a4324",
       "shadow": "#ff000000",
       "surface": "#fffeffff",
       "surfaceTint": "#ff246c8a",
       "surfaceVariant": "#fffeffff",
-      "tertiary": "#ff93571f",
-      "tertiaryContainer": "#ff93571f"
+      "tertiary": "#ff8a4324",
+      "tertiaryContainer": "#ff8a4324"
     },
     "height": 36,
     "layoutBehavior": "padded",
@@ -102,14 +102,14 @@
     "outline": "#ff000000",
     "primary": "#ff246c8a",
     "primaryContainer": "#ff246c8a",
-    "secondary": "#ff93571f",
-    "secondaryContainer": "#ff93571f",
+    "secondary": "#ff8a4324",
+    "secondaryContainer": "#ff8a4324",
     "shadow": "#ff000000",
     "surface": "#fffeffff",
     "surfaceTint": "#ff246c8a",
     "surfaceVariant": "#fffeffff",
-    "tertiary": "#ff93571f",
-    "tertiaryContainer": "#ff93571f"
+    "tertiary": "#ff8a4324",
+    "tertiaryContainer": "#ff8a4324"
   },
   "dialogBackgroundColor": "#fffcfbfd",
   "disabledColor": "#61000000",
@@ -449,7 +449,7 @@
       "textBaseline": "alphabetic"
     }
   },
-  "toggleableActiveColor": "#ff93571f",
+  "toggleableActiveColor": "#ff8a4324",
   "typography": {
     "black": {
       "bodyLarge": {

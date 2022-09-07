@@ -5,21 +5,27 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "biteshaq",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "biteshaq (profile mode)",
+            "name": "Biteshaq Dev",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "program": "lib/main_dev.dart",
+            "args": ["--flavor", "dev", "--target", "lib/main_dev.dart"],
         },
         {
-            "name": "biteshaq (release mode)",
+            "name": "Biteshaq Dev (Profile)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "profile",
+            "program": "lib/main_dev.dart",
+            "args": ["--flavor", "dev", "--target", "lib/main_dev.dart"],
+        },
+        {
+            "name": "Biteshaq Prod",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "program": "lib/main_prod.dart",
+            "args": ["--flavor", "prod", "--target", "lib/main_prod.dart"],
         }
     ]
 }

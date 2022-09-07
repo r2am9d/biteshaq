@@ -17,11 +17,11 @@ class NetworkBloc extends Bloc<NetworkEvent, NetworkState> {
   factory NetworkBloc() => _instance;
 
   void _check(event, emit) {
-    NetworkRepository.checkNetwork();
+    NetworkRepository().checkNetwork();
   }
 
   void _observe(event, emit) {
-    NetworkRepository.observeNetwork();
+    NetworkRepository().observeNetwork();
   }
 
   void _notifyStatus(NetworkNotify event, emit) {

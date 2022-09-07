@@ -21,14 +21,14 @@ class BottomNavbarWidget extends HookWidget {
   Widget build(BuildContext context) {
     final beamerDelegate = useBeamerDelegate(beamerKey: beamerKey);
     final tabIndex = useMemoized(
-      () => AppUtils.determineTabIndex(beamerDelegate.currentBeamLocation),
+      () => AppUtils().determineTabIndex(beamerDelegate.currentBeamLocation),
       [beamerDelegate.currentBeamLocation],
     );
 
     return Container(
-      decoration: const BoxDecoration(
-        color: AppColor.primary,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: AppColor().primary,
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(16.0),
           topRight: Radius.circular(16.0),
         ),
@@ -37,19 +37,19 @@ class BottomNavbarWidget extends HookWidget {
         currentIndex: tabIndex,
         onTap: (index) {
           beamerDelegate.beamToNamed(
-            AppUtils.determineRoute(index),
+            AppUtils().determineRoute(index),
           );
         },
         items: [
           SalomonBottomBarItem(
             title: const Text('Recipe'),
-            selectedColor: AppColor.white,
+            selectedColor: AppColor().white,
             icon: const FaIcon(FontAwesomeIcons.lightScroll),
             activeIcon: const FaIcon(FontAwesomeIcons.solidScroll),
           ),
           SalomonBottomBarItem(
             title: const Text('Cook'),
-            selectedColor: AppColor.white,
+            selectedColor: AppColor().white,
             icon: Badge(
               position: BadgePosition.topEnd(top: -3, end: -6),
               child: const FaIcon(FontAwesomeIcons.lightHatChef),
@@ -58,7 +58,7 @@ class BottomNavbarWidget extends HookWidget {
           ),
           SalomonBottomBarItem(
             title: const Text('Game'),
-            selectedColor: AppColor.white,
+            selectedColor: AppColor().white,
             icon: const FaIcon(FontAwesomeIcons.lightGamepadModern),
             activeIcon: const FaIcon(FontAwesomeIcons.solidGamepadModern),
           ),

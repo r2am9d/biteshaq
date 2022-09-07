@@ -16,33 +16,33 @@ class AppUtils {
 
   factory AppUtils() => _instance;
 
-  static double randomizeRating() =>
+  double randomizeRating() =>
       double.parse(((Random().nextDouble() * 4.0) + 1.0).toStringAsFixed(1));
 
-  static Map<String, Color> determineColor(rating) {
+  Map<String, Color> determineColor(rating) {
     Map<String, Color> color = {};
 
     if (rating <= 2.9) {
       color = {
-        'bgColor': AppColor.bronze,
-        'textColor': AppColor.white,
+        'bgColor': AppColor().bronze,
+        'textColor': AppColor().white,
       };
     } else if (rating >= 3 && rating <= 3.9) {
       color = {
-        'bgColor': AppColor.silver,
-        'textColor': AppColor.black,
+        'bgColor': AppColor().silver,
+        'textColor': AppColor().black,
       };
     } else if (rating >= 4) {
       color = {
-        'bgColor': AppColor.gold,
-        'textColor': AppColor.black,
+        'bgColor': AppColor().gold,
+        'textColor': AppColor().black,
       };
     }
 
     return color;
   }
 
-  static int determineTabIndex(
+  int determineTabIndex(
       BeamLocation<RouteInformationSerializable<dynamic>> location) {
     int ref = 0;
     switch (location.runtimeType) {
@@ -61,17 +61,17 @@ class AppUtils {
     return ref;
   }
 
-  static String determineRoute(int tabIndex) {
+  String determineRoute(int tabIndex) {
     String route = '';
     switch (tabIndex) {
       case 0:
-        route = AppRouter.recipeRoute;
+        route = AppRouter().recipeRoute;
         break;
       case 1:
-        route = AppRouter.cookRoute;
+        route = AppRouter().cookRoute;
         break;
       case 2:
-        route = AppRouter.gameRoute;
+        route = AppRouter().gameRoute;
         break;
       default:
     }

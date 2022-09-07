@@ -9,7 +9,7 @@ class NetworkRepository {
 
   factory NetworkRepository() => _instance;
 
-  static void checkNetwork() async {
+  void checkNetwork() async {
     ConnectivityResult result = await Connectivity().checkConnectivity();
     if (result == ConnectivityResult.none) {
       NetworkBloc().add(const NetworkNotify());
@@ -18,7 +18,7 @@ class NetworkRepository {
     }
   }
 
-  static void observeNetwork() {
+  void observeNetwork() {
     Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
       if (result == ConnectivityResult.none) {
         NetworkBloc().add(const NetworkNotify());

@@ -10,24 +10,24 @@ class FailureWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        decoration: const BoxDecoration(
-          color: AppColor.red,
+        decoration: BoxDecoration(
+          color: AppColor().red,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
+          children: <Widget>[
             FaIcon(
-              color: AppColor.white,
+              color: AppColor().white,
               FontAwesomeIcons.solidCircleExclamation,
             ),
             Text(
               'Unexpected error occured',
               style: TextStyle(
-                color: AppColor.white,
+                color: AppColor().white,
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 48),
+            const SizedBox(height: 48),
           ],
         ),
       ),
