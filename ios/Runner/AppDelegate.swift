@@ -1,7 +1,7 @@
 import UIKit
 import Flutter
-import GoogleMobileAds
 import Firebase
+import GoogleMobileAds
 import FirebaseAppCheck
 
 @UIApplicationMain
