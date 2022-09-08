@@ -14,24 +14,27 @@ class _PermissionHook extends Hook<Permission> {
 class _PermissionHookState extends HookState<Permission, _PermissionHook> {
   // Set default values
   final Permission _permission = Permission.unknown;
+  final List<Permission> _permissions = <Permission>[
+    Permission.storage,
+    Permission.manageExternalStorage,
+    Permission.camera,
+    Permission.photos,
+    Permission.notification,
+  ];
 
   Future<void> _initPermission() async {
-    final permissions = [
-      Permission.storage,
-      Permission.manageExternalStorage,
-      Permission.camera,
-      Permission.photos,
-      Permission.notification,
-    ];
-
-    bool f = true;
-    List<bool> status = [];
-    for (var permission in permissions) {
+    List<PermissionStatus> status = [];
+    for (var permission in _permissions) {
       final state = await permission.request();
-      if (!f || state != PermissionStatus.granted) {
-        f = false;
+      if (state != PermissionStatus.granted) {
+        status.add(state);
       }
-      status.add(f);
+    }
+
+    // Force grant permission
+    if (status.contains(PermissionStatus.denied) ||
+        status.contains(PermissionStatus.permanentlyDenied)) {
+      openAppSettings();
     }
   }
 
