@@ -6,9 +6,7 @@ BannerAd useBannerAd({required String adUnitId}) =>
     use(_BannerAdHook(adUnitId: adUnitId));
 
 class _BannerAdHook extends Hook<BannerAd> {
-  const _BannerAdHook({
-    required this.adUnitId,
-  });
+  const _BannerAdHook({required this.adUnitId});
 
   final String adUnitId;
 

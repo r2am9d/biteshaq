@@ -47,5 +47,17 @@
 	<false/>
 	<key>CFBundleDisplayName</key>
 	<string>$(APP_DISPLAY_NAME)</string>
+
+    <!-- Permission options for the `camera` group -->
+    <key>NSCameraUsageDescription</key>
+    <string>camera</string>
+
+    <!-- Permission options for the `photos` group -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>photos</string>
+    
+	<!-- Permission options for the `notification` group -->
+    <key>PermissionGroupNotification</key>
+    <string>notification</string>
 </dict>
 </plist>

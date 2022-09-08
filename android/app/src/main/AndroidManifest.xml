@@ -4,9 +4,6 @@
     <!-- Permissions options for `internet` -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
-    <!-- Permissions options for `bluetooth` -->
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-
     <!-- Permissions options for `billing` -->
     <uses-permission android:name="com.android.vending.BILLING"/>
 
@@ -56,7 +53,7 @@
             android:name="flutterEmbedding"
             android:value="2"/>
 
-        <!-- Initial ad implementation -->
+        <!-- Admob implementation -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/ADMOB_ID"/>
