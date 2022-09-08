@@ -32,10 +32,10 @@ class _PermissionHookState extends HookState<Permission, _PermissionHook> {
     }
 
     // Force grant permission
-    if (status.contains(PermissionStatus.denied) ||
-        status.contains(PermissionStatus.permanentlyDenied)) {
-      openAppSettings();
-    }
+    // if (status.contains(PermissionStatus.denied) ||
+    //     status.contains(PermissionStatus.permanentlyDenied)) {
+    //   openAppSettings();
+    // }
   }
 
   @override
