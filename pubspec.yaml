@@ -48,6 +48,10 @@ dependencies:
 
   # State Mgmt
   drift: ^2.1.0
+  sqlite3_flutter_libs: ^0.5.9
+  path_provider: ^2.0.11
+  path: ^1.8.2
+
   equatable: ^2.0.5
   flutter_bloc: ^8.1.1
   flutter_hooks: ^0.18.5+1
