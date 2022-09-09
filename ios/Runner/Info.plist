@@ -62,7 +62,7 @@
 
 	<!-- Admob implementation -->
 	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-5730938617062130~4206361097</string>
+	<string>$(ADMOB_ID)</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
