@@ -82,12 +82,12 @@ android {
     productFlavors {
         dev {
             dimension "default"
-            resValue "string", "APP_NAME", "Biteshaq Dev"
+            resValue "string", "APP_DISPLAY_NAME", "Biteshaq Dev"
             applicationIdSuffix ".dev"
         }
         prod {
             dimension "default"
-            resValue "string", "APP_NAME", "Biteshaq"
+            resValue "string", "APP_DISPLAY_NAME", "Biteshaq"
             applicationIdSuffix ""
         }
     }
