@@ -31,6 +31,7 @@ class App extends StatelessWidget {
     return MaterialApp.router(
       theme: theme,
       routerDelegate: _routerDelegate,
+      debugShowCheckedModeBanner: false,
       routeInformationParser: BeamerParser(),
       backButtonDispatcher: BeamerBackButtonDispatcher(
         delegate: _routerDelegate,

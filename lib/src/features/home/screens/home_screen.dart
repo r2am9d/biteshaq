@@ -98,9 +98,9 @@ class HomeScreen extends HookWidget {
             key: _beamerKey,
             routerDelegate: _routerDelegate,
           ),
-          persistentFooterButtons: const <Widget>[
-            AppAdWidget(),
-          ],
+          // persistentFooterButtons: const <Widget>[
+          //   AppAdWidget(),
+          // ],
           bottomNavigationBar: BottomNavbarWidget(
             beamerKey: _beamerKey,
           ),

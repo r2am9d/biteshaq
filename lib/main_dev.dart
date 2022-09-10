@@ -5,11 +5,15 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 
 import 'package:biteshaq/app.dart';
+import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/themes/app_theme.dart';
 import 'package:biteshaq/src/firebase/config/dev.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(statusBarColor: AppColor().primary),
+  );
   await MobileAds.instance.initialize();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

@@ -9,6 +9,7 @@ import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
 import 'package:biteshaq/src/common/failure_widget.dart';
 import 'package:biteshaq/src/common/loading_widget.dart';
+import 'package:biteshaq/src/common/recipe_rating_widget.dart';
 
 class RecipeScreen extends StatelessWidget {
   const RecipeScreen({super.key});
@@ -182,7 +183,7 @@ class _RecipeCard extends StatelessWidget {
                       const SizedBox(width: 8.0),
                       Expanded(
                         flex: 3,
-                        child: _RecipeRating(
+                        child: RecipeRatingWidget(
                           rating: AppUtils().randomizeRating(),
                         ),
                       ),
@@ -205,35 +206,6 @@ class _RecipeCard extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _RecipeRating extends StatelessWidget {
-  const _RecipeRating({required this.rating});
-
-  final double rating;
-
-  @override
-  Widget build(BuildContext context) {
-    Map<String, Color> color = AppUtils().determineColor(rating);
-
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      decoration: BoxDecoration(
-        color: color['bgColor'],
-        borderRadius: const BorderRadius.all(
-          Radius.circular(8.0),
-        ),
-      ),
-      child: Text(
-        '$rating',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: color['textColor'],
-          fontWeight: FontWeight.bold,
         ),
       ),
     );
