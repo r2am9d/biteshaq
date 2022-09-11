@@ -57,6 +57,7 @@ class RecipeViewScreen extends StatelessWidget {
                         flex: 2,
                         child: RecipeRatingWidget(
                           rating: AppUtils().randomizeRating(),
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],

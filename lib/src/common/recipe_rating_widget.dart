@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:biteshaq/src/utils/app_utils.dart';
 
 class RecipeRatingWidget extends StatelessWidget {
-  const RecipeRatingWidget({super.key, required this.rating});
+  const RecipeRatingWidget({
+    super.key,
+    required this.rating,
+    this.fontWeight = FontWeight.w700,
+  });
 
   final double rating;
+  final FontWeight fontWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +29,7 @@ class RecipeRatingWidget extends StatelessWidget {
         textAlign: TextAlign.center,
         style: TextStyle(
           color: color['textColor'],
-          fontWeight: FontWeight.bold,
+          fontWeight: fontWeight,
         ),
       ),
     );
