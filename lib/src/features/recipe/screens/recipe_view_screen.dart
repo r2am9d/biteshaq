@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:card_swiper/card_swiper.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -8,7 +10,7 @@ import 'package:biteshaq/src/common/failure_widget.dart';
 import 'package:biteshaq/src/common/loading_widget.dart';
 import 'package:biteshaq/src/common/recipe_rating_widget.dart';
 
-class RecipeViewScreen extends StatelessWidget {
+class RecipeViewScreen extends HookWidget {
   const RecipeViewScreen({super.key});
 
   @override
@@ -38,7 +40,7 @@ class RecipeViewScreen extends StatelessWidget {
               title: ConstrainedBox(
                 constraints: const BoxConstraints(
                   minHeight: kToolbarHeight,
-                  maxHeight: kToolbarHeight + 4,
+                  maxHeight: kToolbarHeight + 4.0,
                   minWidth: double.infinity,
                 ),
                 child: Container(
@@ -64,34 +66,52 @@ class RecipeViewScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              background: CachedNetworkImage(
-                imageUrl: 'https://baconmockup.com/640/360',
-                imageBuilder: (context, imageProvider) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+              background: Swiper(
+                loop: false,
+                autoplay: true,
+                itemBuilder: (BuildContext context, int index) {
+                  return CachedNetworkImage(
+                    imageUrl: 'https://baconmockup.com/640/230',
+                    imageBuilder: (context, imageProvider) {
+                      return Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    },
+                    placeholder: (context, url) => const LoadingWidget(),
+                    errorWidget: (context, url, error) => const FailureWidget(),
                   );
                 },
-                placeholder: (context, url) => const LoadingWidget(),
-                errorWidget: (context, url, error) => const FailureWidget(),
+                itemCount: 10,
+                autoplayDelay: 7500,
+                pagination: const SwiperPagination(
+                  alignment: Alignment.topCenter,
+                  builder: SwiperPagination.fraction,
+                ),
+                control: SwiperControl(
+                  color: AppColor().primary,
+                  iconNext: FontAwesomeIcons.solidCaretRight,
+                  iconPrevious: FontAwesomeIcons.solidCaretLeft,
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                ),
               ),
             ),
           ),
-          const SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              child: Text('RecipeViewScreen'),
-            ),
-            // child: ListView.separated(
-            //   itemCount: 24,
-            //   primary: false,
-            //   shrinkWrap: true,
-            //   separatorBuilder: (context, index) => const Divider(),
-            //   itemBuilder: (context, index) => const Text('RecipeViewScreen'),
+          SliverToBoxAdapter(
+            // child: SingleChildScrollView(
+            //   child: Text('RecipeViewScreen'),
             // ),
+            child: ListView.separated(
+              itemCount: 24,
+              primary: false,
+              shrinkWrap: true,
+              separatorBuilder: (context, index) => const Divider(),
+              itemBuilder: (context, index) => const Text('RecipeViewScreen'),
+            ),
           ),
         ],
       ),

@@ -36,74 +36,78 @@ class HomeScreen extends HookWidget {
     final packageInfo = usePackageInfo();
 
     return BlocBuilder<NetworkBloc, NetworkState>(
-      builder: (context, state) => SafeArea(
-        child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: (state is NetworkFailure)
-                ? const Size.fromHeight(kToolbarHeight * 2)
-                : const Size.fromHeight(kToolbarHeight),
-            child: Column(
-              children: <Widget>[
-                if (state is NetworkFailure)
-                  SizedBox(
-                    height: kToolbarHeight,
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          FaIcon(
-                            size: 16.0,
-                            color: AppColor().red,
-                            FontAwesomeIcons.wifiSlash,
-                          ),
-                          const SizedBox(width: 8.0),
-                          Text(
-                            'You are currently offline :\'(',
-                            style: TextStyle(
+      builder: (context, state) => Scaffold(
+        appBar: PreferredSize(
+          preferredSize: (state is NetworkFailure)
+              ? const Size.fromHeight(kToolbarHeight * 2)
+              : const Size.fromHeight(kToolbarHeight),
+          child: Container(
+            color: AppColor().primary,
+            child: SafeArea(
+              child: Column(
+                children: <Widget>[
+                  if (state is NetworkFailure)
+                    Container(
+                      height: kToolbarHeight,
+                      color: AppColor().white,
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            FaIcon(
+                              size: 16.0,
                               color: AppColor().red,
-                              fontWeight: FontWeight.bold,
+                              FontAwesomeIcons.wifiSlash,
                             ),
-                          ),
-                        ],
+                            const SizedBox(width: 8.0),
+                            Text(
+                              'You are currently offline :\'(',
+                              style: TextStyle(
+                                color: AppColor().red,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                AppBar(
-                  elevation: 0,
-                  centerTitle: true,
-                  title: Text(
-                    packageInfo.appName,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
+                  AppBar(
+                    elevation: 0,
+                    centerTitle: true,
+                    title: Text(
+                      packageInfo.appName,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  leading: IconButton(
-                    onPressed: () {},
-                    splashRadius: 24,
-                    icon: const FaIcon(FontAwesomeIcons.lightForkKnife),
-                  ),
-                  actions: <Widget>[
-                    IconButton(
+                    leading: IconButton(
                       onPressed: () {},
                       splashRadius: 24,
-                      icon: const FaIcon(FontAwesomeIcons.lightCircleUser),
+                      icon: const FaIcon(FontAwesomeIcons.lightForkKnife),
                     ),
-                    const SizedBox(width: 10),
-                  ],
-                )
-              ],
+                    actions: <Widget>[
+                      IconButton(
+                        onPressed: () {},
+                        splashRadius: 24,
+                        icon: const FaIcon(FontAwesomeIcons.lightCircleUser),
+                      ),
+                      const SizedBox(width: 10),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
-          body: Beamer(
-            key: _beamerKey,
-            routerDelegate: _routerDelegate,
-          ),
-          // persistentFooterButtons: const <Widget>[
-          //   AppAdWidget(),
-          // ],
-          bottomNavigationBar: BottomNavbarWidget(
-            beamerKey: _beamerKey,
-          ),
+        ),
+        body: Beamer(
+          key: _beamerKey,
+          routerDelegate: _routerDelegate,
+        ),
+        // persistentFooterButtons: const <Widget>[
+        //   AppAdWidget(),
+        // ],
+        bottomNavigationBar: BottomNavbarWidget(
+          beamerKey: _beamerKey,
         ),
       ),
     );
