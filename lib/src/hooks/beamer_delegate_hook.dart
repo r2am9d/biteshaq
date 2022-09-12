@@ -32,5 +32,6 @@ class _BeamerDelegateHookState
   @override
   void dispose() {
     _beamerDelegate.removeListener(_setStateListener);
+    _beamerDelegate.dispose();
   }
 }

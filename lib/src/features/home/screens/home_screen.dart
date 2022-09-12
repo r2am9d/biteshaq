@@ -1,5 +1,3 @@
-// ignore_for_file: overridden_fields, annotate_overrides
-
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,14 +5,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:biteshaq/src/themes/app_color.dart';
-import 'package:biteshaq/src/common/app_ad_widget.dart';
 import 'package:biteshaq/src/hooks/permission_hook.dart';
 import 'package:biteshaq/src/hooks/package_info_hook.dart';
 import 'package:biteshaq/src/locations/cook_location.dart';
 import 'package:biteshaq/src/locations/game_location.dart';
 import 'package:biteshaq/src/locations/recipe_location.dart';
-import 'package:biteshaq/src/common/bottom_navbar_widget.dart';
-import 'package:biteshaq/src/features/home/bloc/network_bloc.dart';
+import 'package:biteshaq/src/common/widgets/app_ad_widget.dart';
+import 'package:biteshaq/src/common/bloc/network/network_bloc.dart';
+import 'package:biteshaq/src/common/widgets/bottom_navbar_widget.dart';
 
 class HomeScreen extends HookWidget {
   HomeScreen({super.key});
@@ -103,9 +101,9 @@ class HomeScreen extends HookWidget {
           key: _beamerKey,
           routerDelegate: _routerDelegate,
         ),
-        // persistentFooterButtons: const <Widget>[
-        //   AppAdWidget(),
-        // ],
+        persistentFooterButtons: const <Widget>[
+          AppAdWidget(),
+        ],
         bottomNavigationBar: BottomNavbarWidget(
           beamerKey: _beamerKey,
         ),

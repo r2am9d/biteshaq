@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:biteshaq/src/router/app_router.dart';
-import 'package:biteshaq/src/features/home/bloc/network_bloc.dart';
+import 'package:biteshaq/src/common/bloc/network/network_bloc.dart';
 import 'package:biteshaq/src/features/home/screens/home_screen.dart';
+import 'package:biteshaq/src/common/bloc/bottom_navbar/bottom_navbar_bloc.dart';
 
 class App extends StatelessWidget {
   App({super.key, required this.theme});
@@ -15,10 +16,18 @@ class App extends StatelessWidget {
     locationBuilder: RoutesLocationBuilder(
       routes: {
         '*': (context, state, data) {
-          return BlocProvider(
-            create: (context) => NetworkBloc()
-              ..add(const NetworkCheck())
-              ..add(const NetworkObserve()),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => NetworkBloc()
+                  ..add(const NetworkCheck())
+                  ..add(const NetworkObserve()),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    BottomNavbarBloc()..add(const BottomNavbarToggle()),
+              ),
+            ],
             child: HomeScreen(),
           );
         },

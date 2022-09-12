@@ -7,9 +7,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:biteshaq/src/utils/app_utils.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
-import 'package:biteshaq/src/common/failure_widget.dart';
-import 'package:biteshaq/src/common/loading_widget.dart';
-import 'package:biteshaq/src/common/recipe_rating_widget.dart';
+import 'package:biteshaq/src/common/widgets/failure_widget.dart';
+import 'package:biteshaq/src/common/widgets/loading_widget.dart';
+import 'package:biteshaq/src/common/widgets/recipe_rating_widget.dart';
 
 class RecipeScreen extends StatelessWidget {
   const RecipeScreen({super.key});

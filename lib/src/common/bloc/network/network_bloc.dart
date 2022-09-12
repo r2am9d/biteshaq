@@ -1,4 +1,4 @@
-import 'package:biteshaq/src/features/home/repositories/network_repository.dart';
+import 'package:biteshaq/src/common/repository/network_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 

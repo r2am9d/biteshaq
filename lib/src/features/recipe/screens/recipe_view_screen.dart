@@ -8,9 +8,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:biteshaq/src/utils/app_utils.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
-import 'package:biteshaq/src/common/failure_widget.dart';
-import 'package:biteshaq/src/common/loading_widget.dart';
-import 'package:biteshaq/src/common/recipe_rating_widget.dart';
+import 'package:biteshaq/src/common/widgets/failure_widget.dart';
+import 'package:biteshaq/src/common/widgets/loading_widget.dart';
+import 'package:biteshaq/src/hooks/scroll_controller_hook.dart' as sch;
+import 'package:biteshaq/src/common/widgets/recipe_rating_widget.dart';
 
 class RecipeViewScreen extends HookWidget {
   const RecipeViewScreen({super.key});
@@ -18,9 +19,13 @@ class RecipeViewScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mQ = MediaQuery.of(context);
+    final scrollCtrl = sch.useScrollController();
+
+    useScrollController();
 
     return Scaffold(
       body: CustomScrollView(
+        controller: scrollCtrl,
         physics: const BouncingScrollPhysics(
           parent: AlwaysScrollableScrollPhysics(),
         ),
@@ -147,6 +152,7 @@ class RecipeViewScreen extends HookWidget {
           ),
           SliverToBoxAdapter(
             // child: SingleChildScrollView(
+            //   primary: false,
             //   child: Text('RecipeViewScreen'),
             // ),
             child: ListView.separated(
