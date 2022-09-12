@@ -139,7 +139,7 @@ class _RecipeCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                'Special Grilled Chicken',
+                                'Pork Adobo',
                                 style: TextStyle(
                                   color: AppColor().white,
                                   fontWeight: FontWeight.bold,

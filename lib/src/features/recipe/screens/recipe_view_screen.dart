@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'dart:math';
 
+import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -18,10 +21,9 @@ class RecipeViewScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData mQ = MediaQuery.of(context);
+    final theme = Theme.of(context);
+    final mQ = MediaQuery.of(context);
     final scrollCtrl = sch.useScrollController();
-
-    useScrollController();
 
     return Scaffold(
       body: CustomScrollView(
@@ -97,7 +99,7 @@ class RecipeViewScreen extends HookWidget {
                                   ? const EdgeInsets.only(left: 16.0)
                                   : const EdgeInsets.only(),
                               child: const Text(
-                                'Special Grilled Chicken',
+                                'Pork Adobo',
                               ),
                             ),
                           ),
@@ -151,22 +153,418 @@ class RecipeViewScreen extends HookWidget {
             ),
           ),
           SliverToBoxAdapter(
-            // child: SingleChildScrollView(
-            //   primary: false,
-            //   child: Text('RecipeViewScreen'),
-            // ),
-            child: ListView.separated(
-              itemCount: 24,
+            child: SingleChildScrollView(
               primary: false,
-              shrinkWrap: true,
-              separatorBuilder: (context, index) => const Divider(),
-              itemBuilder: (context, index) => const Text('RecipeViewScreen'),
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: <Widget>[
+                  /// Description
+                  Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        /// Header
+                        Text(
+                          'Description',
+                          style: theme.textTheme.headline5?.copyWith(
+                            color: AppColor().primary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+
+                        /// Content
+                        Text(
+                          'Basic Filipino Pork Adobo with Soy Sauce, Vinegar, and Garlic. This delicious dish is perfect when served over newly cooked white rice.',
+                          style: theme.textTheme.bodyText1?.copyWith(
+                            color: AppColor().black,
+                          ),
+                          textAlign: TextAlign.justify,
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  /// Details
+                  Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        /// Header
+                        Text(
+                          'Details',
+                          style: theme.textTheme.headline5?.copyWith(
+                            color: AppColor().primary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+
+                        /// Course
+                        Row(
+                          children: <Widget>[
+                            FaIcon(
+                              size: 18.0,
+                              color: AppColor().secondary,
+                              FontAwesomeIcons.solidBellConcierge,
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              'Course:',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColor().black,
+                              ),
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              'Main',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColor().black,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        /// Cuisine
+                        Row(
+                          children: <Widget>[
+                            FaIcon(
+                              size: 18.0,
+                              color: AppColor().secondary,
+                              FontAwesomeIcons.solidBowlHot,
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              'Cuisine:',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColor().black,
+                              ),
+                            ),
+                            const SizedBox(width: 8.0),
+                            Flag.fromCode(
+                              FlagsCode.PH,
+                              height: 12.0,
+                              width: 12.0,
+                              fit: BoxFit.fill,
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              'Filipino',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColor().black,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        /// Chef
+                        Row(
+                          children: <Widget>[
+                            FaIcon(
+                              size: 18.0,
+                              color: AppColor().secondary,
+                              FontAwesomeIcons.solidHatChef,
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              'Chef:',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColor().black,
+                              ),
+                            ),
+                            const SizedBox(width: 8.0),
+                            Wrap(
+                              spacing: 8.0,
+                              runSpacing: 8.0,
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  'Cardo Dalisay',
+                                  style: theme.textTheme.bodyText1?.copyWith(
+                                    color: AppColor().black,
+                                  ),
+                                ),
+                                FaIcon(
+                                  size: 12.0,
+                                  color: AppColor().green,
+                                  FontAwesomeIcons.solidShieldCheck,
+                                ),
+                                FaIcon(
+                                  size: 12.0,
+                                  color: AppColor().yellow,
+                                  FontAwesomeIcons.solidGem,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+
+                        Divider(color: AppColor().primary),
+
+                        /// Prep Time
+                        Row(
+                          children: <Widget>[
+                            FaIcon(
+                              size: 18.0,
+                              color: AppColor().secondary,
+                              FontAwesomeIcons.solidKnifeKitchen,
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              'Prep Time:',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColor().black,
+                              ),
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              '10 min',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColor().black,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        /// Cook Time
+                        Row(
+                          children: <Widget>[
+                            FaIcon(
+                              size: 18.0,
+                              color: AppColor().secondary,
+                              FontAwesomeIcons.solidCauldron,
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              'Cook Time:',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColor().black,
+                              ),
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              '1 hr',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColor().black,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        /// Total Time
+                        Row(
+                          children: <Widget>[
+                            FaIcon(
+                              size: 18.0,
+                              color: AppColor().secondary,
+                              FontAwesomeIcons.solidHourglass,
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              'Total Time:',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColor().black,
+                              ),
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              '1 hr & 10 min',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColor().black,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        Divider(color: AppColor().primary),
+
+                        /// Servings
+                        Row(
+                          children: <Widget>[
+                            FaIcon(
+                              size: 18.0,
+                              color: AppColor().secondary,
+                              FontAwesomeIcons.solidUtensils,
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              'Servings:',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColor().black,
+                              ),
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              '4',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColor().black,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        /// Calories
+                        Row(
+                          children: <Widget>[
+                            FaIcon(
+                              size: 18.0,
+                              color: AppColor().secondary,
+                              FontAwesomeIcons.solidFireFlameCurved,
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              'Calories:',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColor().black,
+                              ),
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              '1211 kcal',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColor().black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  /// Ingredients
+                  Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        /// Header
+                        Text(
+                          'Ingredients',
+                          style: theme.textTheme.headline5?.copyWith(
+                            color: AppColor().primary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+
+                        /// Content List
+                        Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Text(
+                                'Laborum magna ut reprehenderit reprehenderit id fugiat qui ea consequat. Eu elit aliqua laborum excepteur officia excepteur commodo labore. Labore mollit duis pariatur consectetur ullamco velit sint consequat dolore pariatur commodo eu aute adipisicing.',
+                                style: theme.textTheme.bodyText1?.copyWith(
+                                  color: AppColor().black,
+                                ),
+                                textAlign: TextAlign.justify,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  /// Procedure
+                  Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        /// Header
+                        Text(
+                          'Procedure',
+                          style: theme.textTheme.headline5?.copyWith(
+                            color: AppColor().primary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+
+                        /// Content List
+                        Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Text(
+                                'Est esse deserunt pariatur pariatur eiusmod id Lorem id mollit in esse. Do cupidatat proident ad eu non consectetur pariatur minim incididunt ad. Tempor enim deserunt qui veniam nisi nostrud Lorem in eiusmod. Veniam tempor esse nisi minim veniam sint excepteur esse esse deserunt et. Aliqua nulla fugiat mollit minim est ad.',
+                                style: theme.textTheme.bodyText1?.copyWith(
+                                  color: AppColor().black,
+                                ),
+                                textAlign: TextAlign.justify,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
+
+            /// For testing
+            // child: ListView.separated(
+            //   itemCount: 24,
+            //   primary: false,
+            //   shrinkWrap: true,
+            //   itemBuilder: (context, index) => const Text('RecipeViewScreen'),
+            //   separatorBuilder: (context, index) => const Divider(),
+            // ),
           ),
         ],
       ),
-      persistentFooterButtons: const <Widget>[
-        Text('RecipeViewScreen'),
+      persistentFooterButtons: <Widget>[
+        SizedBox(
+          height: kToolbarHeight,
+          width: double.infinity,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                height: 24 * 2,
+                width: 24 * 6,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor().red,
+                  ),
+                  onPressed: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const <Widget>[
+                      Text('Favorites'),
+                      SizedBox(width: 8.0),
+                      FaIcon(
+                        size: 18.0,
+                        FontAwesomeIcons.solidHeart,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 24 * 2,
+                width: 24 * 6,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor().secondary,
+                  ),
+                  onPressed: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const <Widget>[
+                      Text('Cook'),
+                      SizedBox(width: 8.0),
+                      FaIcon(
+                        size: 18.0,
+                        FontAwesomeIcons.solidHatChef,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
