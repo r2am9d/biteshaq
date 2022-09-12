@@ -39,39 +39,34 @@ class BottomNavbarWidget extends HookWidget {
               topRight: Radius.circular(16.0),
             ),
           ),
-          child: Wrap(
-            children: <Widget>[
-              SalomonBottomBar(
-                currentIndex: tabIndex,
-                onTap: (index) {
-                  beamerDelegate.beamToNamed(
-                    AppUtils().determineRoute(index),
-                  );
-                },
-                items: [
-                  SalomonBottomBarItem(
-                    title: const Text('Recipe'),
-                    selectedColor: AppColor().white,
-                    icon: const FaIcon(FontAwesomeIcons.lightScroll),
-                    activeIcon: const FaIcon(FontAwesomeIcons.solidScroll),
-                  ),
-                  SalomonBottomBarItem(
-                    title: const Text('Cook'),
-                    selectedColor: AppColor().white,
-                    icon: Badge(
-                      position: BadgePosition.topEnd(top: -3, end: -6),
-                      child: const FaIcon(FontAwesomeIcons.lightHatChef),
-                    ),
-                    activeIcon: const FaIcon(FontAwesomeIcons.solidHatChef),
-                  ),
-                  SalomonBottomBarItem(
-                    title: const Text('Game'),
-                    selectedColor: AppColor().white,
-                    icon: const FaIcon(FontAwesomeIcons.lightGamepadModern),
-                    activeIcon:
-                        const FaIcon(FontAwesomeIcons.solidGamepadModern),
-                  ),
-                ],
+          child: SalomonBottomBar(
+            currentIndex: tabIndex,
+            onTap: (index) {
+              beamerDelegate.beamToNamed(
+                AppUtils().determineRoute(index),
+              );
+            },
+            items: [
+              SalomonBottomBarItem(
+                title: const Text('Recipe'),
+                selectedColor: AppColor().white,
+                icon: const FaIcon(FontAwesomeIcons.lightScroll),
+                activeIcon: const FaIcon(FontAwesomeIcons.solidScroll),
+              ),
+              SalomonBottomBarItem(
+                title: const Text('Cook'),
+                selectedColor: AppColor().white,
+                icon: Badge(
+                  position: BadgePosition.topEnd(top: -3, end: -6),
+                  child: const FaIcon(FontAwesomeIcons.lightHatChef),
+                ),
+                activeIcon: const FaIcon(FontAwesomeIcons.solidHatChef),
+              ),
+              SalomonBottomBarItem(
+                title: const Text('Game'),
+                selectedColor: AppColor().white,
+                icon: const FaIcon(FontAwesomeIcons.lightGamepadModern),
+                activeIcon: const FaIcon(FontAwesomeIcons.solidGamepadModern),
               ),
             ],
           ),
