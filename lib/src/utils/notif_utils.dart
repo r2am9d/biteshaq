@@ -11,6 +11,7 @@ class NotifUtils {
   static const String BITESHAQ_CHANNEL = 'biteshaq_channel';
   static const String BITESHAQ_GROUP_CHANNEL = 'biteshaq_group_channel';
 
+  static final FirebaseMessaging _firebaseMsg = FirebaseMessaging.instance;
   static final FlutterLocalNotificationsPlugin _localNotification =
       FlutterLocalNotificationsPlugin();
   static final NotifUtils _instance = NotifUtils._internal();
@@ -33,8 +34,7 @@ class NotifUtils {
   }
 
   Future<void> init() async {
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
+    await _firebaseMsg.setForegroundNotificationPresentationOptions(
       alert: true,
       badge: true,
       sound: true,
@@ -43,21 +43,25 @@ class NotifUtils {
     const androidInitSettings =
         AndroidInitializationSettings('@mipmap/ic_launcher');
 
-    const iosInitSettings = IOSInitializationSettings(
+    final iosInitSettings = IOSInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
       requestSoundPermission: true,
+      onDidReceiveLocalNotification: _onIosForegroundNotificationTapped,
     );
 
-    const initSettings = InitializationSettings(
+    final initSettings = InitializationSettings(
       android: androidInitSettings,
       iOS: iosInitSettings,
     );
 
-    await _localNotification.initialize(initSettings);
+    await _localNotification.initialize(
+      initSettings,
+      onSelectNotification: _onAndroidForegroundNotificationTapped,
+    );
   }
 
-  void showNotification(RemoteMessage message) async {
+  void _showNotification(RemoteMessage message) async {
     Map<String, dynamic> data = message.data;
     RemoteNotification? remoteNotif = message.notification;
     AndroidNotification? androidNotif = remoteNotif?.android;
@@ -69,17 +73,28 @@ class NotifUtils {
         remoteNotif.title,
         remoteNotif.body,
         _notificationDetails(),
+        payload: data.toString(),
       );
     }
   }
 
-  void onOpenNotification(RemoteMessage message) {
-    // @TODO: Implement navigation
-    print('onOpenNotification: Notification opened');
+  Future<String?> getToken() async => await _firebaseMsg.getToken();
+
+  void _onIosForegroundNotificationTapped(
+      int id, String? title, String? body, String? payload) async {
+    // @TODO: IOS_NOTIFICATION_TAPPED
   }
 
-  void Function(RemoteMessage message) get getShowNotification =>
-      showNotification;
-  void Function(RemoteMessage message) get getOnOpenNotification =>
-      onOpenNotification;
+  void _onAndroidForegroundNotificationTapped(String? payload) async {
+    // @TODO: ANDR_NOTIFICATION_TAPPED
+  }
+
+  void _onBackgroundNotificationTapped(RemoteMessage message) async {
+    // @TODO: BG_NOTIFICATION_TAPPED
+  }
+
+  void Function(RemoteMessage message) get showNotification =>
+      _showNotification;
+  void Function(RemoteMessage message) get onBackgroundNotificationTapped =>
+      _onBackgroundNotificationTapped;
 }

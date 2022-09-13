@@ -13,7 +13,7 @@ import 'package:biteshaq/src/firebase/config/dev.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async =>
-    NotifUtils().showNotification(message);
+    NotifUtils().showNotification;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
