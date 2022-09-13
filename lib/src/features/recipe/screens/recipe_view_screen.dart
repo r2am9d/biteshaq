@@ -9,6 +9,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'package:biteshaq/src/hooks/tts_hook.dart';
 import 'package:biteshaq/src/utils/app_utils.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/common/widgets/failure_widget.dart';
@@ -24,6 +25,7 @@ class RecipeViewScreen extends HookWidget {
     final theme = Theme.of(context);
     final mQ = MediaQuery.of(context);
     final scrollCtrl = sch.useScrollController();
+    final tts = useFlutterTts();
 
     return Scaffold(
       body: CustomScrollView(
@@ -566,6 +568,24 @@ class RecipeViewScreen extends HookWidget {
           ),
         ),
       ],
+      floatingActionButton: FloatingActionButton(
+        tooltip: 'Remove filter',
+        heroTag: 'product-index-filter-fab',
+        backgroundColor: AppColor().primary,
+        onPressed: () async {
+          await tts.setSpeechRate(.50);
+          await tts.setVolume(1.0);
+          await tts.setPitch(1.25);
+
+          const text =
+              'Basic Filipino Pork Adobo with Soy Sauce, Vinegar, and Garlic. This delicious dish is perfect when served over newly cooked white rice.';
+          await tts.speak(text);
+        },
+        child: FaIcon(
+          color: AppColor().white,
+          FontAwesomeIcons.solidMicrophoneStand,
+        ),
+      ),
     );
   }
 }

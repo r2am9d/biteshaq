@@ -22,7 +22,7 @@ class _PermissionHookState extends HookState<Permission, _PermissionHook> {
     Permission.notification,
   ];
 
-  Future<void> _initPermission() async {
+  void _initPermission() async {
     List<PermissionStatus> status = [];
     for (var permission in _permissions) {
       final state = await permission.request();

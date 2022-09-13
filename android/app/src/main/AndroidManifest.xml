@@ -23,6 +23,13 @@
     <!-- Permissions options for `foreground service` -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
+    <!-- Query options for `Text-to-speech service` -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+    </queries>
+
     <application
         android:label="@string/APP_DISPLAY_NAME"
         android:icon="@mipmap/ic_launcher"
