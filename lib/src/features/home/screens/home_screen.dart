@@ -7,10 +7,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/hooks/permission_hook.dart';
 import 'package:biteshaq/src/hooks/package_info_hook.dart';
-import 'package:biteshaq/src/locations/cook_location.dart';
-import 'package:biteshaq/src/locations/game_location.dart';
-import 'package:biteshaq/src/locations/recipe_location.dart';
 import 'package:biteshaq/src/common/widgets/app_ad_widget.dart';
+import 'package:biteshaq/src/hooks/firebase_messaging_hook.dart';
+import 'package:biteshaq/src/router/locations/cook_location.dart';
+import 'package:biteshaq/src/router/locations/game_location.dart';
+import 'package:biteshaq/src/router/locations/recipe_location.dart';
 import 'package:biteshaq/src/common/bloc/network/network_bloc.dart';
 import 'package:biteshaq/src/common/widgets/bottom_navbar_widget.dart';
 
@@ -31,6 +32,7 @@ class HomeScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     usePermission();
+    useFirebaseMessaging();
     final packageInfo = usePackageInfo();
 
     return BlocBuilder<NetworkBloc, NetworkState>(

@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
-import 'package:biteshaq/src/locations/cook_location.dart';
-import 'package:biteshaq/src/locations/game_location.dart';
-import 'package:biteshaq/src/locations/recipe_location.dart';
+import 'package:biteshaq/src/router/locations/cook_location.dart';
+import 'package:biteshaq/src/router/locations/game_location.dart';
+import 'package:biteshaq/src/router/locations/recipe_location.dart';
 
 class AppUtils {
   AppUtils._internal();
