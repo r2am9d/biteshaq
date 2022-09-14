@@ -20,7 +20,7 @@ class _FirebaseMessagingHookState
 
   @override
   void initHook() {
-    FirebaseMessaging.onMessage.listen(NotifUtils().showNotification);
+    FirebaseMessaging.onMessage.listen(NotifUtils().showRemoteNotification);
     FirebaseMessaging.onMessageOpenedApp
         .listen(NotifUtils().onBackgroundNotificationTapped);
   }

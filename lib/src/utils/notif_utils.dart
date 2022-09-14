@@ -12,7 +12,7 @@ class NotifUtils {
   static const String BITESHAQ_GROUP_CHANNEL = 'biteshaq_group_channel';
 
   static final FirebaseMessaging _firebaseMsg = FirebaseMessaging.instance;
-  static final FlutterLocalNotificationsPlugin _localNotification =
+  static final FlutterLocalNotificationsPlugin _flutterLocalNotif =
       FlutterLocalNotificationsPlugin();
   static final NotifUtils _instance = NotifUtils._internal();
 
@@ -33,7 +33,7 @@ class NotifUtils {
     );
   }
 
-  Future<void> init() async {
+  void init() async {
     await _firebaseMsg.setForegroundNotificationPresentationOptions(
       alert: true,
       badge: true,
@@ -55,20 +55,20 @@ class NotifUtils {
       iOS: iosInitSettings,
     );
 
-    await _localNotification.initialize(
+    await _flutterLocalNotif.initialize(
       initSettings,
       onSelectNotification: _onAndroidForegroundNotificationTapped,
     );
   }
 
-  void _showNotification(RemoteMessage message) async {
+  void _showRemoteNotification(RemoteMessage message) async {
     Map<String, dynamic> data = message.data;
     RemoteNotification? remoteNotif = message.notification;
     AndroidNotification? androidNotif = remoteNotif?.android;
     AppleNotification? appleNotif = remoteNotif?.apple;
 
     if (remoteNotif != null && (androidNotif != null || appleNotif != null)) {
-      await _localNotification.show(
+      await _flutterLocalNotif.show(
         remoteNotif.hashCode,
         remoteNotif.title,
         remoteNotif.body,
@@ -82,19 +82,19 @@ class NotifUtils {
 
   void _onIosForegroundNotificationTapped(
       int id, String? title, String? body, String? payload) async {
-    // @TODO: IOS_NOTIFICATION_TAPPED
+    // TODO: IOS_NOTIFICATION_TAPPED
   }
 
   void _onAndroidForegroundNotificationTapped(String? payload) async {
-    // @TODO: ANDR_NOTIFICATION_TAPPED
+    // TODO: ANDR_NOTIFICATION_TAPPED
   }
 
   void _onBackgroundNotificationTapped(RemoteMessage message) async {
-    // @TODO: BG_NOTIFICATION_TAPPED
+    // TODO: BG_NOTIFICATION_TAPPED
   }
 
-  void Function(RemoteMessage message) get showNotification =>
-      _showNotification;
+  void Function(RemoteMessage message) get showRemoteNotification =>
+      _showRemoteNotification;
   void Function(RemoteMessage message) get onBackgroundNotificationTapped =>
       _onBackgroundNotificationTapped;
 }
