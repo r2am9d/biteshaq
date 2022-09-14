@@ -2,7 +2,7 @@
 
 enum Environment { dev, prod }
 
-enum TtsState { playing, stopped, paused, continued }
+enum TtsState { initial, playing, paused, stopped }
 
 const ADMOB = {
   'android': {

@@ -12,6 +12,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:biteshaq/src/hooks/tts_hook.dart';
 import 'package:biteshaq/src/utils/app_utils.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
+import 'package:biteshaq/src/constants/app_constants.dart';
 import 'package:biteshaq/src/common/widgets/failure_widget.dart';
 import 'package:biteshaq/src/common/widgets/loading_widget.dart';
 import 'package:biteshaq/src/hooks/scroll_controller_hook.dart' as sch;
@@ -24,8 +25,20 @@ class RecipeViewScreen extends HookWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final mQ = MediaQuery.of(context);
-    final scrollCtrl = sch.useScrollController();
+
     final tts = useFlutterTts();
+    final ttsState = useState(TtsState.initial);
+    final scrollCtrl = sch.useScrollController();
+
+    void ttsSpeak(String text) async {
+      await tts.speak(text);
+      ttsState.value = TtsState.playing;
+    }
+
+    void ttsStop() async {
+      await tts.stop();
+      ttsState.value = TtsState.stopped;
+    }
 
     return Scaffold(
       body: CustomScrollView(
@@ -569,18 +582,12 @@ class RecipeViewScreen extends HookWidget {
         ),
       ],
       floatingActionButton: FloatingActionButton(
-        tooltip: 'Remove filter',
-        heroTag: 'product-index-filter-fab',
+        tooltip: 'Talk',
         backgroundColor: AppColor().primary,
-        onPressed: () async {
-          await tts.setSpeechRate(.50);
-          await tts.setVolume(1.0);
-          await tts.setPitch(1.25);
-
-          const text =
-              'Basic Filipino Pork Adobo with Soy Sauce, Vinegar, and Garlic. This delicious dish is perfect when served over newly cooked white rice.';
-          await tts.speak(text);
-        },
+        onPressed: ttsState.value.name == 'playing'
+            ? () => ttsStop()
+            : () => ttsSpeak(
+                'Basic Filipino Pork Adobo with Soy Sauce, Vinegar, and Garlic. This delicious dish is perfect when served over newly cooked white rice.'),
         child: FaIcon(
           color: AppColor().white,
           FontAwesomeIcons.solidMicrophoneStand,
