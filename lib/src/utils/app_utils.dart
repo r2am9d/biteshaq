@@ -78,4 +78,29 @@ class AppUtils {
 
     return route;
   }
+
+  Widget Function(
+    BuildContext context,
+    int index,
+    Animation<double> animation,
+  ) animationItemBuilder(
+    Widget Function(int index) child, {
+    EdgeInsets padding = EdgeInsets.zero,
+  }) {
+    return (BuildContext context, int index, Animation<double> animation) {
+      return FadeTransition(
+        opacity: Tween<double>(begin: 0, end: 1).animate(animation),
+        child: SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, -0.1),
+            end: Offset.zero,
+          ).animate(animation),
+          child: Padding(
+            padding: padding,
+            child: child(index),
+          ),
+        ),
+      );
+    };
+  }
 }

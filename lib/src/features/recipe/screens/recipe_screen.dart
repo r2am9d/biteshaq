@@ -1,6 +1,8 @@
 import 'package:flag/flag.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_animated/auto_animated.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -11,16 +13,19 @@ import 'package:biteshaq/src/common/widgets/failure_widget.dart';
 import 'package:biteshaq/src/common/widgets/loading_widget.dart';
 import 'package:biteshaq/src/common/widgets/recipe_rating_widget.dart';
 
-class RecipeScreen extends StatelessWidget {
+class RecipeScreen extends HookWidget {
   const RecipeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final scrollCtrl = useScrollController();
+
     return Scaffold(
       body: RefreshIndicator(
         edgeOffset: kToolbarHeight,
         onRefresh: () async => Future<void>.delayed(const Duration(seconds: 3)),
         child: CustomScrollView(
+          controller: scrollCtrl,
           physics: const BouncingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
@@ -46,25 +51,26 @@ class RecipeScreen extends StatelessWidget {
                 const SizedBox(width: 10),
               ],
             ),
-            SliverToBoxAdapter(
-              child: GridView.builder(
-                padding: const EdgeInsets.all(8.0),
+            SliverPadding(
+              padding: const EdgeInsets.all(8.0),
+              sliver: LiveSliverGrid(
+                itemCount: 20,
+                controller: scrollCtrl,
+                showItemInterval: const Duration(milliseconds: 150),
+                showItemDuration: const Duration(milliseconds: 150),
+                itemBuilder: AppUtils().animationItemBuilder(
+                  (index) => _RecipeCard(
+                    title: index.toString(),
+                    recipeScreenContext: context,
+                  ),
+                ),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 8.0,
                   crossAxisSpacing: 8.0,
                 ),
-                itemCount: 20,
-                primary: false,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return _RecipeCard(
-                    title: 'Recipe ${index + 1}',
-                    recipeScreenContext: context,
-                  );
-                },
               ),
-            ),
+            )
           ],
         ),
       ),

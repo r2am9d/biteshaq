@@ -39,6 +39,7 @@ dependencies:
   badges: ^2.0.3
   card_swiper: ^2.0.4
   json_theme: ^4.0.1+1
+  auto_animated: ^3.1.0
   cupertino_icons: ^1.0.5
   salomon_bottom_bar: ^3.3.1
   cached_network_image: ^3.2.1
