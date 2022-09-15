@@ -66,9 +66,8 @@ class RecipeLoadingScreen extends StatelessWidget {
                                   startColor: shimmerStartColor,
                                   endColor: shimmerEndColor,
                                   borderRadius: const BorderRadius.all(
-                                      Radius.circular(16)),
-                                  delayInMilliSeconds:
-                                      Duration(milliseconds: index * 500),
+                                    Radius.circular(16),
+                                  ),
                                 ),
                                 const SizedBox(height: 8.0),
                                 Wrap(
@@ -87,9 +86,8 @@ class RecipeLoadingScreen extends StatelessWidget {
                                       startColor: shimmerStartColor,
                                       endColor: shimmerEndColor,
                                       borderRadius: const BorderRadius.all(
-                                          Radius.circular(16)),
-                                      delayInMilliSeconds:
-                                          Duration(milliseconds: index * 500),
+                                        Radius.circular(16),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -106,8 +104,6 @@ class RecipeLoadingScreen extends StatelessWidget {
                               endColor: shimmerEndColor,
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(8.0)),
-                              delayInMilliSeconds:
-                                  Duration(milliseconds: index * 500),
                             ),
                           ),
                         ],

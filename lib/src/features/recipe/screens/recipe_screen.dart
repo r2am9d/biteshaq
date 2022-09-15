@@ -1,6 +1,8 @@
+import 'package:biteshaq/src/features/recipe/repository/recipe_repository.dart';
 import 'package:flag/flag.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -11,6 +13,7 @@ import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
 import 'package:biteshaq/src/common/widgets/failure_widget.dart';
 import 'package:biteshaq/src/common/widgets/loading_widget.dart';
+import 'package:biteshaq/src/features/recipe/bloc/recipe_bloc.dart';
 import 'package:biteshaq/src/common/widgets/recipe_rating_widget.dart';
 import 'package:biteshaq/src/features/recipe/screens_state/recipe_loading_screen.dart';
 
@@ -52,25 +55,38 @@ class RecipeScreen extends HookWidget {
                 const SizedBox(width: 10),
               ],
             ),
-            // SliverToBoxAdapter(child: RecipeLoadingScreen()),
-            SliverPadding(
-              padding: const EdgeInsets.all(8.0),
-              sliver: LiveSliverGrid(
-                itemCount: 20,
-                controller: scrollCtrl,
-                showItemInterval: const Duration(milliseconds: 150),
-                showItemDuration: const Duration(milliseconds: 150),
-                itemBuilder: AppUtils().animationItemBuilder(
-                  (index) => _RecipeCard(
-                    title: index.toString(),
-                    recipeScreenContext: context,
-                  ),
-                ),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 8.0,
-                  crossAxisSpacing: 8.0,
-                ),
+            BlocProvider(
+              create: (context) => RecipeBloc()
+                ..add(RecipeFetch(request: RecipeRepository().fetchRecipe)),
+              child: BlocBuilder<RecipeBloc, RecipeState>(
+                builder: (context, state) {
+                  if (state is RecipeInitial || state is RecipeLoading) {
+                    return SliverToBoxAdapter(child: RecipeLoadingScreen());
+                  } else if (state is RecipeSuccess) {
+                    return SliverPadding(
+                      padding: const EdgeInsets.all(8.0),
+                      sliver: LiveSliverGrid(
+                        itemCount: 20,
+                        controller: scrollCtrl,
+                        showItemInterval: const Duration(milliseconds: 150),
+                        showItemDuration: const Duration(milliseconds: 150),
+                        itemBuilder: AppUtils().animationItemBuilder(
+                          (index) => _RecipeCard(
+                            title: index.toString(),
+                            recipeScreenContext: context,
+                          ),
+                        ),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 8.0,
+                          crossAxisSpacing: 8.0,
+                        ),
+                      ),
+                    );
+                  }
+                  return const SizedBox();
+                },
               ),
             )
           ],
