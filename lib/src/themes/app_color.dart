@@ -34,6 +34,7 @@ class AppColor {
 
   Color get black => const Color(0xFF000000);
   Color get white => const Color(0xFFFFFFFF);
+  Color get gray => const Color(0xFFF5F5F5);
 
   Color get red => const Color(0xFFC62828);
   Color get green => const Color(0xFF2E7D32);

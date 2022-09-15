@@ -12,6 +12,7 @@ import 'package:biteshaq/src/router/app_router.dart';
 import 'package:biteshaq/src/common/widgets/failure_widget.dart';
 import 'package:biteshaq/src/common/widgets/loading_widget.dart';
 import 'package:biteshaq/src/common/widgets/recipe_rating_widget.dart';
+import 'package:biteshaq/src/features/recipe/screens_state/recipe_loading_screen.dart';
 
 class RecipeScreen extends HookWidget {
   const RecipeScreen({super.key});
@@ -51,6 +52,7 @@ class RecipeScreen extends HookWidget {
                 const SizedBox(width: 10),
               ],
             ),
+            // SliverToBoxAdapter(child: RecipeLoadingScreen()),
             SliverPadding(
               padding: const EdgeInsets.all(8.0),
               sliver: LiveSliverGrid(
@@ -123,6 +125,7 @@ class _RecipeCard extends StatelessWidget {
               child: ConstrainedBox(
                 constraints: const BoxConstraints(
                   maxHeight: 80,
+                  minHeight: kToolbarHeight,
                   minWidth: double.infinity,
                 ),
                 child: Container(

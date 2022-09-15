@@ -36,8 +36,6 @@ class _PermissionHookState extends HookState<Permission, _PermissionHook> {
     //     status.contains(PermissionStatus.permanentlyDenied)) {
     //   openAppSettings();
     // }
-
-    setState(() {});
   }
 
   @override
