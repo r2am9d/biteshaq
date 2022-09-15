@@ -70,6 +70,7 @@ dependencies:
   permission_handler: ^10.0.0
   flutter_local_notifications: ^9.9.1
   flutter_secure_storage: ^6.0.0
+  system_settings: ^2.1.0
 
 dependency_overrides:
   font_awesome_flutter:
