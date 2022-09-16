@@ -17,6 +17,7 @@ import 'package:biteshaq/src/common/widgets/failure_widget.dart';
 import 'package:biteshaq/src/common/widgets/loading_widget.dart';
 import 'package:biteshaq/src/hooks/scroll_controller_hook.dart' as sch;
 import 'package:biteshaq/src/common/widgets/recipe_rating_widget.dart';
+import 'package:loading_icon_button/loading_icon_button.dart';
 
 class RecipeViewScreen extends HookWidget {
   const RecipeViewScreen({super.key});
@@ -38,6 +39,17 @@ class RecipeViewScreen extends HookWidget {
     void ttsStop() async {
       await tts.stop();
       ttsState.value = TtsState.stopped;
+    }
+
+    final LoadingButtonController btnCtrl = LoadingButtonController();
+
+    void btnOnPressed() async {
+      await Future.delayed(const Duration(seconds: 1), () async {
+        btnCtrl.success();
+        await Future.delayed(const Duration(seconds: 1), () {
+          btnCtrl.reset();
+        });
+      });
     }
 
     return Scaffold(
@@ -533,50 +545,32 @@ class RecipeViewScreen extends HookWidget {
           height: kToolbarHeight,
           width: double.infinity,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 24 * 2,
-                width: 24 * 6,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColor().red,
-                  ),
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[
-                      Text('Favorites'),
-                      SizedBox(width: 8.0),
-                      FaIcon(
-                        size: 18.0,
-                        FontAwesomeIcons.solidHeart,
-                      ),
-                    ],
-                  ),
+              Expanded(
+                flex: 5,
+                child: LoadingButton(
+                  iconData: FontAwesomeIcons.solidHeart,
+                  onPressed: null,
+                  controller: btnCtrl,
+                  elevation: 0,
+                  primaryColor: AppColor().red,
+                  child: const Text('Favorites'),
                 ),
               ),
-              SizedBox(
-                height: 24 * 2,
-                width: 24 * 6,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColor().secondary,
-                  ),
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[
-                      Text('Cook'),
-                      SizedBox(width: 8.0),
-                      FaIcon(
-                        size: 18.0,
-                        FontAwesomeIcons.solidHatChef,
-                      ),
-                    ],
-                  ),
+              const SizedBox(width: 8.0),
+              Expanded(
+                flex: 5,
+                child: LoadingButton(
+                  iconData: FontAwesomeIcons.solidHatChef,
+                  onPressed: btnOnPressed,
+                  controller: btnCtrl,
+                  elevation: 0,
+                  primaryColor: AppColor().secondary,
+                  child: const Text('Cook'),
                 ),
-              ),
+              )
             ],
           ),
         ),

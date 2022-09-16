@@ -36,10 +36,10 @@ class BottomNavbarWidget extends HookWidget {
           duration: const Duration(milliseconds: 200),
           decoration: BoxDecoration(
             color: AppColor().primary,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(16.0),
-              topRight: Radius.circular(16.0),
-            ),
+            // borderRadius: const BorderRadius.only(
+            //   topLeft: Radius.circular(16.0),
+            //   topRight: Radius.circular(16.0),
+            // ),
           ),
           child: Align(
             alignment: Alignment.center,
