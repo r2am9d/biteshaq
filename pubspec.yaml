@@ -52,9 +52,9 @@ dependencies:
 
   # State Mgmt
   drift: ^2.1.0
-  sqlite3_flutter_libs: ^0.5.9
-  path_provider: ^2.0.11
   path: ^1.8.2
+  path_provider: ^2.0.11
+  sqlite3_flutter_libs: ^0.5.9
 
   equatable: ^2.0.5
   flutter_bloc: ^8.1.1
@@ -68,12 +68,13 @@ dependencies:
 
   # Plugins
   flutter_tts: ^3.5.3
+  system_settings: ^2.1.0
   connectivity_plus: ^2.1.0
   package_info_plus: ^1.4.3+1
   permission_handler: ^10.0.0
-  flutter_local_notifications: ^9.9.1
   flutter_secure_storage: ^6.0.0
-  system_settings: ^2.1.0
+  youtube_player_flutter: ^8.1.0
+  flutter_local_notifications: ^9.9.1
 
 dependency_overrides:
   font_awesome_flutter:

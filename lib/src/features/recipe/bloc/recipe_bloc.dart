@@ -7,7 +7,7 @@ part 'recipe_event.dart';
 part 'recipe_state.dart';
 
 // ? Singleton pattern avoided due to navigation
-// ? Bloc gets recreated every time upon triggering new beam location
+// ? Bloc gets recreated always upon triggering new beam location
 class RecipeBloc extends Bloc<RecipeEvent, RecipeState> {
   RecipeBloc() : super(const RecipeInitial()) {
     on<RecipeFetch>(_fetch);
