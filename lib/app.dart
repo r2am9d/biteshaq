@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:biteshaq/src/router/app_router.dart';
+import 'package:biteshaq/src/common/bloc/appbar/appbar_bloc.dart';
 import 'package:biteshaq/src/common/bloc/network/network_bloc.dart';
 import 'package:biteshaq/src/features/home/screens/home_screen.dart';
 import 'package:biteshaq/src/common/bloc/bottom_navbar/bottom_navbar_bloc.dart';
@@ -22,6 +23,9 @@ class App extends StatelessWidget {
                 create: (context) => NetworkBloc()
                   ..add(const NetworkCheck())
                   ..add(const NetworkObserve()),
+              ),
+              BlocProvider(
+                create: (context) => AppbarBloc()..add(const AppbarToggle()),
               ),
               BlocProvider(
                 create: (context) =>

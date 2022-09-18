@@ -62,8 +62,8 @@ dependencies:
 
   # Google/Firebase deps
   firebase_core: ^1.21.1
-  firebase_app_check: ^0.0.7
   google_mobile_ads: ^2.0.1
+  firebase_app_check: ^0.0.7
   firebase_messaging: ^13.0.1
 
   # Plugins
@@ -75,6 +75,7 @@ dependencies:
   flutter_secure_storage: ^6.0.0
   youtube_player_flutter: ^8.1.0
   flutter_inappwebview: ^5.4.3+7
+  native_device_orientation: ^1.1.4
   flutter_local_notifications: ^9.9.1
 
 dependency_overrides:

@@ -4,7 +4,6 @@ import 'dart:math';
 
 import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:loading_icon_button/loading_icon_button.dart';
@@ -18,6 +17,7 @@ import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/constants/app_constants.dart';
 import 'package:biteshaq/src/common/widgets/failure_widget.dart';
 import 'package:biteshaq/src/common/widgets/loading_widget.dart';
+import 'package:biteshaq/src/hooks/device_orientation_hook.dart';
 import 'package:biteshaq/src/hooks/scroll_controller_hook.dart' as sch;
 import 'package:biteshaq/src/common/widgets/recipe_rating_widget.dart';
 import 'package:biteshaq/src/hooks/loading_button_controller_hook.dart';
@@ -31,6 +31,7 @@ class RecipeViewScreen extends HookWidget {
     final theme = Theme.of(context);
     final mQ = MediaQuery.of(context);
 
+    useDeviceOrientation();
     // final tts = useFlutterTts();
     // final ttsState = useState(TtsState.initial);
     final scrollCtrl = sch.useScrollController();
@@ -42,18 +43,6 @@ class RecipeViewScreen extends HookWidget {
         useYoutubePlayerController(videoId: 'Ix5Dnud1bl0');
 
     return YoutubePlayerBuilder(
-      onEnterFullScreen: () {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.landscapeLeft,
-          DeviceOrientation.landscapeRight,
-        ]);
-      },
-      onExitFullScreen: () {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitUp,
-          DeviceOrientation.portraitDown,
-        ]);
-      },
       player: YoutubePlayer(
         controller: youtubePlayerCtrl,
         showVideoProgressIndicator: true,

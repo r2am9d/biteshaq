@@ -10,6 +10,7 @@ import 'package:biteshaq/src/hooks/permission_hook.dart';
 import 'package:biteshaq/src/hooks/package_info_hook.dart';
 import 'package:biteshaq/src/common/widgets/app_ad_widget.dart';
 import 'package:biteshaq/src/hooks/firebase_messaging_hook.dart';
+import 'package:biteshaq/src/common/bloc/appbar/appbar_bloc.dart';
 import 'package:biteshaq/src/router/locations/cook_location.dart';
 import 'package:biteshaq/src/router/locations/game_location.dart';
 import 'package:biteshaq/src/router/locations/recipe_location.dart';
@@ -38,67 +39,75 @@ class HomeScreen extends HookWidget {
     final packageInfo = usePackageInfo();
 
     return BlocBuilder<NetworkBloc, NetworkState>(
-      builder: (context, state) => Scaffold(
+      builder: (context, networkState) => Scaffold(
         appBar: PreferredSize(
-          preferredSize: (state is NetworkFailure)
+          preferredSize: (networkState is NetworkFailure)
               ? const Size.fromHeight(kToolbarHeight * 2)
               : const Size.fromHeight(kToolbarHeight),
-          child: Container(
-            color: AppColor().primary,
-            child: SafeArea(
-              child: Column(
-                children: <Widget>[
-                  if (state is NetworkFailure)
-                    Container(
-                      height: kToolbarHeight,
-                      color: AppColor().white,
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            FaIcon(
-                              size: 16.0,
-                              color: AppColor().red,
-                              FontAwesomeIcons.wifiSlash,
+          child: BlocBuilder<AppbarBloc, AppbarState>(
+            builder: (context, appbarState) {
+              return Container(
+                height: (appbarState is AppbarHidden) ? 0 : null,
+                color: AppColor().primary,
+                child: SafeArea(
+                  child: Column(
+                    children: <Widget>[
+                      if (networkState is NetworkFailure)
+                        Container(
+                          height: kToolbarHeight,
+                          color: AppColor().white,
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                FaIcon(
+                                  size: 16.0,
+                                  color: AppColor().red,
+                                  FontAwesomeIcons.wifiSlash,
+                                ),
+                                const SizedBox(width: 8.0),
+                                Text(
+                                  'You are currently offline :\'(',
+                                  style: TextStyle(
+                                    color: AppColor().red,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 8.0),
-                            Text(
-                              'You are currently offline :\'(',
-                              style: TextStyle(
-                                color: AppColor().red,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  AppBar(
-                    elevation: 0,
-                    centerTitle: true,
-                    title: Text(
-                      packageInfo.appName,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    leading: IconButton(
-                      onPressed: () {},
-                      splashRadius: 24,
-                      icon: const FaIcon(FontAwesomeIcons.lightForkKnife),
-                    ),
-                    actions: <Widget>[
-                      IconButton(
-                        onPressed: () {},
-                        splashRadius: 24,
-                        icon: const FaIcon(FontAwesomeIcons.lightCircleUser),
-                      ),
-                      const SizedBox(width: 10),
+                      AppBar(
+                        elevation: 0,
+                        toolbarHeight:
+                            (appbarState is AppbarHidden) ? 0 : kToolbarHeight,
+                        centerTitle: true,
+                        title: Text(
+                          packageInfo.appName,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        leading: IconButton(
+                          onPressed: () {},
+                          splashRadius: 24,
+                          icon: const FaIcon(FontAwesomeIcons.lightForkKnife),
+                        ),
+                        actions: <Widget>[
+                          IconButton(
+                            onPressed: () {},
+                            splashRadius: 24,
+                            icon:
+                                const FaIcon(FontAwesomeIcons.lightCircleUser),
+                          ),
+                          const SizedBox(width: 10),
+                        ],
+                      )
                     ],
-                  )
-                ],
-              ),
-            ),
+                  ),
+                ),
+              );
+            },
           ),
         ),
         body: Beamer(
