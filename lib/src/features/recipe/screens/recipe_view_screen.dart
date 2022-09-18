@@ -204,7 +204,6 @@ class RecipeViewScreen extends HookWidget {
                               style: theme.textTheme.bodyText1?.copyWith(
                                 color: AppColor().black,
                               ),
-                              textAlign: TextAlign.justify,
                             ),
                           ],
                         ),
@@ -474,16 +473,154 @@ class RecipeViewScreen extends HookWidget {
                               ),
                             ),
 
-                            /// Content List
+                            /// Ingredients List
                             Row(
                               children: <Widget>[
+                                FaIcon(
+                                  size: 12.0,
+                                  color: AppColor().secondary,
+                                  FontAwesomeIcons.solidCircleSmall,
+                                ),
+                                const SizedBox(width: 8.0),
                                 Expanded(
                                   child: Text(
-                                    'Laborum magna ut reprehenderit reprehenderit id fugiat qui ea consequat. Eu elit aliqua laborum excepteur officia excepteur commodo labore. Labore mollit duis pariatur consectetur ullamco velit sint consequat dolore pariatur commodo eu aute adipisicing.',
+                                    '2 lbs pork belly',
                                     style: theme.textTheme.bodyText1?.copyWith(
                                       color: AppColor().black,
                                     ),
-                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            Row(
+                              children: <Widget>[
+                                FaIcon(
+                                  size: 12.0,
+                                  color: AppColor().secondary,
+                                  FontAwesomeIcons.solidCircleSmall,
+                                ),
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Text(
+                                    '2 tablespoons garlic minced or crushed',
+                                    style: theme.textTheme.bodyText1?.copyWith(
+                                      color: AppColor().black,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            Row(
+                              children: <Widget>[
+                                FaIcon(
+                                  size: 12.0,
+                                  color: AppColor().secondary,
+                                  FontAwesomeIcons.solidCircleSmall,
+                                ),
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Text(
+                                    '5 dried bay leaves',
+                                    style: theme.textTheme.bodyText1?.copyWith(
+                                      color: AppColor().black,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            Row(
+                              children: <Widget>[
+                                FaIcon(
+                                  size: 12.0,
+                                  color: AppColor().secondary,
+                                  FontAwesomeIcons.solidCircleSmall,
+                                ),
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Text(
+                                    '4 tablespoons vinegar',
+                                    style: theme.textTheme.bodyText1?.copyWith(
+                                      color: AppColor().black,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            Row(
+                              children: <Widget>[
+                                FaIcon(
+                                  size: 12.0,
+                                  color: AppColor().secondary,
+                                  FontAwesomeIcons.solidCircleSmall,
+                                ),
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Text(
+                                    '1/2 cup soy sauce',
+                                    style: theme.textTheme.bodyText1?.copyWith(
+                                      color: AppColor().black,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            Row(
+                              children: <Widget>[
+                                FaIcon(
+                                  size: 12.0,
+                                  color: AppColor().secondary,
+                                  FontAwesomeIcons.solidCircleSmall,
+                                ),
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Text(
+                                    '1 tablespoon peppercorn',
+                                    style: theme.textTheme.bodyText1?.copyWith(
+                                      color: AppColor().black,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            Row(
+                              children: <Widget>[
+                                FaIcon(
+                                  size: 12.0,
+                                  color: AppColor().secondary,
+                                  FontAwesomeIcons.solidCircleSmall,
+                                ),
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Text(
+                                    '2 cups water',
+                                    style: theme.textTheme.bodyText1?.copyWith(
+                                      color: AppColor().black,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            Row(
+                              children: <Widget>[
+                                FaIcon(
+                                  size: 12.0,
+                                  color: AppColor().secondary,
+                                  FontAwesomeIcons.solidCircleSmall,
+                                ),
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Text(
+                                    'Salt to taste',
+                                    style: theme.textTheme.bodyText1?.copyWith(
+                                      color: AppColor().black,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -508,16 +645,161 @@ class RecipeViewScreen extends HookWidget {
                               ),
                             ),
 
-                            /// Content List
+                            /// Procedure List
                             Row(
                               children: <Widget>[
+                                Text(
+                                  '1.',
+                                  style: theme.textTheme.bodyText1?.copyWith(
+                                    color: AppColor().secondary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(width: 8.0),
                                 Expanded(
                                   child: Text(
-                                    'Est esse deserunt pariatur pariatur eiusmod id Lorem id mollit in esse. Do cupidatat proident ad eu non consectetur pariatur minim incididunt ad. Tempor enim deserunt qui veniam nisi nostrud Lorem in eiusmod. Veniam tempor esse nisi minim veniam sint excepteur esse esse deserunt et. Aliqua nulla fugiat mollit minim est ad.',
+                                    'Combine the pork belly, soy sauce, and garlic then marinade for at least 1 hour.',
                                     style: theme.textTheme.bodyText1?.copyWith(
                                       color: AppColor().black,
                                     ),
-                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(height: 8.0),
+
+                            Row(
+                              children: <Widget>[
+                                Text(
+                                  '2.',
+                                  style: theme.textTheme.bodyText1?.copyWith(
+                                    color: AppColor().secondary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Text(
+                                    'Heat the pot and put-in the marinated pork belly then cook for a few minutes.',
+                                    style: theme.textTheme.bodyText1?.copyWith(
+                                      color: AppColor().black,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(height: 8.0),
+
+                            Row(
+                              children: <Widget>[
+                                Text(
+                                  '3.',
+                                  style: theme.textTheme.bodyText1?.copyWith(
+                                    color: AppColor().secondary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Text(
+                                    'Pour remaining marinade including garlic.',
+                                    style: theme.textTheme.bodyText1?.copyWith(
+                                      color: AppColor().black,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(height: 8.0),
+
+                            Row(
+                              children: <Widget>[
+                                Text(
+                                  '4.',
+                                  style: theme.textTheme.bodyText1?.copyWith(
+                                    color: AppColor().secondary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Text(
+                                    'Add water, whole pepper corn, and dried bay leaves then bring to a boil. Simmer for 40 minutes to 1 hour.',
+                                    style: theme.textTheme.bodyText1?.copyWith(
+                                      color: AppColor().black,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(height: 8.0),
+
+                            Row(
+                              children: <Widget>[
+                                Text(
+                                  '5.',
+                                  style: theme.textTheme.bodyText1?.copyWith(
+                                    color: AppColor().secondary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Text(
+                                    'Put-in the vinegar and simmer for 12 to 15 minutes.',
+                                    style: theme.textTheme.bodyText1?.copyWith(
+                                      color: AppColor().black,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(height: 8.0),
+
+                            Row(
+                              children: <Widget>[
+                                Text(
+                                  '6.',
+                                  style: theme.textTheme.bodyText1?.copyWith(
+                                    color: AppColor().secondary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Text(
+                                    'Add salt to taste.',
+                                    style: theme.textTheme.bodyText1?.copyWith(
+                                      color: AppColor().black,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(height: 8.0),
+
+                            Row(
+                              children: <Widget>[
+                                Text(
+                                  '7.',
+                                  style: theme.textTheme.bodyText1?.copyWith(
+                                    color: AppColor().secondary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Text(
+                                    'Serve hot. Share and enjoy!',
+                                    style: theme.textTheme.bodyText1?.copyWith(
+                                      color: AppColor().black,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -546,7 +828,10 @@ class RecipeViewScreen extends HookWidget {
                             /// Content
                             Container(
                               decoration: BoxDecoration(
-                                border: Border.all(color: AppColor().primary),
+                                border: Border.all(
+                                  width: 1,
+                                  color: AppColor().secondary,
+                                ),
                               ),
                               child: player,
                             ),
