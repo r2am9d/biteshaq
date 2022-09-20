@@ -1,25 +1,35 @@
+import 'package:biteshaq/src/features/recipe/repository/recipe_repository.dart';
 import 'package:flag/flag.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:auto_animated/auto_animated.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:biteshaq/src/utils/app_utils.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
-import 'package:biteshaq/src/common/failure_widget.dart';
-import 'package:biteshaq/src/common/loading_widget.dart';
+import 'package:biteshaq/src/common/widgets/failure_widget.dart';
+import 'package:biteshaq/src/common/widgets/loading_widget.dart';
+import 'package:biteshaq/src/features/recipe/bloc/recipe_bloc.dart';
+import 'package:biteshaq/src/common/widgets/recipe_rating_widget.dart';
+import 'package:biteshaq/src/features/recipe/screens_state/recipe_loading_screen.dart';
 
-class RecipeScreen extends StatelessWidget {
+class RecipeScreen extends HookWidget {
   const RecipeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final scrollCtrl = useScrollController();
+
     return Scaffold(
       body: RefreshIndicator(
         edgeOffset: kToolbarHeight,
         onRefresh: () async => Future<void>.delayed(const Duration(seconds: 3)),
         child: CustomScrollView(
+          controller: scrollCtrl,
           physics: const BouncingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
@@ -45,25 +55,40 @@ class RecipeScreen extends StatelessWidget {
                 const SizedBox(width: 10),
               ],
             ),
-            SliverToBoxAdapter(
-              child: GridView.builder(
-                padding: const EdgeInsets.all(8.0),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 8.0,
-                  crossAxisSpacing: 8.0,
-                ),
-                itemCount: 20,
-                primary: false,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return _RecipeCard(
-                    title: 'Recipe ${index + 1}',
-                    recipeScreenContext: context,
-                  );
+            BlocProvider(
+              create: (context) => RecipeBloc()
+                ..add(RecipeFetch(request: RecipeRepository().fetchRecipe)),
+              child: BlocBuilder<RecipeBloc, RecipeState>(
+                builder: (context, state) {
+                  if (state is RecipeInitial || state is RecipeLoading) {
+                    return SliverToBoxAdapter(child: RecipeLoadingScreen());
+                  } else if (state is RecipeSuccess) {
+                    return SliverPadding(
+                      padding: const EdgeInsets.all(8.0),
+                      sliver: LiveSliverGrid(
+                        itemCount: 20,
+                        controller: scrollCtrl,
+                        showItemInterval: const Duration(milliseconds: 150),
+                        showItemDuration: const Duration(milliseconds: 150),
+                        itemBuilder: AppUtils().animationItemBuilder(
+                          (index) => _RecipeCard(
+                            title: index.toString(),
+                            recipeScreenContext: context,
+                          ),
+                        ),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 8.0,
+                          crossAxisSpacing: 8.0,
+                        ),
+                      ),
+                    );
+                  }
+                  return const SizedBox();
                 },
               ),
-            ),
+            )
           ],
         ),
       ),
@@ -116,6 +141,7 @@ class _RecipeCard extends StatelessWidget {
               child: ConstrainedBox(
                 constraints: const BoxConstraints(
                   maxHeight: 80,
+                  minHeight: kToolbarHeight,
                   minWidth: double.infinity,
                 ),
                 child: Container(
@@ -138,7 +164,7 @@ class _RecipeCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                'Special Grilled Chicken',
+                                'Pork Adobo',
                                 style: TextStyle(
                                   color: AppColor().white,
                                   fontWeight: FontWeight.bold,
@@ -182,7 +208,7 @@ class _RecipeCard extends StatelessWidget {
                       const SizedBox(width: 8.0),
                       Expanded(
                         flex: 3,
-                        child: _RecipeRating(
+                        child: RecipeRatingWidget(
                           rating: AppUtils().randomizeRating(),
                         ),
                       ),
@@ -205,35 +231,6 @@ class _RecipeCard extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _RecipeRating extends StatelessWidget {
-  const _RecipeRating({required this.rating});
-
-  final double rating;
-
-  @override
-  Widget build(BuildContext context) {
-    Map<String, Color> color = AppUtils().determineColor(rating);
-
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      decoration: BoxDecoration(
-        color: color['bgColor'],
-        borderRadius: const BorderRadius.all(
-          Radius.circular(8.0),
-        ),
-      ),
-      child: Text(
-        '$rating',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: color['textColor'],
-          fontWeight: FontWeight.bold,
         ),
       ),
     );

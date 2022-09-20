@@ -82,12 +82,12 @@ android {
     productFlavors {
         dev {
             dimension "default"
-            resValue "string", "APP_NAME", "Biteshaq Dev"
+            resValue "string", "APP_DISPLAY_NAME", "Biteshaq Dev"
             applicationIdSuffix ".dev"
         }
         prod {
             dimension "default"
-            resValue "string", "APP_NAME", "Biteshaq"
+            resValue "string", "APP_DISPLAY_NAME", "Biteshaq"
             applicationIdSuffix ""
         }
     }
@@ -100,10 +100,11 @@ flutter {
 dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation "com.google.android.gms:play-services-ads:21.1.0"
+    implementation "com.google.android.gms:play-services-ads:21.2.0"
 
-    implementation "com.google.firebase:firebase-appcheck-debug:16.0.1"
+    implementation platform("com.google.firebase:firebase-bom:30.4.1")
 
-    implementation platform("com.google.firebase:firebase-bom:30.4.0")
     implementation "com.google.firebase:firebase-appcheck-playintegrity"
+    implementation "com.google.firebase:firebase-appcheck-debug:16.0.1"
+    androidTestImplementation "com.google.firebase:firebase-appcheck-debug-testing:16.0.1"
 }

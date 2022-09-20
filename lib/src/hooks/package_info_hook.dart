@@ -21,7 +21,7 @@ class _PackageInfoHookState extends HookState<PackageInfo, _PackageInfoHook> {
     buildSignature: '',
   );
 
-  Future<void> _initPackageInfo() async {
+  void _initPackageInfo() async {
     final info = await PackageInfo.fromPlatform();
     setState(() {
       _packageInfo = info;

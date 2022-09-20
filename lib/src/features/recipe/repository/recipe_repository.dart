@@ -1,0 +1,17 @@
+import 'dart:async';
+
+class RecipeRepository {
+  RecipeRepository._internal();
+
+  static final RecipeRepository _instance = RecipeRepository._internal();
+
+  factory RecipeRepository() => _instance;
+
+  // TODO: Fetch from firebase or local sql db
+  Future<String?> get fetchRecipe {
+    return Future.delayed(
+      const Duration(seconds: 1),
+      () => 'MY_STRING',
+    );
+  }
+}

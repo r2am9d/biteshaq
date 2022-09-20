@@ -6,9 +6,7 @@ BeamerDelegate useBeamerDelegate({required GlobalKey<BeamerState> beamerKey}) =>
     use(_BeamerDelegateHook(beamerKey: beamerKey));
 
 class _BeamerDelegateHook extends Hook<BeamerDelegate> {
-  const _BeamerDelegateHook({
-    required this.beamerKey,
-  });
+  const _BeamerDelegateHook({required this.beamerKey});
 
   final GlobalKey<BeamerState> beamerKey;
 
@@ -34,5 +32,6 @@ class _BeamerDelegateHookState
   @override
   void dispose() {
     _beamerDelegate.removeListener(_setStateListener);
+    _beamerDelegate.dispose();
   }
 }

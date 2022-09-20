@@ -7,6 +7,7 @@ import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
+import com.google.android.gms.ads.MobileAds
 
 class MainActivity : FlutterActivity() {
     private val CHANNEL = "BITESHAQ"
@@ -16,6 +17,8 @@ class MainActivity : FlutterActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
                 call,
                 result ->
+            MobileAds.initialize(this)
+
             FirebaseApp.initializeApp(this)
             val firebaseAppCheck = FirebaseAppCheck.getInstance()
             firebaseAppCheck.installAppCheckProviderFactory(

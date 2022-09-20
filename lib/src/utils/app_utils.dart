@@ -2,12 +2,15 @@ import 'dart:math';
 
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+import 'package:loading_icon_button/loading_icon_button.dart';
 
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
-import 'package:biteshaq/src/locations/cook_location.dart';
-import 'package:biteshaq/src/locations/game_location.dart';
-import 'package:biteshaq/src/locations/recipe_location.dart';
+import 'package:biteshaq/src/constants/app_constants.dart';
+import 'package:biteshaq/src/router/locations/cook_location.dart';
+import 'package:biteshaq/src/router/locations/game_location.dart';
+import 'package:biteshaq/src/router/locations/recipe_location.dart';
 
 class AppUtils {
   AppUtils._internal();
@@ -77,5 +80,69 @@ class AppUtils {
     }
 
     return route;
+  }
+
+  void ttsSpeak(List<dynamic> args) async {
+    // * [text, tts, ttsState]
+
+    final text = args[0] as String;
+    final tts = args[1] as FlutterTts;
+    final ttsState = args[2] as ValueNotifier<TtsState>;
+
+    await tts.speak(text);
+    ttsState.value = TtsState.playing;
+  }
+
+  void ttsStop(List<dynamic> args) async {
+    // * [tts, ttsState]
+
+    final tts = args[0] as FlutterTts;
+    final ttsState = args[1] as ValueNotifier<TtsState>;
+
+    await tts.stop();
+    ttsState.value = TtsState.stopped;
+  }
+
+  void btnLoadingCtrlOnPressed(List<dynamic> args) async {
+    // * [loadingBtnCtrl]
+
+    final loadingBtnCtrl = args[0] as LoadingButtonController;
+
+    try {
+      // TODO: Close request properly if navigation is triggered
+      await Future.delayed(const Duration(milliseconds: 500), () async {
+        loadingBtnCtrl.success();
+        await Future.delayed(const Duration(milliseconds: 500), () {
+          loadingBtnCtrl.reset();
+        });
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Widget Function(
+    BuildContext context,
+    int index,
+    Animation<double> animation,
+  ) animationItemBuilder(
+    Widget Function(int index) child, {
+    EdgeInsets padding = EdgeInsets.zero,
+  }) {
+    return (BuildContext context, int index, Animation<double> animation) {
+      return FadeTransition(
+        opacity: Tween<double>(begin: 0, end: 1).animate(animation),
+        child: SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, -0.1),
+            end: Offset.zero,
+          ).animate(animation),
+          child: Padding(
+            padding: padding,
+            child: child(index),
+          ),
+        ),
+      );
+    };
   }
 }

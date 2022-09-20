@@ -1,4 +1,4 @@
-import 'package:biteshaq/src/features/home/repositories/network_repository.dart';
+import 'package:biteshaq/src/common/repository/network_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -9,7 +9,7 @@ class NetworkBloc extends Bloc<NetworkEvent, NetworkState> {
   NetworkBloc._internal() : super(const NetworkInitial()) {
     on<NetworkCheck>(_check);
     on<NetworkObserve>(_observe);
-    on<NetworkNotify>(_notifyStatus);
+    on<NetworkNotify>(_notify);
   }
 
   static final NetworkBloc _instance = NetworkBloc._internal();
@@ -24,7 +24,7 @@ class NetworkBloc extends Bloc<NetworkEvent, NetworkState> {
     NetworkRepository().observeNetwork();
   }
 
-  void _notifyStatus(NetworkNotify event, emit) {
+  void _notify(NetworkNotify event, emit) {
     event.isConnected
         ? emit(const NetworkSuccess())
         : emit(const NetworkFailure());
