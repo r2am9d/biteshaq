@@ -7,9 +7,10 @@ import 'package:native_device_orientation/native_device_orientation.dart';
 import 'package:biteshaq/src/common/repository/appbar_repository.dart';
 import 'package:biteshaq/src/common/repository/bottom_navbar_repository.dart';
 
-StreamController useDeviceOrientation() => use(const _DeviceOrientationHook());
+StreamSubscription useDeviceOrientation() =>
+    use(const _DeviceOrientationHook());
 
-class _DeviceOrientationHook extends Hook<StreamController> {
+class _DeviceOrientationHook extends Hook<StreamSubscription> {
   const _DeviceOrientationHook();
 
   @override
@@ -17,17 +18,18 @@ class _DeviceOrientationHook extends Hook<StreamController> {
 }
 
 class _DeviceOrientationHookState
-    extends HookState<StreamController, _DeviceOrientationHook> {
+    extends HookState<StreamSubscription, _DeviceOrientationHook> {
   // Set default values
-  final StreamController<NativeDeviceOrientation> _streamCtrl =
-      StreamController<NativeDeviceOrientation>();
+  late StreamSubscription _streamSubs;
   final NativeDeviceOrientationCommunicator _orientationCommunicator =
       NativeDeviceOrientationCommunicator();
 
+  void _disposeSubs() async => await _streamSubs.cancel();
+
   @override
   void initHook() {
-    _streamCtrl.addStream(_orientationCommunicator.onOrientationChanged());
-    _streamCtrl.stream.listen((NativeDeviceOrientation orientation) {
+    final stream = _orientationCommunicator.onOrientationChanged();
+    _streamSubs = stream.listen((NativeDeviceOrientation orientation) {
       if (orientation.name.contains('portrait')) {
         AppbarRepository().toggle(isHidden: false);
         BottomNavbarRepository().toggle(isHidden: false);
@@ -39,10 +41,10 @@ class _DeviceOrientationHookState
   }
 
   @override
-  StreamController build(BuildContext context) => _streamCtrl;
+  StreamSubscription build(BuildContext context) => _streamSubs;
 
   @override
   void dispose() {
-    _streamCtrl.close();
+    _disposeSubs();
   }
 }

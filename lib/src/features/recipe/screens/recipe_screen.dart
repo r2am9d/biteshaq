@@ -1,4 +1,3 @@
-import 'package:biteshaq/src/features/recipe/repository/recipe_repository.dart';
 import 'package:flag/flag.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +14,7 @@ import 'package:biteshaq/src/common/widgets/failure_widget.dart';
 import 'package:biteshaq/src/common/widgets/loading_widget.dart';
 import 'package:biteshaq/src/features/recipe/bloc/recipe_bloc.dart';
 import 'package:biteshaq/src/common/widgets/recipe_rating_widget.dart';
+import 'package:biteshaq/src/features/recipe/repository/recipe_repository.dart';
 import 'package:biteshaq/src/features/recipe/screens_state/recipe_loading_screen.dart';
 
 class RecipeScreen extends HookWidget {
