@@ -6,15 +6,19 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/common/widgets/failure_widget.dart';
 import 'package:biteshaq/src/common/widgets/loading_widget.dart';
+import 'package:biteshaq/src/common/widgets/glass_container_widget.dart';
 
 class CookScreen extends HookWidget {
   const CookScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final scrollCtrl = useScrollController();
 
     return Scaffold(
+      backgroundColor: AppColor().lightBlue,
       body: CustomScrollView(
         controller: scrollCtrl,
         physics: const BouncingScrollPhysics(
@@ -47,32 +51,52 @@ class CookScreen extends HookWidget {
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
-                  return Card(
-                    child: ListTile(
-                      leading: CachedNetworkImage(
-                        height: 50,
-                        width: 50,
-                        imageUrl: 'https://baconmockup.com/640/230',
-                        imageBuilder: (context, imageProvider) {
-                          return Container(
-                            height: 50,
-                            width: 50,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
+                  if (index.isEven) {
+                    return GlassContainerWidget(
+                      height: kToolbarHeight + (kToolbarHeight / 2),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            flex: 3,
+                            child: CachedNetworkImage(
+                              imageUrl: 'https://baconmockup.com/640/360',
+                              imageBuilder: (context, imageProvider) {
+                                return Container(
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: imageProvider,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                );
+                              },
+                              placeholder: (context, url) =>
+                                  const LoadingWidget(),
+                              errorWidget: (context, url, error) =>
+                                  const FailureWidget(),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 7,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.red),
+                              ),
+                              child: Text(
+                                'Pork Adobo',
+                                style: theme.textTheme.headline6?.copyWith(
+                                  color: AppColor().black,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                          );
-                        },
-                        placeholder: (context, url) => const LoadingWidget(),
-                        errorWidget: (context, url, error) =>
-                            const FailureWidget(),
+                          ),
+                        ],
                       ),
-                      title: const Text('Pork Adobo'),
-                      subtitle: const Text('Chef Cardo'),
-                    ),
-                  );
+                    );
+                  }
+
+                  return const SizedBox(height: 8);
                 },
                 childCount: 20 * 5,
               ),

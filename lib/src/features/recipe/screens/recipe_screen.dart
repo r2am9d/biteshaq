@@ -25,6 +25,7 @@ class RecipeScreen extends HookWidget {
     final scrollCtrl = useScrollController();
 
     return Scaffold(
+      backgroundColor: AppColor().lightBlue,
       body: RefreshIndicator(
         edgeOffset: kToolbarHeight,
         onRefresh: () async => Future<void>.delayed(const Duration(seconds: 3)),

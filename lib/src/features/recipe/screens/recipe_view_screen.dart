@@ -50,6 +50,7 @@ class RecipeViewScreen extends HookWidget {
       ),
       builder: (BuildContext context, Widget player) {
         return Scaffold(
+          backgroundColor: AppColor().lightBlue,
           body: CustomScrollView(
             controller: scrollCtrl,
             physics: const BouncingScrollPhysics(
