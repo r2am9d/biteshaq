@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -78,15 +80,97 @@ class CookScreen extends HookWidget {
                           ),
                           Expanded(
                             flex: 7,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.red),
-                              ),
-                              child: Text(
-                                'Pork Adobo',
-                                style: theme.textTheme.headline6?.copyWith(
-                                  color: AppColor().black,
-                                  fontWeight: FontWeight.bold,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        Text(
+                                          'Pork Adobo',
+                                          style: theme.textTheme.bodyText1
+                                              ?.copyWith(
+                                            color: AppColor().black,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 16,
+                                          width: 16,
+                                          child: VerticalDivider(
+                                            thickness: 1,
+                                            color: AppColor()
+                                                .black
+                                                .withOpacity(.1),
+                                          ),
+                                        ),
+                                        Text(
+                                          '4D ago',
+                                          style: theme.textTheme.bodySmall
+                                              ?.copyWith(
+                                            color: AppColor().secondary,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const Divider(),
+                                    Row(
+                                      children: <Widget>[
+                                        Container(
+                                          child: Row(
+                                            children: <Widget>[
+                                              FaIcon(
+                                                size: 16.0,
+                                                color: AppColor().secondary,
+                                                FontAwesomeIcons
+                                                    .solidBasketShopping,
+                                              ),
+                                              const SizedBox(width: 8.0),
+                                              Text(
+                                                '1/8',
+                                                style: theme.textTheme.bodyText2
+                                                    ?.copyWith(
+                                                  color: AppColor().black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 16,
+                                          width: 16,
+                                          child: VerticalDivider(
+                                            thickness: 1,
+                                            color: AppColor()
+                                                .black
+                                                .withOpacity(.1),
+                                          ),
+                                        ),
+                                        Container(
+                                          child: Row(
+                                            children: <Widget>[
+                                              FaIcon(
+                                                size: 16.0,
+                                                color: AppColor().secondary,
+                                                FontAwesomeIcons.solidTimer,
+                                              ),
+                                              const SizedBox(width: 8.0),
+                                              Text(
+                                                '1hr & 10m',
+                                                style: theme.textTheme.bodyText2
+                                                    ?.copyWith(
+                                                  color: AppColor().black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
