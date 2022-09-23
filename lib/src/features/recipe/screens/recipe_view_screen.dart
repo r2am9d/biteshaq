@@ -11,10 +11,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import 'package:biteshaq/src/hooks/tts_hook.dart';
 import 'package:biteshaq/src/utils/app_utils.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
-import 'package:biteshaq/src/constants/app_constants.dart';
 import 'package:biteshaq/src/common/widgets/failure_widget.dart';
 import 'package:biteshaq/src/common/widgets/loading_widget.dart';
 import 'package:biteshaq/src/hooks/device_orientation_hook.dart';
@@ -32,8 +30,6 @@ class RecipeViewScreen extends HookWidget {
     final mQ = MediaQuery.of(context);
 
     useDeviceOrientation();
-    // final tts = useFlutterTts();
-    // final ttsState = useState(TtsState.initial);
     final scrollCtrl = sch.useScrollController();
 
     final cookBtnCtrl = useLoadingButtonController();
@@ -891,21 +887,6 @@ class RecipeViewScreen extends HookWidget {
               ),
             ),
           ],
-          // floatingActionButton: FloatingActionButton(
-          //   tooltip: 'Talk',
-          //   backgroundColor: AppColor().primary,
-          //   onPressed: ttsState.value.name == 'playing'
-          //       ? () => AppUtils().ttsStop([tts, ttsState])
-          //       : () => AppUtils().ttsSpeak([
-          //             'Basic Filipino Pork Adobo with Soy Sauce, Vinegar, and Garlic. This delicious dish is perfect when served over newly cooked white rice.',
-          //             tts,
-          //             ttsState,
-          //           ]),
-          //   child: FaIcon(
-          //     color: AppColor().white,
-          //     FontAwesomeIcons.solidMicrophoneStand,
-          //   ),
-          // ),
         );
       },
     );

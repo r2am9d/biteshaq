@@ -86,7 +86,6 @@ dependency_overrides:
       url: https://github.com/CodeEagle/flutter_inappwebview
       ref: master
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

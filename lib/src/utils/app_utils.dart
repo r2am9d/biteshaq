@@ -93,6 +93,16 @@ class AppUtils {
     ttsState.value = TtsState.playing;
   }
 
+  void ttsPause(List<dynamic> args) async {
+    // * [tts, ttsState]
+
+    final tts = args[0] as FlutterTts;
+    final ttsState = args[1] as ValueNotifier<TtsState>;
+
+    await tts.pause();
+    ttsState.value = TtsState.paused;
+  }
+
   void ttsStop(List<dynamic> args) async {
     // * [tts, ttsState]
 
