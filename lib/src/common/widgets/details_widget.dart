@@ -29,6 +29,8 @@ class DetailsWidget extends StatelessWidget {
             ),
           ),
 
+          const SizedBox(height: 8),
+
           /// Course
           Row(
             children: <Widget>[

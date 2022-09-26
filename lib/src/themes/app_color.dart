@@ -35,7 +35,6 @@ class AppColor {
   Color get black => const Color(0xFF000000);
   Color get white => const Color(0xFFFFFFFF);
   Color get gray => const Color(0xFFF5F5F5);
-  Color get lightBlue => const Color(0xFFF0FFFF);
 
   Color get red => const Color(0xFFC62828);
   Color get green => const Color(0xFF2E7D32);
@@ -50,4 +49,19 @@ class AppColor {
 
   Color get pink => const Color(0xFFdf2d86);
   Color get purple => const Color(0xFF8537ad);
+
+  Color get primaryLight20 => const Color(0xFFF0FFFF);
+  Color get primaryLight30 => const Color(0xFFD7FFFF);
+  Color get primaryLight40 => const Color(0xFFBDFFFF);
+  Color get primaryLight50 => const Color(0xFFA3EBFF);
+  Color get primaryLight60 => const Color(0xFF8AD2F0);
+  Color get primaryLight70 => const Color(0xFF71B9D7);
+  Color get primaryLight80 => const Color(0xFF579FBD);
+  Color get primaryLight90 => const Color(0xFF3E86A4);
+
+  Color get primaryDark10 => const Color(0xFF0B5371);
+  Color get primaryDark20 => const Color(0xFF003957);
+  Color get primaryDark30 => const Color(0xFF00203E);
+  Color get primaryDark40 => const Color(0xFF000624);
+  Color get primaryDark50 => const Color(0xFF00000B);
 }

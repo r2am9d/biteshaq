@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:loading_icon_button/loading_icon_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import 'package:biteshaq/src/hooks/tts_hook.dart';
 import 'package:biteshaq/src/utils/app_utils.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
-import 'package:biteshaq/src/constants/app_constants.dart';
 import 'package:biteshaq/src/common/widgets/media_widget.dart';
 import 'package:biteshaq/src/common/widgets/details_widget.dart';
 import 'package:biteshaq/src/hooks/device_orientation_hook.dart';
@@ -14,20 +13,22 @@ import 'package:biteshaq/src/common/widgets/procedure_widget.dart';
 import 'package:biteshaq/src/common/widgets/description_widget.dart';
 import 'package:biteshaq/src/common/widgets/ingredients_widget.dart';
 import 'package:biteshaq/src/hooks/scroll_controller_hook.dart' as sch;
+import 'package:biteshaq/src/hooks/loading_button_controller_hook.dart';
 import 'package:biteshaq/src/hooks/youtube_player_controller_hook.dart';
 import 'package:biteshaq/src/common/widgets/sliver_appbar_carousel_widget.dart';
 
 class CookViewScreen extends HookWidget {
   const CookViewScreen({super.key});
 
+  final progressBarHeight = kToolbarHeight / 10;
+
   @override
   Widget build(BuildContext context) {
     final mQ = MediaQuery.of(context);
 
     useDeviceOrientation();
-    final tts = useFlutterTts();
-    final ttsState = useState(TtsState.initial);
     final scrollCtrl = sch.useScrollController();
+    final cookBtnCtrl = useLoadingButtonController();
 
     /// https://www.youtube.com/watch?v=Ix5Dnud1bl0
     final youtubePlayerCtrl =
@@ -41,7 +42,7 @@ class CookViewScreen extends HookWidget {
       ),
       builder: (BuildContext context, Widget player) {
         return Scaffold(
-          backgroundColor: AppColor().lightBlue,
+          backgroundColor: AppColor().primaryLight20,
           body: CustomScrollView(
             controller: scrollCtrl,
             physics: const BouncingScrollPhysics(
@@ -58,6 +59,23 @@ class CookViewScreen extends HookWidget {
                 expandedHeight: mQ.size.height * .30,
                 flexibleSpace: const SliverAppbarCarouselWidget(),
               ),
+              SliverAppBar(
+                elevation: 0,
+                pinned: true,
+                automaticallyImplyLeading: false,
+                toolbarHeight: progressBarHeight,
+                flexibleSpace: FlexibleSpaceBar(
+                  titlePadding: const EdgeInsets.only(),
+                  title: SizedBox(
+                    height: progressBarHeight,
+                    child: LinearProgressIndicator(
+                      value: .1,
+                      color: AppColor().secondary,
+                      backgroundColor: AppColor().primaryLight30,
+                    ),
+                  ),
+                ),
+              ),
               SliverToBoxAdapter(
                 child: SingleChildScrollView(
                   primary: false,
@@ -68,6 +86,23 @@ class CookViewScreen extends HookWidget {
                       const DescriptionWidget(
                         description:
                             'Basic Filipino Pork Adobo with Soy Sauce, Vinegar, and Garlic. This delicious dish is perfect when served over newly cooked white rice.',
+                        withHeaderButton: true,
+                      ),
+
+                      const SizedBox(height: 24),
+
+                      /// Procedure
+                      const ProcedureWidget(
+                        procedure: [
+                          'Combine the pork belly, soy sauce, and garlic then marinade for at least 1 hour.',
+                          'Heat the pot and put-in the marinated pork belly then cook for a few minutes.',
+                          'Pour remaining marinade including garlic.',
+                          'Add water, whole pepper corn, and dried bay leaves then bring to a boil. Simmer for 40 minutes to 1 hour.',
+                          'Put-in the vinegar and simmer for 12 to 15 minutes.',
+                          'Add salt to taste.',
+                          'Serve hot. Share and enjoy!',
+                        ],
+                        withHeaderButton: true,
                       ),
 
                       const SizedBox(height: 24),
@@ -102,6 +137,7 @@ class CookViewScreen extends HookWidget {
                           '2 cups water',
                           'Salt to taste',
                         ],
+                        withHeaderButton: true,
                       ),
 
                       const SizedBox(height: 24),
@@ -117,6 +153,7 @@ class CookViewScreen extends HookWidget {
                           'Add salt to taste.',
                           'Serve hot. Share and enjoy!',
                         ],
+                        withHeaderButton: true,
                       ),
 
                       const SizedBox(height: 24),
@@ -129,21 +166,30 @@ class CookViewScreen extends HookWidget {
               ),
             ],
           ),
-          floatingActionButton: FloatingActionButton(
-            tooltip: 'Talk',
-            backgroundColor: AppColor().secondary,
-            onPressed: ttsState.value.name == 'playing'
-                ? () => AppUtils().ttsStop([tts, ttsState])
-                : () => AppUtils().ttsSpeak([
-                      'Basic Filipino Pork Adobo with Soy Sauce, Vinegar, and Garlic. This delicious dish is perfect when served over newly cooked white rice.',
-                      tts,
-                      ttsState,
-                    ]),
-            child: FaIcon(
-              color: AppColor().white,
-              FontAwesomeIcons.solidMicrophoneStand,
+          persistentFooterButtons: <Widget>[
+            SizedBox(
+              height: kToolbarHeight,
+              width: double.infinity,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: LoadingButton(
+                      iconData: FontAwesomeIcons.solidCauldron,
+                      onPressed: () {
+                        AppUtils().btnLoadingCtrlOnPressed([cookBtnCtrl]);
+                      },
+                      controller: cookBtnCtrl,
+                      elevation: 0,
+                      primaryColor: AppColor().secondary,
+                      child: const Text('Cook'),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+          ],
         );
       },
     );

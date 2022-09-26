@@ -2,13 +2,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 
 import 'package:biteshaq/src/themes/app_color.dart';
 
 class IngredientsWidget extends StatelessWidget {
-  const IngredientsWidget({super.key, required this.ingredients});
+  const IngredientsWidget({
+    super.key,
+    required this.ingredients,
+    this.withHeaderButton = false,
+  });
 
   final List<String> ingredients;
+  final bool withHeaderButton;
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +25,66 @@ class IngredientsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           /// Header
-          Text(
-            'Ingredients',
-            style: theme.textTheme.headline5?.copyWith(
-              color: AppColor().primary,
-              fontWeight: FontWeight.bold,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Text(
+                    'Ingredients',
+                    style: theme.textTheme.headline5?.copyWith(
+                      color: AppColor().primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  if (withHeaderButton) ...[
+                    const SizedBox(width: 8),
+                    Text(
+                      '[8/8]',
+                      style: theme.textTheme.headline5?.copyWith(
+                        color: AppColor().primary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ]
+                ],
+              ),
+              if (withHeaderButton) ...[
+                ElevatedButton(
+                  onPressed: () async {
+                    await showAnimatedDialog(
+                      context: context,
+                      barrierDismissible: true,
+                      builder: (BuildContext context) {
+                        return ClassicGeneralDialogWidget(
+                          titleText: 'Title',
+                          contentText: 'content',
+                          onPositiveClick: () {
+                            Navigator.of(context).pop();
+                          },
+                          onNegativeClick: () {
+                            Navigator.of(context).pop();
+                          },
+                        );
+                      },
+                      curve: Curves.easeInOut,
+                      animationType: DialogTransitionType.fadeScale,
+                      duration: const Duration(milliseconds: 500),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    shape: const CircleBorder(),
+                    padding: const EdgeInsets.all(24),
+                    backgroundColor: AppColor().secondary,
+                  ),
+                  child: const FaIcon(FontAwesomeIcons.solidBasketShopping),
+                ),
+              ]
+            ],
           ),
+
+          const SizedBox(height: 8),
 
           /// Ingredients List
           for (int idx = 0; idx < ingredients.length; idx++) ...[

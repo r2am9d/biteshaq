@@ -20,7 +20,7 @@ class CookScreen extends HookWidget {
     final scrollCtrl = useScrollController();
 
     return Scaffold(
-      backgroundColor: AppColor().lightBlue,
+      backgroundColor: AppColor().primaryLight20,
       body: CustomScrollView(
         controller: scrollCtrl,
         physics: const BouncingScrollPhysics(

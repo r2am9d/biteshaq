@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:biteshaq/src/hooks/tts_hook.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/hooks/permission_hook.dart';
 import 'package:biteshaq/src/hooks/package_info_hook.dart';
@@ -34,7 +33,6 @@ class HomeScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     usePermission();
-    useFlutterTts();
     useFirebaseMessaging();
     final packageInfo = usePackageInfo();
 

@@ -42,7 +42,7 @@ class RecipeViewScreen extends HookWidget {
       ),
       builder: (BuildContext context, Widget player) {
         return Scaffold(
-          backgroundColor: AppColor().lightBlue,
+          backgroundColor: AppColor().primaryLight20,
           body: CustomScrollView(
             controller: scrollCtrl,
             physics: const BouncingScrollPhysics(
@@ -69,6 +69,7 @@ class RecipeViewScreen extends HookWidget {
                       const DescriptionWidget(
                         description:
                             'Basic Filipino Pork Adobo with Soy Sauce, Vinegar, and Garlic. This delicious dish is perfect when served over newly cooked white rice.',
+                        withHeaderButton: true,
                       ),
 
                       const SizedBox(height: 24),

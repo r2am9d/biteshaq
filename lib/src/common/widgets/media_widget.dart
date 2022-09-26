@@ -26,6 +26,8 @@ class MediaWidget extends StatelessWidget {
             ),
           ),
 
+          const SizedBox(height: 8),
+
           /// Content
           Container(
             decoration: BoxDecoration(
