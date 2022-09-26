@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:intl/intl.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -84,7 +85,6 @@ class AppUtils {
 
   void ttsSpeak(List<dynamic> args) async {
     // * [text, tts, ttsState]
-
     final text = args[0] as String;
     final tts = args[1] as FlutterTts;
     final ttsState = args[2] as ValueNotifier<TtsState>;
@@ -95,7 +95,6 @@ class AppUtils {
 
   void ttsPause(List<dynamic> args) async {
     // * [tts, ttsState]
-
     final tts = args[0] as FlutterTts;
     final ttsState = args[1] as ValueNotifier<TtsState>;
 
@@ -105,7 +104,6 @@ class AppUtils {
 
   void ttsStop(List<dynamic> args) async {
     // * [tts, ttsState]
-
     final tts = args[0] as FlutterTts;
     final ttsState = args[1] as ValueNotifier<TtsState>;
 
@@ -115,7 +113,6 @@ class AppUtils {
 
   void btnLoadingCtrlOnPressed(List<dynamic> args) async {
     // * [loadingBtnCtrl]
-
     final loadingBtnCtrl = args[0] as LoadingButtonController;
 
     try {
@@ -154,5 +151,13 @@ class AppUtils {
         ),
       );
     };
+  }
+
+  String capitalizeFirst(String text) {
+    final str = text.trim().split(" ");
+
+    if (str.isEmpty) return '';
+    if (str.length == 1) return toBeginningOfSentenceCase(str.first)!;
+    return str.map(toBeginningOfSentenceCase).join(" ");
   }
 }
