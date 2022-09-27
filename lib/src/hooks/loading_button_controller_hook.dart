@@ -19,7 +19,9 @@ class _LoadingButtonControllerHookState
   final LoadingButtonController _loadingBtnCtrl = LoadingButtonController();
 
   @override
-  void initHook() {}
+  void initHook() {
+    super.initHook();
+  }
 
   @override
   LoadingButtonController build(BuildContext context) => _loadingBtnCtrl;
@@ -28,5 +30,7 @@ class _LoadingButtonControllerHookState
   void deactivate() {}
 
   @override
-  void dispose() {}
+  void dispose() {
+    super.dispose();
+  }
 }

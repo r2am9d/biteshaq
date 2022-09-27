@@ -22,6 +22,7 @@ class _PackageInfoHookState extends HookState<PackageInfo, _PackageInfoHook> {
   );
 
   void _initPackageInfo() async {
+    super.initHook();
     final info = await PackageInfo.fromPlatform();
     setState(() {
       _packageInfo = info;
@@ -37,5 +38,7 @@ class _PackageInfoHookState extends HookState<PackageInfo, _PackageInfoHook> {
   PackageInfo build(BuildContext context) => _packageInfo;
 
   @override
-  void dispose() {}
+  void dispose() {
+    super.dispose();
+  }
 }

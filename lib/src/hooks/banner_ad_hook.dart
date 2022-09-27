@@ -26,6 +26,7 @@ class _BannerAdHookState extends HookState<BannerAd, _BannerAdHook> {
 
   @override
   void initHook() {
+    super.initHook();
     _bannerAdListener = BannerAdListener(
       onAdLoaded: _onAddLoaded,
       onAdFailedToLoad: _onAdFailedToLoad,
@@ -48,5 +49,6 @@ class _BannerAdHookState extends HookState<BannerAd, _BannerAdHook> {
   @override
   void dispose() {
     _bannerAd.dispose();
+    super.dispose();
   }
 }

@@ -101,6 +101,7 @@ class _FlutterTtsHookState extends HookState<FlutterTts, _FlutterTtsHook> {
 
   @override
   void initHook() {
+    super.initHook();
     _checkTts();
     _initTts();
   }
@@ -111,5 +112,6 @@ class _FlutterTtsHookState extends HookState<FlutterTts, _FlutterTtsHook> {
   @override
   void dispose() {
     _stopTts();
+    super.dispose();
   }
 }

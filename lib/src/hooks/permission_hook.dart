@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-Permission usePermission() => use(const _PermissionHook());
+void usePermission() => use(const _PermissionHook());
 
-class _PermissionHook extends Hook<Permission> {
+class _PermissionHook extends Hook<void> {
   const _PermissionHook();
 
   @override
   _PermissionHookState createState() => _PermissionHookState();
 }
 
-class _PermissionHookState extends HookState<Permission, _PermissionHook> {
+class _PermissionHookState extends HookState<void, _PermissionHook> {
   // Set default values
-  final Permission _permission = Permission.unknown;
   final List<Permission> _permissions = <Permission>[
     Permission.storage,
     Permission.manageExternalStorage,
@@ -40,12 +39,15 @@ class _PermissionHookState extends HookState<Permission, _PermissionHook> {
 
   @override
   void initHook() {
+    super.initHook();
     _initPermission();
   }
 
   @override
-  Permission build(BuildContext context) => _permission;
+  void build(BuildContext context) {}
 
   @override
-  void dispose() {}
+  void dispose() {
+    super.dispose();
+  }
 }

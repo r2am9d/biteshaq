@@ -22,6 +22,7 @@ class _BeamerDelegateHookState
 
   @override
   void initHook() {
+    super.initHook();
     _beamerDelegate = hook.beamerKey.currentState!.routerDelegate;
     _beamerDelegate.addListener(_setStateListener);
   }
@@ -33,5 +34,6 @@ class _BeamerDelegateHookState
   void dispose() {
     _beamerDelegate.removeListener(_setStateListener);
     _beamerDelegate.dispose();
+    super.dispose();
   }
 }

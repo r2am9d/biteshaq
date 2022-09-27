@@ -26,6 +26,7 @@ class _ScrollControllerHookState
 
   @override
   void initHook() {
+    super.initHook();
     _scrollCtrl.addListener(_scrollListener);
   }
 
@@ -37,5 +38,6 @@ class _ScrollControllerHookState
     BottomNavbarRepository().toggle(isHidden: false);
     _scrollCtrl.removeListener(_scrollListener);
     _scrollCtrl.dispose();
+    super.dispose();
   }
 }

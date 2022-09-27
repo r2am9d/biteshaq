@@ -7,10 +7,9 @@ import 'package:native_device_orientation/native_device_orientation.dart';
 import 'package:biteshaq/src/common/repository/appbar_repository.dart';
 import 'package:biteshaq/src/common/repository/bottom_navbar_repository.dart';
 
-StreamSubscription useDeviceOrientation() =>
-    use(const _DeviceOrientationHook());
+void useDeviceOrientation() => use(const _DeviceOrientationHook());
 
-class _DeviceOrientationHook extends Hook<StreamSubscription> {
+class _DeviceOrientationHook extends Hook<void> {
   const _DeviceOrientationHook();
 
   @override
@@ -18,7 +17,7 @@ class _DeviceOrientationHook extends Hook<StreamSubscription> {
 }
 
 class _DeviceOrientationHookState
-    extends HookState<StreamSubscription, _DeviceOrientationHook> {
+    extends HookState<void, _DeviceOrientationHook> {
   // Set default values
   late StreamSubscription _streamSubs;
   final NativeDeviceOrientationCommunicator _orientationCommunicator =
@@ -28,6 +27,7 @@ class _DeviceOrientationHookState
 
   @override
   void initHook() {
+    super.initHook();
     final stream = _orientationCommunicator.onOrientationChanged();
     _streamSubs = stream.listen((NativeDeviceOrientation orientation) {
       if (orientation.name.contains('portrait')) {
@@ -41,10 +41,11 @@ class _DeviceOrientationHookState
   }
 
   @override
-  StreamSubscription build(BuildContext context) => _streamSubs;
+  void build(BuildContext context) {}
 
   @override
   void dispose() {
     _disposeSubs();
+    super.dispose();
   }
 }

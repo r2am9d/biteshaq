@@ -22,6 +22,7 @@ class _YoutubePlayerControllerHookState
 
   @override
   void initHook() {
+    super.initHook();
     _youtubePlayerCtrl = YoutubePlayerController(
       initialVideoId: hook.videoId,
       flags: const YoutubePlayerFlags(
@@ -42,10 +43,12 @@ class _YoutubePlayerControllerHookState
   @override
   void deactivate() {
     _youtubePlayerCtrl.pause();
+    super.deactivate();
   }
 
   @override
   void dispose() {
     _youtubePlayerCtrl.dispose();
+    super.dispose();
   }
 }
