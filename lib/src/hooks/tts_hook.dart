@@ -7,18 +7,13 @@ import 'package:biteshaq/src/constants/app_constants.dart';
 
 FlutterTts useFlutterTts({
   required ValueNotifier<TtsState> ttsState,
-  required AnimationController animationCtrl,
 }) =>
-    use(_FlutterTtsHook(ttsState: ttsState, animationCtrl: animationCtrl));
+    use(_FlutterTtsHook(ttsState: ttsState));
 
 class _FlutterTtsHook extends Hook<FlutterTts> {
-  const _FlutterTtsHook({
-    required this.ttsState,
-    required this.animationCtrl,
-  });
+  const _FlutterTtsHook({required this.ttsState});
 
   final ValueNotifier<TtsState> ttsState;
-  final AnimationController animationCtrl;
 
   @override
   _FlutterTtsHookState createState() => _FlutterTtsHookState();
@@ -28,37 +23,25 @@ class _FlutterTtsHookState extends HookState<FlutterTts, _FlutterTtsHook> {
   // Set default values
   final double _pitch = 1.25;
   final double _volume = 1.0;
-  final double _speechRate = .50;
+  final double _speechRate = .375;
   final FlutterTts _flutterTts = FlutterTts();
 
-  void _onStart() {
-    hook.ttsState.value = TtsState.playing;
-    print('TTS_HOOK_PRINT: ${hook.animationCtrl.status}');
+  void _stateHandler(TtsState state) {
+    hook.ttsState.value = state;
   }
 
-  void _onCancel() {
-    hook.ttsState.value = TtsState.stopped;
-  }
+  // * Temp disabled. Handler doesn't get called upon start
+  // void _onStart() => _stateHandler(TtsState.playing);
 
-  void _onComplete() async {
-    hook.ttsState.value = TtsState.stopped;
-    await hook.animationCtrl.reverse();
-    print('TTS_HOOK_PRINT: ${hook.animationCtrl.status}');
-  }
+  // * Temp disabled due to navigation issues
+  // void _onCancel() => _stateHandler(TtsState.stopped);
 
-  // void _onPause() async {
-  //   hook.ttsState.value = TtsState.stopped;
-  //   await hook.animationCtrl.reverse();
-  // }
+  void _onComplete() => _stateHandler(TtsState.stopped);
 
-  // void _onContinue() async {
-  //   hook.ttsState.value = TtsState.playing;
-  //   await hook.animationCtrl.forward();
-  // }
-
+  void _onPause() => _stateHandler(TtsState.paused);
+  void _onContinue() => _stateHandler(TtsState.playing);
   // void _onError(dynamic message) async {
-  //   hook.ttsState.value = TtsState.stopped;
-  //   await hook.animationCtrl.reverse();
+  //   _stateHandler(TtsState.stopped);
   //   print('TTS_HOOK_ERROR:  $message');
   // }
 
@@ -88,13 +71,13 @@ class _FlutterTtsHookState extends HookState<FlutterTts, _FlutterTtsHook> {
     );
 
     // Set handlers
-    _flutterTts.setStartHandler(_onStart);
-    _flutterTts.setCancelHandler(_onCancel);
+    // _flutterTts.setStartHandler(_onStart);
+    // _flutterTts.setCancelHandler(_onCancel);
     _flutterTts.setCompletionHandler(_onComplete);
 
-    // flutterTts.setPauseHandler(_onPause);
-    // flutterTts.setContinueHandler(_onContinue);
-    // flutterTts.setErrorHandler(_onError);
+    _flutterTts.setPauseHandler(_onPause);
+    _flutterTts.setContinueHandler(_onContinue);
+    // _flutterTts.setErrorHandler(_onError);
   }
 
   void _stopTts() async => await _flutterTts.stop();

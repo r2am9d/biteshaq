@@ -69,7 +69,6 @@ class RecipeViewScreen extends HookWidget {
                       const DescriptionWidget(
                         description:
                             'Basic Filipino Pork Adobo with Soy Sauce, Vinegar, and Garlic. This delicious dish is perfect when served over newly cooked white rice.',
-                        withHeaderButton: true,
                       ),
 
                       const SizedBox(height: 24),

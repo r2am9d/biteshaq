@@ -55,15 +55,15 @@ class IngredientsWidget extends StatelessWidget {
                     await showAnimatedDialog(
                       context: context,
                       barrierDismissible: true,
-                      builder: (BuildContext context) {
+                      builder: (BuildContext animDialogcontext) {
                         return ClassicGeneralDialogWidget(
                           titleText: 'Title',
                           contentText: 'content',
                           onPositiveClick: () {
-                            Navigator.of(context).pop();
+                            Navigator.of(animDialogcontext).pop();
                           },
                           onNegativeClick: () {
-                            Navigator.of(context).pop();
+                            Navigator.of(animDialogcontext).pop();
                           },
                         );
                       },

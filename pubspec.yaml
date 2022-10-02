@@ -51,6 +51,13 @@ dependencies:
   # Routing
   beamer: ^1.5.2
 
+  # Forms
+  flutter_form_builder: ^7.6.0
+  form_builder_validators: ^8.3.0
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
+
   # State Mgmt
   drift: ^2.1.0
   path: ^1.8.2
@@ -78,6 +85,7 @@ dependencies:
   flutter_inappwebview: ^5.4.3+7
   native_device_orientation: ^1.1.4
   flutter_local_notifications: ^9.9.1
+  siri_wave: ^0.2.2
 
 dependency_overrides:
   font_awesome_flutter:
@@ -85,6 +93,10 @@ dependency_overrides:
   flutter_inappwebview:
     git:
       url: https://github.com/CodeEagle/flutter_inappwebview
+      ref: master
+  flutter_tts:
+    git:
+      url: https://github.com/harrowmykel/flutter_tts
       ref: master
 
 dev_dependencies:

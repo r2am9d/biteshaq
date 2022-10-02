@@ -8,6 +8,7 @@ import 'package:loading_icon_button/loading_icon_button.dart';
 
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
+import 'package:biteshaq/src/constants/app_constants.dart';
 import 'package:biteshaq/src/router/locations/cook_location.dart';
 import 'package:biteshaq/src/router/locations/game_location.dart';
 import 'package:biteshaq/src/router/locations/recipe_location.dart';
@@ -83,31 +84,32 @@ class AppUtils {
   }
 
   void ttsSpeak(List<dynamic> args) async {
-    // * [text, tts, animationCtrl]
+    // * [text, tts, ttsText, ttsState]
     final text = args[0] as String;
     final tts = args[1] as FlutterTts;
-    final animationCtrl = args[2] as AnimationController;
+    final ttsText = args[2] as ValueNotifier<String>;
+    final ttsState = args[3] as ValueNotifier<TtsState>;
+
+    if (ttsText.value.isEmpty) ttsText.value = text;
+    if (ttsText.value != text) await tts.stop();
 
     await tts.speak(text);
-    await animationCtrl.forward();
+    ttsText.value = text;
+    ttsState.value = TtsState.playing;
   }
 
   void ttsPause(List<dynamic> args) async {
-    // * [tts, animationCtrl]
+    // * [tts]
     final tts = args[0] as FlutterTts;
-    final animationCtrl = args[1] as AnimationController;
 
     await tts.pause();
-    await animationCtrl.reverse();
   }
 
   void ttsStop(List<dynamic> args) async {
-    // * [tts, animationCtrl]
+    // * [tts]
     final tts = args[0] as FlutterTts;
-    final animationCtrl = args[1] as AnimationController;
 
     await tts.stop();
-    await animationCtrl.reverse();
   }
 
   void btnLoadingCtrlOnPressed(List<dynamic> args) async {
@@ -160,5 +162,7 @@ class AppUtils {
     return str.map(toBeginningOfSentenceCase).join(" ");
   }
 
-  String combineString(List<String> list) => list.join(" ");
+  String convertListToString(List<String> list) => list
+      .map((str) => str.endsWith('.') || str.endsWith('!') ? str : '$str.')
+      .join(" ");
 }

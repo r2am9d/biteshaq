@@ -475,6 +475,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  flutter_form_builder:
+    dependency: "direct main"
+    description:
+      name: flutter_form_builder
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.6.0"
   flutter_hooks:
     dependency: "direct main"
     description:
@@ -526,6 +533,11 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.0"
+  flutter_localizations:
+    dependency: "direct main"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_native_splash:
     dependency: "direct dev"
     description:
@@ -590,9 +602,11 @@ packages:
   flutter_tts:
     dependency: "direct main"
     description:
-      name: flutter_tts
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: master
+      resolved-ref: "60809dc1d44fdde146c40f4c00686580a6f5c16e"
+      url: "https://github.com/harrowmykel/flutter_tts"
+    source: git
     version: "3.5.3"
   flutter_web_plugins:
     dependency: transitive
@@ -606,6 +620,13 @@ packages:
       relative: true
     source: path
     version: "10.1.0"
+  form_builder_validators:
+    dependency: "direct main"
+    description:
+      name: form_builder_validators
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "8.3.0"
   frontend_server_client:
     dependency: transitive
     description:
@@ -670,7 +691,7 @@ packages:
     source: hosted
     version: "3.2.0"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"
@@ -1096,6 +1117,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  siri_wave:
+    dependency: "direct main"
+    description:
+      name: siri_wave
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.2"
   sky_engine:
     dependency: transitive
     description: flutter
