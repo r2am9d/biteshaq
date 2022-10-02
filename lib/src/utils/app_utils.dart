@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:intl/intl.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:loading_icon_button/loading_icon_button.dart';
 
@@ -93,9 +94,9 @@ class AppUtils {
     if (ttsText.value.isEmpty) ttsText.value = text;
     if (ttsText.value != text) await tts.stop();
 
-    await tts.speak(text);
     ttsText.value = text;
     ttsState.value = TtsState.playing;
+    await tts.speak(text);
   }
 
   void ttsPause(List<dynamic> args) async {
@@ -125,7 +126,7 @@ class AppUtils {
         });
       });
     } catch (e) {
-      print(e);
+      if (kDebugMode) print(e);
     }
   }
 

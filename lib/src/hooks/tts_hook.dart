@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:system_settings/system_settings.dart';
 
 import 'package:biteshaq/src/constants/app_constants.dart';
 
-FlutterTts useFlutterTts({
-  required ValueNotifier<TtsState> ttsState,
-}) =>
+FlutterTts useFlutterTts({required ValueNotifier<TtsState> ttsState}) =>
     use(_FlutterTtsHook(ttsState: ttsState));
 
 class _FlutterTtsHook extends Hook<FlutterTts> {
@@ -23,7 +22,7 @@ class _FlutterTtsHookState extends HookState<FlutterTts, _FlutterTtsHook> {
   // Set default values
   final double _pitch = 1.25;
   final double _volume = 1.0;
-  final double _speechRate = .375;
+  final double _speechRate = .45;
   final FlutterTts _flutterTts = FlutterTts();
 
   void _stateHandler(TtsState state) {
@@ -40,10 +39,10 @@ class _FlutterTtsHookState extends HookState<FlutterTts, _FlutterTtsHook> {
 
   void _onPause() => _stateHandler(TtsState.paused);
   void _onContinue() => _stateHandler(TtsState.playing);
-  // void _onError(dynamic message) async {
-  //   _stateHandler(TtsState.stopped);
-  //   print('TTS_HOOK_ERROR:  $message');
-  // }
+  void _onError(dynamic message) {
+    _stateHandler(TtsState.stopped);
+    if (kDebugMode) print('TTS_HOOK_ERROR: $message');
+  }
 
   void _checkTts() async {
     final voices = await _flutterTts.getVoices as List;
@@ -77,7 +76,7 @@ class _FlutterTtsHookState extends HookState<FlutterTts, _FlutterTtsHook> {
 
     _flutterTts.setPauseHandler(_onPause);
     _flutterTts.setContinueHandler(_onContinue);
-    // _flutterTts.setErrorHandler(_onError);
+    _flutterTts.setErrorHandler(_onError);
   }
 
   void _stopTts() async => await _flutterTts.stop();
