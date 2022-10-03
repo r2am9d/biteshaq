@@ -90,7 +90,7 @@ class _CookItem extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           GlassContainerWidget(
-            height: kToolbarHeight + (kToolbarHeight / 2),
+            height: kToolbarHeight * 2,
             child: Row(
               children: <Widget>[
                 Expanded(
@@ -118,6 +118,7 @@ class _CookItem extends StatelessWidget {
                     child: Container(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Row(
                             children: <Widget>[
@@ -195,7 +196,13 @@ class _CookItem extends StatelessWidget {
                                 ),
                               ),
                             ],
-                          )
+                          ),
+                          const Divider(height: 24),
+                          LinearProgressIndicator(
+                            value: .1,
+                            color: AppColor().secondary,
+                            backgroundColor: AppColor().primaryLight30,
+                          ),
                         ],
                       ),
                     ),
