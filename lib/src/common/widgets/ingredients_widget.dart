@@ -54,17 +54,10 @@ class IngredientsWidget extends StatelessWidget {
                   onPressed: () async {
                     await showAnimatedDialog(
                       context: context,
-                      barrierDismissible: true,
+                      barrierDismissible: false,
                       builder: (BuildContext animDialogcontext) {
-                        return ClassicGeneralDialogWidget(
-                          titleText: 'Title',
-                          contentText: 'content',
-                          onPositiveClick: () {
-                            Navigator.of(animDialogcontext).pop();
-                          },
-                          onNegativeClick: () {
-                            Navigator.of(animDialogcontext).pop();
-                          },
+                        return _IngredientsListDialog(
+                          animDialogContext: animDialogcontext,
                         );
                       },
                       curve: Curves.easeInOut,
@@ -110,6 +103,26 @@ class IngredientsWidget extends StatelessWidget {
           ],
         ],
       ),
+    );
+  }
+}
+
+class _IngredientsListDialog extends StatelessWidget {
+  const _IngredientsListDialog({required this.animDialogContext});
+
+  final BuildContext animDialogContext;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClassicGeneralDialogWidget(
+      titleText: 'Title',
+      contentText: 'content',
+      onPositiveClick: () {
+        Navigator.of(animDialogContext).pop();
+      },
+      onNegativeClick: () {
+        Navigator.of(animDialogContext).pop();
+      },
     );
   }
 }
