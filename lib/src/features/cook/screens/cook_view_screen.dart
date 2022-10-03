@@ -3,13 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:siri_wave/siri_wave.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:loading_icon_button/loading_icon_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import 'package:biteshaq/src/hooks/tts_hook.dart';
 import 'package:biteshaq/src/utils/app_utils.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
+import 'package:biteshaq/src/constants/app_constants.dart';
+import 'package:biteshaq/src/common/bloc/fab/fab_bloc.dart';
 import 'package:biteshaq/src/common/widgets/media_widget.dart';
 import 'package:biteshaq/src/common/widgets/details_widget.dart';
 import 'package:biteshaq/src/hooks/device_orientation_hook.dart';
@@ -20,9 +24,6 @@ import 'package:biteshaq/src/hooks/scroll_controller_hook.dart' as sch;
 import 'package:biteshaq/src/hooks/loading_button_controller_hook.dart';
 import 'package:biteshaq/src/hooks/youtube_player_controller_hook.dart';
 import 'package:biteshaq/src/common/widgets/sliver_appbar_carousel_widget.dart';
-
-import 'package:biteshaq/src/hooks/tts_hook.dart';
-import 'package:biteshaq/src/constants/app_constants.dart';
 
 class CookViewScreen extends HookWidget {
   const CookViewScreen({super.key});
@@ -43,8 +44,12 @@ class CookViewScreen extends HookWidget {
 
     final ttsText = useState('');
     final ttsState = useState(TtsState.initial);
-
     final tts = useFlutterTts(ttsState: ttsState);
+
+    final animationCtrl = useAnimationController(
+      duration: const Duration(milliseconds: 200),
+      reverseDuration: const Duration(milliseconds: 200),
+    );
 
     const description =
         'Basic Filipino Pork Adobo with Soy Sauce, Vinegar, and Garlic. This delicious dish is perfect when served over newly cooked white rice.';
@@ -55,9 +60,9 @@ class CookViewScreen extends HookWidget {
       'cuisine': 'filipino',
       'chef': 'cardo dalisay',
       'badges': [],
-      'prep_time': '10 m',
+      'prep_time': '10 mins',
       'cook_time': '1 hr',
-      'total_time': '1 hr & 10 m',
+      'total_time': '1 hr & 10 mins',
       'servings': '4',
       'calories': '1211 kcal'
     };
@@ -162,40 +167,54 @@ class CookViewScreen extends HookWidget {
               ),
             ],
           ),
-          floatingActionButton: FloatingActionButton(
-            foregroundColor: AppColor().white,
-            onPressed: ttsState.value == TtsState.playing
-                ? () => AppUtils().ttsPause([tts])
-                : () async {
-                    await showModalBottomSheet(
-                      context: context,
-                      backgroundColor: AppColor().primaryLight20,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(16.0)),
-                      ),
-                      builder: (BuildContext bottomSheetContext) {
-                        return _CookViewBottomSheet(
-                          tts: tts,
-                          ttsText: ttsText,
-                          ttsState: ttsState,
-                          bottomSheetContext: bottomSheetContext,
-                          description: description,
-                          ingredients:
-                              AppUtils().convertListToString(ingredients),
-                          procedure: AppUtils().convertListToString(procedure),
-                        );
-                      },
-                    );
-                  },
-            child: ttsState.value == TtsState.playing
-                ? SiriWave(
-                    style: SiriWaveStyle.ios_7,
-                    options: const SiriWaveOptions(
-                      backgroundColor: Colors.transparent,
-                    ),
-                  )
-                : const FaIcon(FontAwesomeIcons.solidPlayPause),
+          floatingActionButton: BlocBuilder<FabBloc, FabState>(
+            builder: (BuildContext fabContext, FabState fabState) {
+              (fabState is FabHidden)
+                  ? animationCtrl.reverse()
+                  : animationCtrl.forward();
+
+              return ScaleTransition(
+                scale: animationCtrl,
+                child: FloatingActionButton(
+                  foregroundColor: AppColor().white,
+                  onPressed: ttsState.value == TtsState.playing
+                      ? () => AppUtils().ttsPause([tts])
+                      : () async {
+                          await showModalBottomSheet(
+                            context: context,
+                            backgroundColor: AppColor().primaryLight20,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(16.0)),
+                            ),
+                            builder: (BuildContext bottomSheetContext) {
+                              return _CookViewBottomSheet(
+                                tts: tts,
+                                ttsText: ttsText,
+                                ttsState: ttsState,
+                                bottomSheetContext: bottomSheetContext,
+                                description: description,
+                                details:
+                                    AppUtils().convertJsonToString(details),
+                                ingredients:
+                                    AppUtils().convertListToString(ingredients),
+                                procedure:
+                                    AppUtils().convertListToString(procedure),
+                              );
+                            },
+                          );
+                        },
+                  child: ttsState.value == TtsState.playing
+                      ? SiriWave(
+                          style: SiriWaveStyle.ios_7,
+                          options: const SiriWaveOptions(
+                            backgroundColor: Colors.transparent,
+                          ),
+                        )
+                      : const FaIcon(FontAwesomeIcons.solidPlayPause),
+                ),
+              );
+            },
           ),
           persistentFooterButtons: <Widget>[
             SizedBox(
@@ -234,7 +253,7 @@ class _CookViewBottomSheet extends StatelessWidget {
     required this.ttsState,
     required this.bottomSheetContext,
     required this.description,
-    // required this.details,
+    required this.details,
     required this.ingredients,
     required this.procedure,
   });
@@ -245,7 +264,7 @@ class _CookViewBottomSheet extends StatelessWidget {
   final BuildContext bottomSheetContext;
 
   final String description;
-  // final String details;
+  final String details;
   final String ingredients;
   final String procedure;
 
@@ -286,7 +305,6 @@ class _CookViewBottomSheet extends StatelessWidget {
         Expanded(
           flex: 9,
           child: Container(
-            // clipBehavior: Clip.hardEdge,
             width: double.infinity,
             padding:
                 const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
@@ -379,7 +397,11 @@ class _CookViewBottomSheet extends StatelessWidget {
                                   child: Material(
                                     color: Colors.transparent,
                                     child: InkWell(
-                                      onTap: () {},
+                                      onTap: () {
+                                        AppUtils().ttsSpeak(
+                                            [details, tts, ttsText, ttsState]);
+                                        navigator.pop();
+                                      },
                                       splashColor:
                                           AppColor().primary.withOpacity(0.15),
                                     ),

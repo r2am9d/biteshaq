@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:native_device_orientation/native_device_orientation.dart';
 
+import 'package:biteshaq/src/common/repository/fab_repository.dart';
 import 'package:biteshaq/src/common/repository/appbar_repository.dart';
 import 'package:biteshaq/src/common/repository/bottom_navbar_repository.dart';
 
@@ -33,9 +34,11 @@ class _DeviceOrientationHookState
       if (orientation.name.contains('portrait')) {
         AppbarRepository().toggle(isHidden: false);
         BottomNavbarRepository().toggle(isHidden: false);
+        FabRepository().toggle(isHidden: false);
       } else {
         AppbarRepository().toggle(isHidden: true);
         BottomNavbarRepository().toggle(isHidden: true);
+        FabRepository().toggle(isHidden: true);
       }
     });
   }

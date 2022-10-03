@@ -37,13 +37,14 @@ class HomeScreen extends HookWidget {
     final packageInfo = usePackageInfo();
 
     return BlocBuilder<NetworkBloc, NetworkState>(
-      builder: (context, networkState) => Scaffold(
+      builder: (BuildContext networkContext, NetworkState networkState) =>
+          Scaffold(
         appBar: PreferredSize(
           preferredSize: (networkState is NetworkFailure)
               ? const Size.fromHeight(kToolbarHeight * 2)
               : const Size.fromHeight(kToolbarHeight),
           child: BlocBuilder<AppbarBloc, AppbarState>(
-            builder: (context, appbarState) {
+            builder: (BuildContext appbarContext, AppbarState appbarState) {
               return Container(
                 height: (appbarState is AppbarHidden) ? 0 : null,
                 color: AppColor().primary,

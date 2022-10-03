@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:biteshaq/src/router/app_router.dart';
+import 'package:biteshaq/src/common/bloc/fab/fab_bloc.dart';
 import 'package:biteshaq/src/common/bloc/appbar/appbar_bloc.dart';
 import 'package:biteshaq/src/common/bloc/network/network_bloc.dart';
 import 'package:biteshaq/src/features/home/screens/home_screen.dart';
@@ -32,6 +33,9 @@ class App extends StatelessWidget {
               BlocProvider(
                 create: (context) =>
                     BottomNavbarBloc()..add(const BottomNavbarToggle()),
+              ),
+              BlocProvider(
+                create: (context) => FabBloc()..add(const FabToggle()),
               ),
             ],
             child: HomeScreen(),

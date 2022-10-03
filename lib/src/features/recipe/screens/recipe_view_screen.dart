@@ -34,6 +34,43 @@ class RecipeViewScreen extends HookWidget {
     final youtubePlayerCtrl =
         useYoutubePlayerController(videoId: 'Ix5Dnud1bl0');
 
+    const description =
+        'Basic Filipino Pork Adobo with Soy Sauce, Vinegar, and Garlic. This delicious dish is perfect when served over newly cooked white rice.';
+
+    const details = {
+      'course': 'main',
+      'country_code': 'ph',
+      'cuisine': 'filipino',
+      'chef': 'cardo dalisay',
+      'badges': [],
+      'prep_time': '10 mins',
+      'cook_time': '1 hr',
+      'total_time': '1 hr & 10 mins',
+      'servings': '4',
+      'calories': '1211 kcal'
+    };
+
+    const ingredients = [
+      '2 lbs pork belly',
+      '2 tablespoons garlic minced or crushed',
+      '5 dried bay leaves',
+      '4 tablespoons vinegar',
+      '1/2 cup soy sauce',
+      '1 tablespoon peppercorn',
+      '2 cups water',
+      'Salt to taste',
+    ];
+
+    const procedure = [
+      'Combine the pork belly, soy sauce, and garlic then marinade for at least 1 hour.',
+      'Heat the pot and put-in the marinated pork belly then cook for a few minutes.',
+      'Pour remaining marinade including garlic.',
+      'Add water, whole peppercorn, and dried bay leaves then bring to a boil. Simmer for 40 minutes to 1 hour.',
+      'Put-in the vinegar and simmer for 12 to 15 minutes.',
+      'Add salt to taste.',
+      'Serve hot. Share and enjoy!',
+    ];
+
     return YoutubePlayerBuilder(
       player: YoutubePlayer(
         controller: youtubePlayerCtrl,
@@ -66,59 +103,22 @@ class RecipeViewScreen extends HookWidget {
                   child: Column(
                     children: <Widget>[
                       /// Description
-                      const DescriptionWidget(
-                        description:
-                            'Basic Filipino Pork Adobo with Soy Sauce, Vinegar, and Garlic. This delicious dish is perfect when served over newly cooked white rice.',
-                      ),
+                      const DescriptionWidget(description: description),
 
                       const SizedBox(height: 24),
 
                       /// Details
-                      const DetailsWidget(
-                        details: {
-                          'course': 'main',
-                          'country_code': 'ph',
-                          'cuisine': 'filipino',
-                          'chef': 'cardo dalisay',
-                          'badges': [],
-                          'prep_time': '10 m',
-                          'cook_time': '1 hr',
-                          'total_time': '1 hr & 10 m',
-                          'servings': '4',
-                          'calories': '1211 kcal'
-                        },
-                      ),
+                      const DetailsWidget(details: details),
 
                       const SizedBox(height: 24),
 
                       /// Ingredients
-                      const IngredientsWidget(
-                        ingredients: [
-                          '2 lbs pork belly',
-                          '2 tablespoons garlic minced or crushed',
-                          '5 dried bay leaves',
-                          '4 tablespoons vinegar',
-                          '1/2 cup soy sauce',
-                          '1 tablespoon peppercorn',
-                          '2 cups water',
-                          'Salt to taste',
-                        ],
-                      ),
+                      const IngredientsWidget(ingredients: ingredients),
 
                       const SizedBox(height: 24),
 
                       /// Procedure
-                      const ProcedureWidget(
-                        procedure: [
-                          'Combine the pork belly, soy sauce, and garlic then marinade for at least 1 hour.',
-                          'Heat the pot and put-in the marinated pork belly then cook for a few minutes.',
-                          'Pour remaining marinade including garlic.',
-                          'Add water, whole pepper corn, and dried bay leaves then bring to a boil. Simmer for 40 minutes to 1 hour.',
-                          'Put-in the vinegar and simmer for 12 to 15 minutes.',
-                          'Add salt to taste.',
-                          'Serve hot. Share and enjoy!',
-                        ],
-                      ),
+                      const ProcedureWidget(procedure: procedure),
 
                       const SizedBox(height: 24),
 

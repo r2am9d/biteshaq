@@ -166,4 +166,17 @@ class AppUtils {
   String convertListToString(List<String> list) => list
       .map((str) => str.endsWith('.') || str.endsWith('!') ? str : '$str.')
       .join(" ");
+
+  String convertJsonToString(Map<String, dynamic> json) {
+    final excludedKeys = ['country_code', 'badges'];
+
+    return json.entries.fold<String>('', (acc, cur) {
+      if (!excludedKeys.contains(cur.key)) {
+        final key = cur.key.replaceAll('_', ' ');
+        acc += ' $key. ${cur.value}.';
+      }
+
+      return acc;
+    });
+  }
 }
