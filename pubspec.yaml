@@ -110,7 +110,7 @@ dev_dependencies:
   flutter_config: ^2.0.0
   change_app_package_name: ^1.1.0
   flutter_launcher_icons: ^0.10.0
-  flutter_native_splash: ^2.2.8
+  flutter_native_splash: ^2.2.10+1
   
   build_test: ^2.1.5
   build_runner: ^2.2.0
@@ -126,6 +126,11 @@ dev_dependencies:
 flutter_native_splash:
   image: "assets/logos/logo.png"
   background_image: "assets/logos/background.png"
+
+  android_12:
+    image: "assets/logos/logo.png"
+
+  web: false
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
