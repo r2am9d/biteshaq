@@ -90,6 +90,9 @@ dependencies:
 dependency_overrides:
   font_awesome_flutter:
     path: ./packages/font_awesome_flutter
+  flutter_animated_dialog:
+    path: ./packages/flutter_animated_dialog
+
   flutter_inappwebview:
     git:
       url: https://github.com/CodeEagle/flutter_inappwebview
