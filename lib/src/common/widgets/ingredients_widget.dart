@@ -148,29 +148,33 @@ class _IngredientsListDialog extends HookWidget {
             width: mQ.size.width,
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.all(16.0),
-                    backgroundColor: AppColor().primary,
+                Expanded(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.all(16.0),
+                      backgroundColor: AppColor().primary,
+                    ),
+                    onPressed: () {
+                      // navigator.pop();
+                    },
+                    // icon: const FaIcon(FontAwesomeIcons.solidListCheck),
+                    child: const Text('Select All'),
                   ),
-                  onPressed: () {
-                    // navigator.pop();
-                  },
-                  icon: const FaIcon(FontAwesomeIcons.solidListCheck),
-                  label: const Text('Select All'),
                 ),
-                ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.all(16.0),
-                    backgroundColor: AppColor().secondary,
+                const SizedBox(width: 8),
+                Expanded(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.all(16.0),
+                      backgroundColor: AppColor().secondary,
+                    ),
+                    onPressed: () {
+                      navigator.pop();
+                    },
+                    // icon: const FaIcon(FontAwesomeIcons.solidCheck),
+                    child: const Text('Confirm'),
                   ),
-                  onPressed: () {
-                    navigator.pop();
-                  },
-                  icon: const FaIcon(FontAwesomeIcons.solidCheck),
-                  label: const Text('Confirm'),
                 ),
               ],
             ),
