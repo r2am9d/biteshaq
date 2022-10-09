@@ -64,4 +64,8 @@ class AppColor {
   Color get primaryDark30 => const Color(0xFF00203E);
   Color get primaryDark40 => const Color(0xFF000624);
   Color get primaryDark50 => const Color(0xFF00000B);
+
+  Color? get shimmerStart => Colors.grey[50];
+  Color? get shimmerEnd => Colors.grey[300];
+  Color? get shimmerEndDark => Colors.grey[400];
 }

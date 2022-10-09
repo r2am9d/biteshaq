@@ -17,6 +17,7 @@ class CookScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    const itemCount = 20 * 5;
     final scrollCtrl = useScrollController();
 
     return Scaffold(
@@ -52,14 +53,14 @@ class CookScreen extends HookWidget {
             padding: const EdgeInsets.all(8.0),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
+                childCount: itemCount,
                 (BuildContext context, int index) {
                   if (index.isEven) {
                     return _CookItem(cookScreenContext: context);
                   }
 
-                  return const SizedBox(height: 8);
+                  return SizedBox(height: (index != itemCount - 1) ? 8 : 0);
                 },
-                childCount: 20 * 5,
               ),
             ),
           )
