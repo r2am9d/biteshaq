@@ -1,23 +1,29 @@
 // ignore_for_file: avoid_unnecessary_containers
 
+import 'package:auto_animated/auto_animated.dart';
 import 'package:beamer/beamer.dart';
+import 'package:biteshaq/src/utils/app_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
+import 'package:biteshaq/src/features/cook/bloc/cook_bloc.dart';
 import 'package:biteshaq/src/common/widgets/failure_widget.dart';
 import 'package:biteshaq/src/common/widgets/loading_widget.dart';
 import 'package:biteshaq/src/common/widgets/glass_container_widget.dart';
+import 'package:biteshaq/src/features/cook/repository/cook_repository.dart';
+import 'package:biteshaq/src/features/cook/screens_state/cook_loading_screen.dart';
 
 class CookScreen extends HookWidget {
   const CookScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const itemCount = 20 * 5;
+    const itemCount = 20;
     final scrollCtrl = useScrollController();
 
     return Scaffold(
@@ -49,19 +55,37 @@ class CookScreen extends HookWidget {
               const SizedBox(width: 10),
             ],
           ),
-          SliverPadding(
-            padding: const EdgeInsets.all(8.0),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                childCount: itemCount,
-                (BuildContext context, int index) {
-                  if (index.isEven) {
-                    return _CookItem(cookScreenContext: context);
-                  }
+          BlocProvider(
+            create: (context) =>
+                CookBloc()..add(CookFetch(request: CookRepository().fetchCook)),
+            child: BlocBuilder<CookBloc, CookState>(
+              builder: (BuildContext context, CookState state) {
+                if (state is CookInitial || state is CookLoading) {
+                  return const SliverToBoxAdapter(child: CookLoadingScreen());
+                } else if (state is CookSuccess) {
+                  return SliverPadding(
+                    padding: const EdgeInsets.all(8.0),
+                    sliver: LiveSliverList(
+                      itemCount: itemCount,
+                      controller: scrollCtrl,
+                      showItemInterval: const Duration(milliseconds: 100),
+                      showItemDuration: const Duration(milliseconds: 100),
+                      itemBuilder: AppUtils().animationItemBuilder(
+                        (index) {
+                          if (index.isEven) {
+                            return _CookItem(cookScreenContext: context);
+                          }
 
-                  return SizedBox(height: (index != itemCount - 1) ? 8 : 0);
-                },
-              ),
+                          return SizedBox(
+                            height: (index != itemCount - 1) ? 8 : 0,
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                }
+                return const SizedBox();
+              },
             ),
           )
         ],

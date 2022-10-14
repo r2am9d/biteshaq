@@ -6,12 +6,16 @@ import 'package:biteshaq/src/themes/app_color.dart';
 class CookLoadingScreen extends StatelessWidget {
   const CookLoadingScreen({super.key});
 
+  final int itemCount = 8;
+
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
       behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
       child: ListView.separated(
-        itemCount: 20,
+        itemCount: itemCount,
+        primary: false,
+        shrinkWrap: true,
         padding: const EdgeInsets.all(8.0),
         separatorBuilder: (BuildContext context, int index) =>
             const SizedBox(height: 8),

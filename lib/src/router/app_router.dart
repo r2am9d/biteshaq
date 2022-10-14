@@ -15,6 +15,4 @@ class AppRouter {
   String get cookViewRoute => '/cook/view/:id';
 
   String get gameRoute => '/game';
-
-  String get cookLoadingRoute => '/cook/loading';
 }

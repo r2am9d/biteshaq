@@ -62,7 +62,9 @@ class RecipeScreen extends HookWidget {
               child: BlocBuilder<RecipeBloc, RecipeState>(
                 builder: (context, state) {
                   if (state is RecipeInitial || state is RecipeLoading) {
-                    return SliverToBoxAdapter(child: RecipeLoadingScreen());
+                    return const SliverToBoxAdapter(
+                      child: RecipeLoadingScreen(),
+                    );
                   } else if (state is RecipeSuccess) {
                     return SliverPadding(
                       padding: const EdgeInsets.all(8.0),

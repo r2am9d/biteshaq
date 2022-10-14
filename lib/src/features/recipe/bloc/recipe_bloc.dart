@@ -25,7 +25,7 @@ class RecipeBloc extends Bloc<RecipeEvent, RecipeState> {
         }
       }
     } catch (e) {
-      emit(const RecipeFailure('Failed to fetch data. is your device online?'));
+      emit(const RecipeFailure('Failed to fetch data. Is your device online?'));
     }
   }
 }

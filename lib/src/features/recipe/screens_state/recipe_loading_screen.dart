@@ -6,6 +6,8 @@ import 'package:biteshaq/src/themes/app_color.dart';
 class RecipeLoadingScreen extends StatelessWidget {
   const RecipeLoadingScreen({super.key});
 
+  final int itemCount = 8;
+
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -15,7 +17,7 @@ class RecipeLoadingScreen extends StatelessWidget {
         mainAxisSpacing: 8.0,
         crossAxisSpacing: 8.0,
       ),
-      itemCount: 8,
+      itemCount: itemCount,
       primary: false,
       shrinkWrap: true,
       itemBuilder: (BuildContext gridviewContext, int index) {

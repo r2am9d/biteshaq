@@ -16,7 +16,7 @@ class App extends StatelessWidget {
 
   final ThemeData theme;
   final BeamerDelegate _routerDelegate = BeamerDelegate(
-    initialPath: AppRouter().cookLoadingRoute,
+    initialPath: AppRouter().cookRoute,
     locationBuilder: RoutesLocationBuilder(
       routes: {
         '*': (context, state, data) {
