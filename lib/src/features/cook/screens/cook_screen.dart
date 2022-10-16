@@ -1,14 +1,14 @@
 // ignore_for_file: avoid_unnecessary_containers
 
-import 'package:auto_animated/auto_animated.dart';
 import 'package:beamer/beamer.dart';
-import 'package:biteshaq/src/utils/app_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'package:biteshaq/src/utils/app_utils.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
 import 'package:biteshaq/src/features/cook/bloc/cook_bloc.dart';

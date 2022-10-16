@@ -122,6 +122,13 @@
       "inherit": true,
       "letterSpacing": 0,
       "textBaseline": "alphabetic"
+    },
+    "shape": {
+      "type": "rounded",
+      "borderRadius": {
+        "radius": 8,
+        "type": "circular"
+      }
     }
   },
   "disabledColor": "#61000000",

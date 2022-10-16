@@ -55,9 +55,9 @@ class IngredientsWidget extends StatelessWidget {
                   onPressed: () async {
                     await showAnimatedDialog(
                       context: context,
-                      builder: (BuildContext animDialogcontext) {
+                      builder: (BuildContext dialogContext) {
                         return _IngredientsListDialog(
-                          animDialogContext: animDialogcontext,
+                          dialogContext: dialogContext,
                           ingredients: ingredients,
                         );
                       },
@@ -112,17 +112,17 @@ class IngredientsWidget extends StatelessWidget {
 
 class _IngredientsListDialog extends HookWidget {
   const _IngredientsListDialog({
-    required this.animDialogContext,
+    required this.dialogContext,
     required this.ingredients,
   });
 
-  final BuildContext animDialogContext;
+  final BuildContext dialogContext;
   final List<String> ingredients;
 
   @override
   Widget build(BuildContext context) {
-    final mQ = MediaQuery.of(animDialogContext);
-    final navigator = Navigator.of(animDialogContext);
+    final mQ = MediaQuery.of(dialogContext);
+    final navigator = Navigator.of(dialogContext);
 
     final selectedIndexes = <int>[];
 

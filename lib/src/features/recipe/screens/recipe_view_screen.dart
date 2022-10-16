@@ -148,7 +148,6 @@ class RecipeViewScreen extends HookWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
-                    flex: 5,
                     child: LoadingButton(
                       iconData: FontAwesomeIcons.solidHeart,
                       onPressed: () =>
@@ -161,7 +160,6 @@ class RecipeViewScreen extends HookWidget {
                   ),
                   const SizedBox(width: 8.0),
                   Expanded(
-                    flex: 5,
                     child: LoadingButton(
                       iconData: FontAwesomeIcons.solidHatChef,
                       onPressed: () =>

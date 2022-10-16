@@ -8,6 +8,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:loading_icon_button/loading_icon_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 
 import 'package:biteshaq/src/hooks/tts_hook.dart';
 import 'package:biteshaq/src/utils/app_utils.dart';
@@ -23,6 +24,7 @@ import 'package:biteshaq/src/common/widgets/ingredients_widget.dart';
 import 'package:biteshaq/src/hooks/scroll_controller_hook.dart' as sch;
 import 'package:biteshaq/src/hooks/loading_button_controller_hook.dart';
 import 'package:biteshaq/src/hooks/youtube_player_controller_hook.dart';
+import 'package:biteshaq/src/common/widgets/adaptive_dialog_widget.dart';
 import 'package:biteshaq/src/common/widgets/sliver_appbar_carousel_widget.dart';
 
 class CookViewScreen extends HookWidget {
@@ -182,6 +184,8 @@ class CookViewScreen extends HookWidget {
                       : () async {
                           await showModalBottomSheet(
                             context: context,
+                            barrierColor:
+                                AppColor().primaryDark20.withOpacity(.9),
                             backgroundColor: AppColor().primaryLight20,
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.vertical(
@@ -225,11 +229,44 @@ class CookViewScreen extends HookWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: () async {
+                        await showAnimatedDialog(
+                          context: context,
+                          builder: (BuildContext dialogContext) {
+                            return AdaptiveDialogWidget(
+                              title: const Text('Cook Log'),
+                              content: const _CookLogList(),
+                              dialogContext: dialogContext,
+                            );
+                          },
+                          axis: Axis.vertical,
+                          curve: Curves.easeInOut,
+                          barrierDismissible: true,
+                          animationType: DialogTransitionType.size,
+                          duration: const Duration(milliseconds: 350),
+                          barrierColor:
+                              AppColor().primaryDark20.withOpacity(.9),
+                        );
+                      },
+                      label: const Text('Cook Log'),
+                      icon: const FaIcon(FontAwesomeIcons.solidList),
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        backgroundColor: AppColor().red,
+                        padding: const EdgeInsets.all(18),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8.0),
+                  Expanded(
                     child: LoadingButton(
                       iconData: FontAwesomeIcons.solidCauldron,
-                      onPressed: () {
-                        AppUtils().btnLoadingCtrlOnPressed([cookBtnCtrl]);
-                      },
+                      onPressed: () =>
+                          AppUtils().btnLoadingCtrlOnPressed([cookBtnCtrl]),
                       controller: cookBtnCtrl,
                       elevation: 0,
                       primaryColor: AppColor().secondary,
@@ -242,6 +279,42 @@ class CookViewScreen extends HookWidget {
           ],
         );
       },
+    );
+  }
+}
+
+class _CookLogList extends HookWidget {
+  const _CookLogList();
+
+  @override
+  Widget build(BuildContext context) {
+    final scrollCtrl = useScrollController();
+
+    return Scrollbar(
+      thumbVisibility: true,
+      controller: scrollCtrl,
+      child: ListView.separated(
+        itemCount: 20,
+        controller: scrollCtrl,
+        padding: const EdgeInsets.all(16.0),
+        itemBuilder: (context, index) {
+          return Container(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                FaIcon(
+                  FontAwesomeIcons.solidCauldron,
+                  color: AppColor().secondary,
+                ),
+                const Text('Finished'),
+                const Text('3d 22h 1m ago'),
+              ],
+            ),
+          );
+        },
+        separatorBuilder: (context, index) => const SizedBox(height: 16.0),
+      ),
     );
   }
 }
