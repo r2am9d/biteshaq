@@ -13,7 +13,7 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:biteshaq/src/hooks/tts_hook.dart';
 import 'package:biteshaq/src/utils/app_utils.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
-import 'package:biteshaq/src/constants/app_constants.dart';
+import 'package:biteshaq/src/variables/app_variables.dart';
 import 'package:biteshaq/src/common/bloc/fab/fab_bloc.dart';
 import 'package:biteshaq/src/common/widgets/media_widget.dart';
 import 'package:biteshaq/src/common/widgets/details_widget.dart';

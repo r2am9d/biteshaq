@@ -9,7 +9,7 @@ import 'package:loading_icon_button/loading_icon_button.dart';
 
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
-import 'package:biteshaq/src/constants/app_constants.dart';
+import 'package:biteshaq/src/variables/app_variables.dart';
 import 'package:biteshaq/src/router/locations/cook_location.dart';
 import 'package:biteshaq/src/router/locations/game_location.dart';
 import 'package:biteshaq/src/router/locations/recipe_location.dart';

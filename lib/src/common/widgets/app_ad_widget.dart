@@ -4,7 +4,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'package:biteshaq/src/utils/ad_utils.dart';
 import 'package:biteshaq/src/hooks/banner_ad_hook.dart';
-import 'package:biteshaq/src/constants/app_constants.dart';
+import 'package:biteshaq/src/variables/app_variables.dart';
 
 class AppAdWidget extends HookWidget {
   const AppAdWidget({

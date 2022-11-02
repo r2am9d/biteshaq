@@ -4,7 +4,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:system_settings/system_settings.dart';
 
-import 'package:biteshaq/src/constants/app_constants.dart';
+import 'package:biteshaq/src/variables/app_variables.dart';
 
 FlutterTts useFlutterTts({required ValueNotifier<TtsState> ttsState}) =>
     use(_FlutterTtsHook(ttsState: ttsState));

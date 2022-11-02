@@ -1,6 +1,6 @@
 import 'dart:io' show Platform;
 
-import 'package:biteshaq/src/constants/app_constants.dart';
+import 'package:biteshaq/src/variables/app_variables.dart';
 
 class AdUtils {
   AdUtils._internal();
