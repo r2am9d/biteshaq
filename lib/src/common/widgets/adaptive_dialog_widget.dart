@@ -5,11 +5,13 @@ class AdaptiveDialogWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.content,
+    this.actions,
     required this.dialogContext,
   });
 
   final Widget title;
   final Widget content;
+  final List<Widget>? actions;
   final BuildContext dialogContext;
 
   @override
@@ -22,6 +24,9 @@ class AdaptiveDialogWidget extends StatelessWidget {
         insetPadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
         title: title,
+        actions: actions,
+        // actionsAlignment: MainAxisAlignment.end,
+        actionsPadding: const EdgeInsets.all(16.0),
         content: SizedBox(
           width: mQ.size.width * 0.85,
           child: content,

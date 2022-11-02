@@ -237,6 +237,19 @@ class CookViewScreen extends HookWidget {
                             return AdaptiveDialogWidget(
                               title: const Text('Cook Log'),
                               content: const _CookLogList(),
+                              actions: [
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    padding: const EdgeInsets.all(16.0),
+                                    backgroundColor: AppColor().primary,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(dialogContext).pop();
+                                  },
+                                  // icon: const FaIcon(FontAwesomeIcons.solidListCheck),
+                                  child: const Text('Confirm'),
+                                ),
+                              ],
                               dialogContext: dialogContext,
                             );
                           },
