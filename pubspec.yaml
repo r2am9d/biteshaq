@@ -37,6 +37,7 @@ dependencies:
   # UI/UX
   flag: ^6.0.0
   badges: ^2.0.3
+  sidebarx: ^0.14.0
   siri_wave: ^0.2.2
   card_swiper: ^2.0.4
   json_theme: ^4.0.1+1

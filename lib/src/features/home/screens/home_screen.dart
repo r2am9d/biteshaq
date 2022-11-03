@@ -14,6 +14,7 @@ import 'package:biteshaq/src/router/locations/cook_location.dart';
 import 'package:biteshaq/src/router/locations/game_location.dart';
 import 'package:biteshaq/src/router/locations/recipe_location.dart';
 import 'package:biteshaq/src/common/bloc/network/network_bloc.dart';
+import 'package:biteshaq/src/common/widgets/app_drawer_widget.dart';
 import 'package:biteshaq/src/common/widgets/bottom_navbar_widget.dart';
 
 class HomeScreen extends HookWidget {
@@ -30,6 +31,8 @@ class HomeScreen extends HookWidget {
     ),
   );
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     usePermission();
@@ -39,6 +42,9 @@ class HomeScreen extends HookWidget {
     return BlocBuilder<NetworkBloc, NetworkState>(
       builder: (BuildContext networkContext, NetworkState networkState) =>
           Scaffold(
+        key: _scaffoldKey,
+        drawer: AppDrawerWidget(),
+        drawerScrimColor: AppColor().primaryDark20.withOpacity(.7),
         appBar: PreferredSize(
           preferredSize: (networkState is NetworkFailure)
               ? const Size.fromHeight(kToolbarHeight * 2)
@@ -88,7 +94,8 @@ class HomeScreen extends HookWidget {
                           ),
                         ),
                         leading: IconButton(
-                          onPressed: () {},
+                          onPressed: () =>
+                              _scaffoldKey.currentState?.openDrawer(),
                           splashRadius: 24,
                           icon: const FaIcon(FontAwesomeIcons.lightForkKnife),
                         ),
