@@ -72,8 +72,8 @@ dependencies:
   hydrated_bloc: ^9.0.0
   flutter_hooks: ^0.18.5+1
 
-  isar: ^3.0.2
-  isar_flutter_libs: ^3.0.2
+  isar: ^3.0.4
+  isar_flutter_libs: ^3.0.4
 
   # Google/Firebase deps
   firebase_core: ^1.21.1
