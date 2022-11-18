@@ -99,15 +99,15 @@ class HomeScreen extends HookWidget {
                           splashRadius: 24,
                           icon: const FaIcon(FontAwesomeIcons.lightForkKnife),
                         ),
-                        actions: <Widget>[
-                          IconButton(
-                            onPressed: () {},
-                            splashRadius: 24,
-                            icon:
-                                const FaIcon(FontAwesomeIcons.lightCircleUser),
-                          ),
-                          const SizedBox(width: 10),
-                        ],
+                        // actions: <Widget>[
+                        //   IconButton(
+                        //     onPressed: () {},
+                        //     splashRadius: 24,
+                        //     icon:
+                        //         const FaIcon(FontAwesomeIcons.lightCircleUser),
+                        //   ),
+                        //   const SizedBox(width: 10),
+                        // ],
                       )
                     ],
                   ),

@@ -95,12 +95,17 @@ class AppDrawerWidget extends HookWidget {
           items: [
             SidebarXItem(
               label: 'Home',
-              icon: FontAwesomeIcons.home,
+              icon: FontAwesomeIcons.lightHome,
               onTap: () {},
             ),
             SidebarXItem(
-              label: 'Search',
-              icon: FontAwesomeIcons.magnifyingGlass,
+              label: 'Favorites',
+              icon: FontAwesomeIcons.lightHeart,
+              onTap: () {},
+            ),
+            SidebarXItem(
+              label: 'Settings',
+              icon: FontAwesomeIcons.lightGear,
               onTap: () {},
             ),
           ],
