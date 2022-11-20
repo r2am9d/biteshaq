@@ -1,20 +1,23 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:biteshaq/src/themes/app_color.dart';
+import 'package:biteshaq/src/router/app_router.dart';
 import 'package:biteshaq/src/hooks/package_info_hook.dart';
 
 class AppDrawerWidget extends HookWidget {
   AppDrawerWidget({super.key});
 
-  final _sidebarCtrl = SidebarXController(extended: false, selectedIndex: 0);
+  final _sidebarCtrl = SidebarXController(extended: true, selectedIndex: 0);
 
   @override
   Widget build(BuildContext context) {
     final mQ = MediaQuery.of(context);
     final packageInfo = usePackageInfo();
+    final scaffold = Scaffold.of(context);
 
     return StreamBuilder<bool>(
       stream: _sidebarCtrl.extendStream,
@@ -96,17 +99,25 @@ class AppDrawerWidget extends HookWidget {
             SidebarXItem(
               label: 'Home',
               icon: FontAwesomeIcons.lightHome,
-              onTap: () {},
+              onTap: () {
+                context.beamToNamed(AppRouter().recipeRoute);
+                scaffold.closeDrawer();
+              },
             ),
             SidebarXItem(
               label: 'Favorites',
               icon: FontAwesomeIcons.lightHeart,
-              onTap: () {},
+              onTap: () {
+                context.beamToNamed(AppRouter().favoriteRoute);
+                scaffold.closeDrawer();
+              },
             ),
             SidebarXItem(
               label: 'Settings',
               icon: FontAwesomeIcons.lightGear,
-              onTap: () {},
+              onTap: () {
+                scaffold.closeDrawer();
+              },
             ),
           ],
           footerDivider: const Divider(),

@@ -5,14 +5,12 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:biteshaq/src/themes/app_color.dart';
+import 'package:biteshaq/src/router/app_router.dart';
 import 'package:biteshaq/src/hooks/permission_hook.dart';
 import 'package:biteshaq/src/hooks/package_info_hook.dart';
 import 'package:biteshaq/src/common/widgets/app_ad_widget.dart';
 import 'package:biteshaq/src/hooks/firebase_messaging_hook.dart';
 import 'package:biteshaq/src/common/bloc/appbar/appbar_bloc.dart';
-import 'package:biteshaq/src/router/locations/cook_location.dart';
-import 'package:biteshaq/src/router/locations/game_location.dart';
-import 'package:biteshaq/src/router/locations/recipe_location.dart';
 import 'package:biteshaq/src/common/bloc/network/network_bloc.dart';
 import 'package:biteshaq/src/common/widgets/app_drawer_widget.dart';
 import 'package:biteshaq/src/common/widgets/bottom_navbar_widget.dart';
@@ -21,16 +19,6 @@ class HomeScreen extends HookWidget {
   HomeScreen({super.key});
 
   final GlobalKey<BeamerState> _beamerKey = GlobalKey<BeamerState>();
-  final BeamerDelegate _routerDelegate = BeamerDelegate(
-    locationBuilder: BeamerLocationBuilder(
-      beamLocations: [
-        RecipeLocation(),
-        CookLocation(),
-        GameLocation(),
-      ],
-    ),
-  );
-
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -118,7 +106,7 @@ class HomeScreen extends HookWidget {
         ),
         body: Beamer(
           key: _beamerKey,
-          routerDelegate: _routerDelegate,
+          routerDelegate: AppRouter().routerDelegate,
         ),
         // persistentFooterButtons: const <Widget>[
         //   AppAdWidget(),
