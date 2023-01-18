@@ -112,6 +112,25 @@
     "tertiaryContainer": "#ff8a4324"
   },
   "dialogBackgroundColor": "#fffcfbfd",
+  "dialogTheme": {
+    "titleTextStyle": {
+      "color": "#ff246c8a",
+      "decoration": "none",
+      "fontFamily": "Prompt",
+      "fontWeight": "w700",
+      "fontSize": 24,
+      "inherit": true,
+      "letterSpacing": 0,
+      "textBaseline": "alphabetic"
+    },
+    "shape": {
+      "type": "rounded",
+      "borderRadius": {
+        "radius": 8,
+        "type": "circular"
+      }
+    }
+  },
   "disabledColor": "#61000000",
   "dividerColor": "#1f000000",
   "errorColor": "#ffb00020",

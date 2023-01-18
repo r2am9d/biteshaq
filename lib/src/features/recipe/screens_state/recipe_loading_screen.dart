@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:animated_shimmer/animated_shimmer.dart';
 
-class RecipeLoadingScreen extends StatelessWidget {
-  RecipeLoadingScreen({super.key});
+import 'package:biteshaq/src/themes/app_color.dart';
 
-  final shimmerStartColor = Colors.grey[50];
-  final shimmerEndColor = Colors.grey[300];
+class RecipeLoadingScreen extends StatelessWidget {
+  const RecipeLoadingScreen({super.key});
+
+  final int itemCount = 8;
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +17,13 @@ class RecipeLoadingScreen extends StatelessWidget {
         mainAxisSpacing: 8.0,
         crossAxisSpacing: 8.0,
       ),
-      itemCount: 8,
+      itemCount: itemCount,
       primary: false,
       shrinkWrap: true,
-      itemBuilder: (context, index) {
+      itemBuilder: (BuildContext gridviewContext, int index) {
         return Card(
           elevation: 0,
-          color: shimmerEndColor,
+          color: AppColor().shimmerEnd,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
@@ -46,7 +47,7 @@ class RecipeLoadingScreen extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
-                        color: Colors.grey[400],
+                        color: AppColor().shimmerEndDark,
                         borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(8.0),
                           bottomRight: Radius.circular(8.0),
@@ -63,8 +64,8 @@ class RecipeLoadingScreen extends StatelessWidget {
                                 AnimatedShimmer(
                                   height: 8,
                                   width: 56 * 1.25,
-                                  startColor: shimmerStartColor,
-                                  endColor: shimmerEndColor,
+                                  startColor: AppColor().shimmerStart,
+                                  endColor: AppColor().shimmerEnd,
                                   borderRadius: const BorderRadius.all(
                                     Radius.circular(16),
                                   ),
@@ -77,14 +78,14 @@ class RecipeLoadingScreen extends StatelessWidget {
                                   children: <Widget>[
                                     AnimatedShimmer.round(
                                       size: 14,
-                                      startColor: shimmerStartColor,
-                                      endColor: shimmerEndColor,
+                                      startColor: AppColor().shimmerStart,
+                                      endColor: AppColor().shimmerEnd,
                                     ),
                                     AnimatedShimmer(
                                       height: 8,
                                       width: 56 * 1.35,
-                                      startColor: shimmerStartColor,
-                                      endColor: shimmerEndColor,
+                                      startColor: AppColor().shimmerStart,
+                                      endColor: AppColor().shimmerEnd,
                                       borderRadius: const BorderRadius.all(
                                         Radius.circular(16),
                                       ),
@@ -100,8 +101,8 @@ class RecipeLoadingScreen extends StatelessWidget {
                             child: AnimatedShimmer(
                               height: kToolbarHeight / 2,
                               width: double.infinity,
-                              startColor: shimmerStartColor,
-                              endColor: shimmerEndColor,
+                              startColor: AppColor().shimmerStart,
+                              endColor: AppColor().shimmerEnd,
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(8.0)),
                             ),

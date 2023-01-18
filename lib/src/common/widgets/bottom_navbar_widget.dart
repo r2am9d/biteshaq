@@ -8,20 +8,18 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:biteshaq/src/utils/app_utils.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
-import 'package:biteshaq/src/hooks/beamer_delegate_hook.dart';
 import 'package:biteshaq/src/common/bloc/bottom_navbar/bottom_navbar_bloc.dart';
 
 class BottomNavbarWidget extends HookWidget {
   const BottomNavbarWidget({
     super.key,
-    required this.beamerKey,
+    required this.beamerDelegate,
   });
 
-  final GlobalKey<BeamerState> beamerKey;
+  final BeamerDelegate beamerDelegate;
 
   @override
   Widget build(BuildContext context) {
-    final beamerDelegate = useBeamerDelegate(beamerKey: beamerKey);
     final tabIndex = useMemoized(
       () => AppUtils().determineTabIndex(beamerDelegate.currentBeamLocation),
       [beamerDelegate.currentBeamLocation],

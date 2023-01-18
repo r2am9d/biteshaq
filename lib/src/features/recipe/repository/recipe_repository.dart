@@ -1,5 +1,3 @@
-import 'dart:async';
-
 class RecipeRepository {
   RecipeRepository._internal();
 
@@ -11,7 +9,7 @@ class RecipeRepository {
   Future<String?> get fetchRecipe {
     return Future.delayed(
       const Duration(seconds: 1),
-      () => 'MY_STRING',
+      () => 'RECIPE_REPOSITORY',
     );
   }
 }

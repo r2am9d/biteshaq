@@ -2,13 +2,13 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-BeamerDelegate useBeamerDelegate({required GlobalKey<BeamerState> beamerKey}) =>
-    use(_BeamerDelegateHook(beamerKey: beamerKey));
+BeamerDelegate useBeamerDelegate({required BeamerDelegate routerDelegate}) =>
+    use(_BeamerDelegateHook(routerDelegate: routerDelegate));
 
 class _BeamerDelegateHook extends Hook<BeamerDelegate> {
-  const _BeamerDelegateHook({required this.beamerKey});
+  const _BeamerDelegateHook({required this.routerDelegate});
 
-  final GlobalKey<BeamerState> beamerKey;
+  final BeamerDelegate routerDelegate;
 
   @override
   _BeamerDelegateHookState createState() => _BeamerDelegateHookState();
@@ -22,7 +22,8 @@ class _BeamerDelegateHookState
 
   @override
   void initHook() {
-    _beamerDelegate = hook.beamerKey.currentState!.routerDelegate;
+    super.initHook();
+    _beamerDelegate = hook.routerDelegate;
     _beamerDelegate.addListener(_setStateListener);
   }
 
@@ -33,5 +34,6 @@ class _BeamerDelegateHookState
   void dispose() {
     _beamerDelegate.removeListener(_setStateListener);
     _beamerDelegate.dispose();
+    super.dispose();
   }
 }

@@ -1,13 +1,15 @@
 import 'dart:math';
 
+import 'package:intl/intl.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:loading_icon_button/loading_icon_button.dart';
 
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
-import 'package:biteshaq/src/constants/app_constants.dart';
+import 'package:biteshaq/src/variables/app_variables.dart';
 import 'package:biteshaq/src/router/locations/cook_location.dart';
 import 'package:biteshaq/src/router/locations/game_location.dart';
 import 'package:biteshaq/src/router/locations/recipe_location.dart';
@@ -83,29 +85,36 @@ class AppUtils {
   }
 
   void ttsSpeak(List<dynamic> args) async {
-    // * [text, tts, ttsState]
-
+    // * [text, tts, ttsText, ttsState]
     final text = args[0] as String;
     final tts = args[1] as FlutterTts;
-    final ttsState = args[2] as ValueNotifier<TtsState>;
+    final ttsText = args[2] as ValueNotifier<String>;
+    final ttsState = args[3] as ValueNotifier<TtsState>;
 
-    await tts.speak(text);
+    if (ttsText.value.isEmpty) ttsText.value = text;
+    if (ttsText.value != text) await tts.stop();
+
+    ttsText.value = text;
     ttsState.value = TtsState.playing;
+    await tts.speak(text);
+  }
+
+  void ttsPause(List<dynamic> args) async {
+    // * [tts]
+    final tts = args[0] as FlutterTts;
+
+    await tts.pause();
   }
 
   void ttsStop(List<dynamic> args) async {
-    // * [tts, ttsState]
-
+    // * [tts]
     final tts = args[0] as FlutterTts;
-    final ttsState = args[1] as ValueNotifier<TtsState>;
 
     await tts.stop();
-    ttsState.value = TtsState.stopped;
   }
 
   void btnLoadingCtrlOnPressed(List<dynamic> args) async {
     // * [loadingBtnCtrl]
-
     final loadingBtnCtrl = args[0] as LoadingButtonController;
 
     try {
@@ -117,7 +126,7 @@ class AppUtils {
         });
       });
     } catch (e) {
-      print(e);
+      if (kDebugMode) print(e);
     }
   }
 
@@ -144,5 +153,30 @@ class AppUtils {
         ),
       );
     };
+  }
+
+  String capitalizeFirst(String text) {
+    final str = text.trim().split(" ");
+
+    if (str.isEmpty) return '';
+    if (str.length == 1) return toBeginningOfSentenceCase(str.first)!;
+    return str.map(toBeginningOfSentenceCase).join(" ");
+  }
+
+  String convertListToString(List<String> list) => list
+      .map((str) => str.endsWith('.') || str.endsWith('!') ? str : '$str.')
+      .join(" ");
+
+  String convertJsonToString(Map<String, dynamic> json) {
+    final excludedKeys = ['country_code', 'badges'];
+
+    return json.entries.fold<String>('', (acc, cur) {
+      if (!excludedKeys.contains(cur.key)) {
+        final key = cur.key.replaceAll('_', ' ');
+        acc += ' $key. ${cur.value}.';
+      }
+
+      return acc;
+    });
   }
 }

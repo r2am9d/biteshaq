@@ -1,8 +1,11 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:biteshaq/src/router/app_router.dart';
+import 'package:biteshaq/src/common/bloc/fab/fab_bloc.dart';
 import 'package:biteshaq/src/common/bloc/appbar/appbar_bloc.dart';
 import 'package:biteshaq/src/common/bloc/network/network_bloc.dart';
 import 'package:biteshaq/src/features/home/screens/home_screen.dart';
@@ -31,6 +34,9 @@ class App extends StatelessWidget {
                 create: (context) =>
                     BottomNavbarBloc()..add(const BottomNavbarToggle()),
               ),
+              BlocProvider(
+                create: (context) => FabBloc()..add(const FabToggle()),
+              ),
             ],
             child: HomeScreen(),
           );
@@ -49,6 +55,13 @@ class App extends StatelessWidget {
       backButtonDispatcher: BeamerBackButtonDispatcher(
         delegate: _routerDelegate,
       ),
+      localizationsDelegates: const [
+        FormBuilderLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: FormBuilderLocalizations.delegate.supportedLocales,
     );
   }
 }

@@ -4,9 +4,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'package:biteshaq/src/utils/notif_utils.dart';
 
-FirebaseMessaging useFirebaseMessaging() => use(const _FirebaseMessagingHook());
+void useFirebaseMessaging() => use(const _FirebaseMessagingHook());
 
-class _FirebaseMessagingHook extends Hook<FirebaseMessaging> {
+class _FirebaseMessagingHook extends Hook<void> {
   const _FirebaseMessagingHook();
 
   @override
@@ -14,20 +14,23 @@ class _FirebaseMessagingHook extends Hook<FirebaseMessaging> {
 }
 
 class _FirebaseMessagingHookState
-    extends HookState<FirebaseMessaging, _FirebaseMessagingHook> {
+    extends HookState<void, _FirebaseMessagingHook> {
   // Set default values
   final FirebaseMessaging _fm = FirebaseMessaging.instance;
 
   @override
   void initHook() {
+    super.initHook();
     FirebaseMessaging.onMessage.listen(NotifUtils().showRemoteNotification);
     FirebaseMessaging.onMessageOpenedApp
         .listen(NotifUtils().onBackgroundNotificationTapped);
   }
 
   @override
-  FirebaseMessaging build(BuildContext context) => _fm;
+  void build(BuildContext context) {}
 
   @override
-  void dispose() {}
+  void dispose() {
+    super.dispose();
+  }
 }

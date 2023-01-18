@@ -30,7 +30,7 @@ class CookLocation extends BeamLocation<BeamState> {
           title: 'Cook View',
           child: CookViewScreen(),
           type: BeamPageType.slideRightTransition,
-        ),
+        )
     ];
   }
 }

@@ -4,6 +4,8 @@ enum Environment { dev, prod }
 
 enum TtsState { initial, playing, paused, stopped }
 
+enum CookStatus { initial, cooking, cancelled, done }
+
 const ADMOB = {
   'android': {
     'dev': {

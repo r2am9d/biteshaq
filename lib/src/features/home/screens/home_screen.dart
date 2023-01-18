@@ -2,50 +2,51 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:biteshaq/src/hooks/beamer_delegate_hook.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:biteshaq/src/hooks/tts_hook.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
+import 'package:biteshaq/src/router/app_router.dart';
 import 'package:biteshaq/src/hooks/permission_hook.dart';
 import 'package:biteshaq/src/hooks/package_info_hook.dart';
 import 'package:biteshaq/src/common/widgets/app_ad_widget.dart';
+import 'package:biteshaq/src/hooks/sidebar_controller_hook.dart';
 import 'package:biteshaq/src/hooks/firebase_messaging_hook.dart';
 import 'package:biteshaq/src/common/bloc/appbar/appbar_bloc.dart';
-import 'package:biteshaq/src/router/locations/cook_location.dart';
-import 'package:biteshaq/src/router/locations/game_location.dart';
-import 'package:biteshaq/src/router/locations/recipe_location.dart';
 import 'package:biteshaq/src/common/bloc/network/network_bloc.dart';
+import 'package:biteshaq/src/common/widgets/app_drawer_widget.dart';
 import 'package:biteshaq/src/common/widgets/bottom_navbar_widget.dart';
 
 class HomeScreen extends HookWidget {
   HomeScreen({super.key});
 
+  final BeamerDelegate _routerDelegate = AppRouter().routerDelegate;
   final GlobalKey<BeamerState> _beamerKey = GlobalKey<BeamerState>();
-  final BeamerDelegate _routerDelegate = BeamerDelegate(
-    locationBuilder: BeamerLocationBuilder(
-      beamLocations: [
-        RecipeLocation(),
-        CookLocation(),
-        GameLocation(),
-      ],
-    ),
-  );
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     usePermission();
-    useFlutterTts();
     useFirebaseMessaging();
     final packageInfo = usePackageInfo();
+    final sidebarCtrl = useSidebarController();
+    final beamerDelegate = useBeamerDelegate(routerDelegate: _routerDelegate);
 
     return BlocBuilder<NetworkBloc, NetworkState>(
-      builder: (context, networkState) => Scaffold(
+      builder: (BuildContext networkContext, NetworkState networkState) =>
+          Scaffold(
+        key: _scaffoldKey,
+        drawer: AppDrawerWidget(
+          sidebarController: sidebarCtrl,
+          beamerDelegate: beamerDelegate,
+        ),
+        drawerScrimColor: AppColor().primaryDark20.withOpacity(.7),
         appBar: PreferredSize(
           preferredSize: (networkState is NetworkFailure)
               ? const Size.fromHeight(kToolbarHeight * 2)
               : const Size.fromHeight(kToolbarHeight),
           child: BlocBuilder<AppbarBloc, AppbarState>(
-            builder: (context, appbarState) {
+            builder: (BuildContext appbarContext, AppbarState appbarState) {
               return Container(
                 height: (appbarState is AppbarHidden) ? 0 : null,
                 color: AppColor().primary,
@@ -89,19 +90,20 @@ class HomeScreen extends HookWidget {
                           ),
                         ),
                         leading: IconButton(
-                          onPressed: () {},
+                          onPressed: () =>
+                              _scaffoldKey.currentState?.openDrawer(),
                           splashRadius: 24,
                           icon: const FaIcon(FontAwesomeIcons.lightForkKnife),
                         ),
-                        actions: <Widget>[
-                          IconButton(
-                            onPressed: () {},
-                            splashRadius: 24,
-                            icon:
-                                const FaIcon(FontAwesomeIcons.lightCircleUser),
-                          ),
-                          const SizedBox(width: 10),
-                        ],
+                        // actions: <Widget>[
+                        //   IconButton(
+                        //     onPressed: () {},
+                        //     splashRadius: 24,
+                        //     icon:
+                        //         const FaIcon(FontAwesomeIcons.lightCircleUser),
+                        //   ),
+                        //   const SizedBox(width: 10),
+                        // ],
                       )
                     ],
                   ),
@@ -117,9 +119,7 @@ class HomeScreen extends HookWidget {
         // persistentFooterButtons: const <Widget>[
         //   AppAdWidget(),
         // ],
-        bottomNavigationBar: BottomNavbarWidget(
-          beamerKey: _beamerKey,
-        ),
+        bottomNavigationBar: BottomNavbarWidget(beamerDelegate: beamerDelegate),
       ),
     );
   }

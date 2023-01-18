@@ -1,4 +1,3 @@
-import 'package:biteshaq/src/features/recipe/repository/recipe_repository.dart';
 import 'package:flag/flag.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +14,7 @@ import 'package:biteshaq/src/common/widgets/failure_widget.dart';
 import 'package:biteshaq/src/common/widgets/loading_widget.dart';
 import 'package:biteshaq/src/features/recipe/bloc/recipe_bloc.dart';
 import 'package:biteshaq/src/common/widgets/recipe_rating_widget.dart';
+import 'package:biteshaq/src/features/recipe/repository/recipe_repository.dart';
 import 'package:biteshaq/src/features/recipe/screens_state/recipe_loading_screen.dart';
 
 class RecipeScreen extends HookWidget {
@@ -25,6 +25,7 @@ class RecipeScreen extends HookWidget {
     final scrollCtrl = useScrollController();
 
     return Scaffold(
+      backgroundColor: AppColor().primaryLight20,
       body: RefreshIndicator(
         edgeOffset: kToolbarHeight,
         onRefresh: () async => Future<void>.delayed(const Duration(seconds: 3)),
@@ -61,7 +62,9 @@ class RecipeScreen extends HookWidget {
               child: BlocBuilder<RecipeBloc, RecipeState>(
                 builder: (context, state) {
                   if (state is RecipeInitial || state is RecipeLoading) {
-                    return SliverToBoxAdapter(child: RecipeLoadingScreen());
+                    return const SliverToBoxAdapter(
+                      child: RecipeLoadingScreen(),
+                    );
                   } else if (state is RecipeSuccess) {
                     return SliverPadding(
                       padding: const EdgeInsets.all(8.0),
