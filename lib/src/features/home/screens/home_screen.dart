@@ -2,6 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:biteshaq/src/hooks/beamer_delegate_hook.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:biteshaq/src/themes/app_color.dart';
@@ -9,6 +10,7 @@ import 'package:biteshaq/src/router/app_router.dart';
 import 'package:biteshaq/src/hooks/permission_hook.dart';
 import 'package:biteshaq/src/hooks/package_info_hook.dart';
 import 'package:biteshaq/src/common/widgets/app_ad_widget.dart';
+import 'package:biteshaq/src/hooks/sidebar_controller_hook.dart';
 import 'package:biteshaq/src/hooks/firebase_messaging_hook.dart';
 import 'package:biteshaq/src/common/bloc/appbar/appbar_bloc.dart';
 import 'package:biteshaq/src/common/bloc/network/network_bloc.dart';
@@ -18,6 +20,7 @@ import 'package:biteshaq/src/common/widgets/bottom_navbar_widget.dart';
 class HomeScreen extends HookWidget {
   HomeScreen({super.key});
 
+  final BeamerDelegate _routerDelegate = AppRouter().routerDelegate;
   final GlobalKey<BeamerState> _beamerKey = GlobalKey<BeamerState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -26,12 +29,17 @@ class HomeScreen extends HookWidget {
     usePermission();
     useFirebaseMessaging();
     final packageInfo = usePackageInfo();
+    final sidebarCtrl = useSidebarController();
+    final beamerDelegate = useBeamerDelegate(routerDelegate: _routerDelegate);
 
     return BlocBuilder<NetworkBloc, NetworkState>(
       builder: (BuildContext networkContext, NetworkState networkState) =>
           Scaffold(
         key: _scaffoldKey,
-        drawer: AppDrawerWidget(),
+        drawer: AppDrawerWidget(
+          sidebarController: sidebarCtrl,
+          beamerDelegate: beamerDelegate,
+        ),
         drawerScrimColor: AppColor().primaryDark20.withOpacity(.7),
         appBar: PreferredSize(
           preferredSize: (networkState is NetworkFailure)
@@ -106,14 +114,12 @@ class HomeScreen extends HookWidget {
         ),
         body: Beamer(
           key: _beamerKey,
-          routerDelegate: AppRouter().routerDelegate,
+          routerDelegate: _routerDelegate,
         ),
         // persistentFooterButtons: const <Widget>[
         //   AppAdWidget(),
         // ],
-        bottomNavigationBar: BottomNavbarWidget(
-          beamerKey: _beamerKey,
-        ),
+        bottomNavigationBar: BottomNavbarWidget(beamerDelegate: beamerDelegate),
       ),
     );
   }

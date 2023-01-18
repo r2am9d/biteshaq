@@ -7,11 +7,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
 import 'package:biteshaq/src/hooks/package_info_hook.dart';
+import 'package:biteshaq/src/common/repository/bottom_navbar_repository.dart';
 
 class AppDrawerWidget extends HookWidget {
-  AppDrawerWidget({super.key});
+  const AppDrawerWidget({
+    super.key,
+    required this.beamerDelegate,
+    required this.sidebarController,
+  });
 
-  final _sidebarCtrl = SidebarXController(extended: true, selectedIndex: 0);
+  final BeamerDelegate beamerDelegate;
+  final SidebarXController sidebarController;
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +26,10 @@ class AppDrawerWidget extends HookWidget {
     final scaffold = Scaffold.of(context);
 
     return StreamBuilder<bool>(
-      stream: _sidebarCtrl.extendStream,
+      stream: sidebarController.extendStream,
       builder: (BuildContext streamContext, AsyncSnapshot<bool> snapshot) {
         return SidebarX(
-          controller: _sidebarCtrl,
+          controller: sidebarController,
           theme: SidebarXTheme(
             margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(
@@ -54,11 +60,11 @@ class AppDrawerWidget extends HookWidget {
             selectedItemDecoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
               border: Border.all(
-                color: _sidebarCtrl.extended
+                color: sidebarController.extended
                     ? AppColor().secondary.withOpacity(0.37)
                     : AppColor().primary.withOpacity(0.37),
               ),
-              color: _sidebarCtrl.extended
+              color: sidebarController.extended
                   ? AppColor().secondary
                   : AppColor().primary,
               boxShadow: [
@@ -81,7 +87,7 @@ class AppDrawerWidget extends HookWidget {
               child: Column(
                 children: [
                   Image.asset('assets/logos/logo_1024.png'),
-                  if (_sidebarCtrl.extended) ...[
+                  if (sidebarController.extended) ...[
                     Text(
                       packageInfo.appName,
                       style: TextStyle(
@@ -100,7 +106,8 @@ class AppDrawerWidget extends HookWidget {
               label: 'Home',
               icon: FontAwesomeIcons.lightHome,
               onTap: () {
-                context.beamToNamed(AppRouter().recipeRoute);
+                beamerDelegate.beamToNamed(AppRouter().recipeRoute);
+                BottomNavbarRepository().toggle(isHidden: false);
                 scaffold.closeDrawer();
               },
             ),
@@ -108,7 +115,8 @@ class AppDrawerWidget extends HookWidget {
               label: 'Favorites',
               icon: FontAwesomeIcons.lightHeart,
               onTap: () {
-                context.beamToNamed(AppRouter().favoriteRoute);
+                beamerDelegate.beamToNamed(AppRouter().favoriteRoute);
+                BottomNavbarRepository().toggle(isHidden: true);
                 scaffold.closeDrawer();
               },
             ),
