@@ -66,13 +66,13 @@ class BottomNavbarWidget extends HookWidget {
                       ),
                       activeIcon: const FaIcon(FontAwesomeIcons.solidHatChef),
                     ),
-                    SalomonBottomBarItem(
-                      title: const Text('Game'),
-                      selectedColor: AppColor().white,
-                      icon: const FaIcon(FontAwesomeIcons.lightGamepadModern),
-                      activeIcon:
-                          const FaIcon(FontAwesomeIcons.solidGamepadModern),
-                    ),
+                    // SalomonBottomBarItem(
+                    //   title: const Text('Game'),
+                    //   selectedColor: AppColor().white,
+                    //   icon: const FaIcon(FontAwesomeIcons.lightGamepadModern),
+                    //   activeIcon:
+                    //       const FaIcon(FontAwesomeIcons.solidGamepadModern),
+                    // ),
                   ],
                 ),
               ],
