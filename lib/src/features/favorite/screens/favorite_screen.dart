@@ -1,16 +1,20 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
+import 'package:biteshaq/src/hooks/scroll_controller_hook.dart' as sch;
 import 'package:biteshaq/src/common/repository/bottom_navbar_repository.dart';
 
-class FavoriteScreen extends StatelessWidget {
+class FavoriteScreen extends HookWidget {
   const FavoriteScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final scrollCtrl = sch.useScrollController();
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
