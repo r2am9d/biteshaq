@@ -13,6 +13,7 @@ import 'package:biteshaq/src/variables/app_variables.dart';
 import 'package:biteshaq/src/router/locations/cook_location.dart';
 import 'package:biteshaq/src/router/locations/game_location.dart';
 import 'package:biteshaq/src/router/locations/recipe_location.dart';
+import 'package:biteshaq/src/router/locations/favorite_location.dart';
 
 class AppUtils {
   AppUtils._internal();
@@ -55,11 +56,12 @@ class AppUtils {
         ref = 0;
         break;
       case CookLocation:
+      case FavoriteLocation:
         ref = 1;
         break;
-      case GameLocation:
-        ref = 2;
-        break;
+      // case GameLocation:
+      //   ref = 2;
+      //   break;
       default:
     }
 
@@ -75,9 +77,9 @@ class AppUtils {
       case 1:
         route = AppRouter().cookRoute;
         break;
-      case 2:
-        route = AppRouter().gameRoute;
-        break;
+      // case 2:
+      //   route = AppRouter().gameRoute;
+      //   break;
       default:
     }
 

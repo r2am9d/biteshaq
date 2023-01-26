@@ -111,15 +111,15 @@ class AppDrawerWidget extends HookWidget {
                 scaffold.closeDrawer();
               },
             ),
-            SidebarXItem(
-              label: 'Favorites',
-              icon: FontAwesomeIcons.lightHeart,
-              onTap: () {
-                beamerDelegate.beamToNamed(AppRouter().favoriteRoute);
-                BottomNavbarRepository().toggle(isHidden: true);
-                scaffold.closeDrawer();
-              },
-            ),
+            // SidebarXItem(
+            //   label: 'Favorites',
+            //   icon: FontAwesomeIcons.lightHeart,
+            //   onTap: () {
+            //     beamerDelegate.beamToNamed(AppRouter().favoriteRoute);
+            //     BottomNavbarRepository().toggle(isHidden: true);
+            //     scaffold.closeDrawer();
+            //   },
+            // ),
             SidebarXItem(
               label: 'Settings',
               icon: FontAwesomeIcons.lightGear,

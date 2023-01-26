@@ -16,6 +16,7 @@ import 'package:biteshaq/src/common/widgets/failure_widget.dart';
 import 'package:biteshaq/src/common/widgets/loading_widget.dart';
 import 'package:biteshaq/src/common/widgets/glass_container_widget.dart';
 import 'package:biteshaq/src/features/cook/repository/cook_repository.dart';
+import 'package:biteshaq/src/common/repository/bottom_navbar_repository.dart';
 import 'package:biteshaq/src/features/cook/screens_state/cook_loading_screen.dart';
 
 class CookScreen extends HookWidget {
@@ -39,7 +40,22 @@ class CookScreen extends HookWidget {
           SliverAppBar(
             elevation: 0,
             floating: true,
-            title: const Text('Cook'),
+            title: ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                shape: const StadiumBorder(),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 24,
+                ),
+                backgroundColor: AppColor().secondary,
+              ),
+              onPressed: () {
+                BottomNavbarRepository().toggle(isHidden: true);
+                context.beamToNamed(AppRouter().favoriteRoute);
+              },
+              label: const Text('Cook'),
+              icon: const FaIcon(FontAwesomeIcons.lightHatChef),
+            ),
             actions: <Widget>[
               IconButton(
                 onPressed: () {},
