@@ -14,7 +14,7 @@ import flutter_secure_storage_macos
 import flutter_tts
 import isar_flutter_libs
 import package_info_plus_macos
-import path_provider_macos
+import path_provider_foundation
 import sqflite
 import sqlite3_flutter_libs
 

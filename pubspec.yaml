@@ -76,20 +76,20 @@ dependencies:
   isar_flutter_libs: ^3.0.4
 
   # Google/Firebase deps
-  firebase_core: ^1.21.1
-  google_mobile_ads: ^2.0.1
-  firebase_app_check: ^0.0.7
-  firebase_messaging: ^13.0.1
+  firebase_core: ^2.4.1
+  google_mobile_ads: ^2.3.0
+  firebase_app_check: ^0.1.1+8
+  firebase_messaging: ^14.2.1
 
   # Plugins
-  flutter_tts: ^3.5.3
+  flutter_tts: ^3.6.3
   system_settings: ^2.1.0
   connectivity_plus: ^2.1.0
   package_info_plus: ^1.4.3+1
   permission_handler: ^10.0.0
   flutter_secure_storage: ^6.0.0
   youtube_player_flutter: ^8.1.0
-  flutter_inappwebview: ^5.4.3+7
+  flutter_inappwebview: ^5.7.2+3
   native_device_orientation: ^1.1.4
   flutter_local_notifications: ^9.9.1
 
@@ -98,15 +98,6 @@ dependency_overrides:
     path: ./packages/font_awesome_flutter
   flutter_animated_dialog:
     path: ./packages/flutter_animated_dialog
-
-  flutter_inappwebview:
-    git:
-      url: https://github.com/CodeEagle/flutter_inappwebview
-      ref: master
-  flutter_tts:
-    git:
-      url: https://github.com/harrowmykel/flutter_tts
-      ref: master
 
 dev_dependencies:
   flutter_test:

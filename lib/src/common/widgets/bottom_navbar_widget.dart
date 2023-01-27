@@ -1,6 +1,6 @@
-import 'package:badges/badges.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -60,8 +60,8 @@ class BottomNavbarWidget extends HookWidget {
                     SalomonBottomBarItem(
                       title: const Text('Cook'),
                       selectedColor: AppColor().white,
-                      icon: Badge(
-                        position: BadgePosition.topEnd(top: -3, end: -6),
+                      icon: badges.Badge(
+                        position: badges.BadgePosition.topEnd(top: -3, end: -6),
                         child: const FaIcon(FontAwesomeIcons.lightHatChef),
                       ),
                       activeIcon: const FaIcon(FontAwesomeIcons.solidHatChef),

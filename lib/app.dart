@@ -61,7 +61,7 @@ class App extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: FormBuilderLocalizations.delegate.supportedLocales,
+      supportedLocales: FormBuilderLocalizationsImpl.supportedLocales,
     );
   }
 }
