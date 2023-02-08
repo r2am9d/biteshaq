@@ -29,7 +29,7 @@ class NotifUtils {
         channelShowBadge: true,
         color: AppColor().red,
       ),
-      iOS: const IOSNotificationDetails(),
+      iOS: const DarwinNotificationDetails(),
     );
   }
 
@@ -43,11 +43,11 @@ class NotifUtils {
     const androidInitSettings =
         AndroidInitializationSettings('@mipmap/ic_launcher');
 
-    final iosInitSettings = IOSInitializationSettings(
+    final iosInitSettings = DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
       requestSoundPermission: true,
-      onDidReceiveLocalNotification: _onIosForegroundNotificationTapped,
+      onDidReceiveLocalNotification: _onIosForegroundNotifTapped,
     );
 
     final initSettings = InitializationSettings(
@@ -57,7 +57,7 @@ class NotifUtils {
 
     await _flutterLocalNotif.initialize(
       initSettings,
-      onSelectNotification: _onAndroidForegroundNotificationTapped,
+      onDidReceiveNotificationResponse: _onAndroidForegroundNotifTapped,
     );
   }
 
@@ -80,13 +80,20 @@ class NotifUtils {
 
   Future<String?> getToken() async => await _firebaseMsg.getToken();
 
-  void _onIosForegroundNotificationTapped(
+  void _onIosForegroundNotifTapped(
       int id, String? title, String? body, String? payload) async {
     // TODO: IOS_NOTIFICATION_TAPPED
   }
 
-  void _onAndroidForegroundNotificationTapped(String? payload) async {
+  void _onAndroidForegroundNotifTapped(NotificationResponse notifResp) async {
     // TODO: ANDR_NOTIFICATION_TAPPED
+    final notifPayload = notifResp.payload;
+    switch (notifResp.notificationResponseType) {
+      case NotificationResponseType.selectedNotification:
+        break;
+      case NotificationResponseType.selectedNotificationAction:
+        break;
+    }
   }
 
   void _onBackgroundNotificationTapped(RemoteMessage message) async {
