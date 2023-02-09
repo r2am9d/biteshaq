@@ -23,7 +23,7 @@ class ProcedureWidget extends StatelessWidget {
             children: <Widget>[
               Text(
                 'Procedure',
-                style: theme.textTheme.headline5?.copyWith(
+                style: theme.textTheme.headlineSmall?.copyWith(
                   color: AppColor().primary,
                   fontWeight: FontWeight.bold,
                 ),
@@ -39,7 +39,7 @@ class ProcedureWidget extends StatelessWidget {
               children: <Widget>[
                 Text(
                   '${idx + 1}.',
-                  style: theme.textTheme.bodyText1?.copyWith(
+                  style: theme.textTheme.bodyLarge?.copyWith(
                     color: AppColor().secondary,
                     fontWeight: FontWeight.bold,
                   ),
@@ -48,7 +48,7 @@ class ProcedureWidget extends StatelessWidget {
                 Expanded(
                   child: Text(
                     procedure[idx],
-                    style: theme.textTheme.bodyText1?.copyWith(
+                    style: theme.textTheme.bodyLarge?.copyWith(
                       color: AppColor().black,
                     ),
                   ),

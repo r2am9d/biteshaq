@@ -165,7 +165,7 @@ class _CookItem extends StatelessWidget {
                             children: <Widget>[
                               Text(
                                 'Pork Adobo',
-                                style: theme.textTheme.bodyText1?.copyWith(
+                                style: theme.textTheme.bodyLarge?.copyWith(
                                   color: AppColor().black,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -202,7 +202,7 @@ class _CookItem extends StatelessWidget {
                                     Text(
                                       '1/8',
                                       style:
-                                          theme.textTheme.bodyText2?.copyWith(
+                                          theme.textTheme.bodyMedium?.copyWith(
                                         color: AppColor().black,
                                       ),
                                     ),
@@ -229,7 +229,7 @@ class _CookItem extends StatelessWidget {
                                     Text(
                                       '1hr & 10m',
                                       style:
-                                          theme.textTheme.bodyText2?.copyWith(
+                                          theme.textTheme.bodyMedium?.copyWith(
                                         color: AppColor().black,
                                       ),
                                     ),

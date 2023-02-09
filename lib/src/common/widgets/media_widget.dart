@@ -20,7 +20,7 @@ class MediaWidget extends StatelessWidget {
           /// Header
           Text(
             'Media',
-            style: theme.textTheme.headline5?.copyWith(
+            style: theme.textTheme.headlineSmall?.copyWith(
               color: AppColor().primary,
               fontWeight: FontWeight.bold,
             ),

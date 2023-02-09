@@ -33,7 +33,7 @@ class IngredientsWidget extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     'Ingredients',
-                    style: theme.textTheme.headline5?.copyWith(
+                    style: theme.textTheme.headlineSmall?.copyWith(
                       color: AppColor().primary,
                       fontWeight: FontWeight.bold,
                     ),
@@ -42,7 +42,7 @@ class IngredientsWidget extends StatelessWidget {
                     const SizedBox(width: 8),
                     Text(
                       '[8/8]',
-                      style: theme.textTheme.headline5?.copyWith(
+                      style: theme.textTheme.headlineSmall?.copyWith(
                         color: AppColor().primary,
                         fontWeight: FontWeight.bold,
                       ),
@@ -95,7 +95,7 @@ class IngredientsWidget extends StatelessWidget {
                 Expanded(
                   child: Text(
                     ingredients[idx],
-                    style: theme.textTheme.bodyText1?.copyWith(
+                    style: theme.textTheme.bodyLarge?.copyWith(
                       color: AppColor().black,
                     ),
                   ),

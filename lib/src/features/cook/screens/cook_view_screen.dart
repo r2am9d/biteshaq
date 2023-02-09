@@ -380,7 +380,7 @@ class _CookViewBottomSheet extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 'Play audio',
-                style: theme.textTheme.headline5?.copyWith(
+                style: theme.textTheme.headlineSmall?.copyWith(
                   color: AppColor().secondary,
                   fontWeight: FontWeight.bold,
                 ),
@@ -421,7 +421,7 @@ class _CookViewBottomSheet extends StatelessWidget {
                                     Text(
                                       'Description',
                                       style:
-                                          theme.textTheme.headline6?.copyWith(
+                                          theme.textTheme.titleLarge?.copyWith(
                                         color: AppColor().primary,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -472,7 +472,7 @@ class _CookViewBottomSheet extends StatelessWidget {
                                     Text(
                                       'Details',
                                       style:
-                                          theme.textTheme.headline6?.copyWith(
+                                          theme.textTheme.titleLarge?.copyWith(
                                         color: AppColor().primary,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -525,7 +525,7 @@ class _CookViewBottomSheet extends StatelessWidget {
                                     Text(
                                       'Ingredients',
                                       style:
-                                          theme.textTheme.headline6?.copyWith(
+                                          theme.textTheme.titleLarge?.copyWith(
                                         color: AppColor().primary,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -576,7 +576,7 @@ class _CookViewBottomSheet extends StatelessWidget {
                                     Text(
                                       'Procedure',
                                       style:
-                                          theme.textTheme.headline6?.copyWith(
+                                          theme.textTheme.titleLarge?.copyWith(
                                         color: AppColor().primary,
                                         fontWeight: FontWeight.bold,
                                       ),

@@ -23,7 +23,7 @@ class DetailsWidget extends StatelessWidget {
           /// Header
           Text(
             'Details',
-            style: theme.textTheme.headline5?.copyWith(
+            style: theme.textTheme.headlineSmall?.copyWith(
               color: AppColor().primary,
               fontWeight: FontWeight.bold,
             ),
@@ -42,14 +42,14 @@ class DetailsWidget extends StatelessWidget {
               const SizedBox(width: 8.0),
               Text(
                 'Course:',
-                style: theme.textTheme.bodyText1?.copyWith(
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
               const SizedBox(width: 8.0),
               Text(
                 AppUtils().capitalizeFirst(details['course']),
-                style: theme.textTheme.bodyText1?.copyWith(
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
@@ -69,7 +69,7 @@ class DetailsWidget extends StatelessWidget {
               const SizedBox(width: 8.0),
               Text(
                 'Cuisine:',
-                style: theme.textTheme.bodyText1?.copyWith(
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
@@ -83,7 +83,7 @@ class DetailsWidget extends StatelessWidget {
               const SizedBox(width: 8.0),
               Text(
                 AppUtils().capitalizeFirst(details['cuisine']),
-                style: theme.textTheme.bodyText1?.copyWith(
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
@@ -103,7 +103,7 @@ class DetailsWidget extends StatelessWidget {
               const SizedBox(width: 8.0),
               Text(
                 'Chef:',
-                style: theme.textTheme.bodyText1?.copyWith(
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
@@ -115,7 +115,7 @@ class DetailsWidget extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     AppUtils().capitalizeFirst(details['chef']),
-                    style: theme.textTheme.bodyText1?.copyWith(
+                    style: theme.textTheme.bodyLarge?.copyWith(
                       color: AppColor().black,
                     ),
                   ),
@@ -147,14 +147,14 @@ class DetailsWidget extends StatelessWidget {
               const SizedBox(width: 8.0),
               Text(
                 'Prep Time:',
-                style: theme.textTheme.bodyText1?.copyWith(
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
               const SizedBox(width: 8.0),
               Text(
                 details['prep_time'],
-                style: theme.textTheme.bodyText1?.copyWith(
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
@@ -174,14 +174,14 @@ class DetailsWidget extends StatelessWidget {
               const SizedBox(width: 8.0),
               Text(
                 'Cook Time:',
-                style: theme.textTheme.bodyText1?.copyWith(
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
               const SizedBox(width: 8.0),
               Text(
                 details['cook_time'],
-                style: theme.textTheme.bodyText1?.copyWith(
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
@@ -201,14 +201,14 @@ class DetailsWidget extends StatelessWidget {
               const SizedBox(width: 8.0),
               Text(
                 'Total Time:',
-                style: theme.textTheme.bodyText1?.copyWith(
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
               const SizedBox(width: 8.0),
               Text(
                 details['total_time'],
-                style: theme.textTheme.bodyText1?.copyWith(
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
@@ -228,14 +228,14 @@ class DetailsWidget extends StatelessWidget {
               const SizedBox(width: 8.0),
               Text(
                 'Servings:',
-                style: theme.textTheme.bodyText1?.copyWith(
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
               const SizedBox(width: 8.0),
               Text(
                 details['servings'],
-                style: theme.textTheme.bodyText1?.copyWith(
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
@@ -255,14 +255,14 @@ class DetailsWidget extends StatelessWidget {
               const SizedBox(width: 8.0),
               Text(
                 'Calories:',
-                style: theme.textTheme.bodyText1?.copyWith(
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
               const SizedBox(width: 8.0),
               Text(
                 details['calories'],
-                style: theme.textTheme.bodyText1?.copyWith(
+                style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),

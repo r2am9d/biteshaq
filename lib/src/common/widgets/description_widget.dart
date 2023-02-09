@@ -23,7 +23,7 @@ class DescriptionWidget extends StatelessWidget {
             children: <Widget>[
               Text(
                 'Description',
-                style: theme.textTheme.headline5?.copyWith(
+                style: theme.textTheme.headlineSmall?.copyWith(
                   color: AppColor().primary,
                   fontWeight: FontWeight.bold,
                 ),
@@ -36,7 +36,7 @@ class DescriptionWidget extends StatelessWidget {
           /// Content
           Text(
             description,
-            style: theme.textTheme.bodyText1?.copyWith(
+            style: theme.textTheme.bodyLarge?.copyWith(
               color: AppColor().black,
             ),
           ),
