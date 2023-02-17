@@ -48,7 +48,7 @@ dependencies:
   loading_icon_button: ^0.0.5+1
   cached_network_image: ^3.2.3
   flutter_animated_dialog: ^2.0.1
-  font_awesome_flutter: '^10.3.0'
+  font_awesome_flutter: ^10.4.0
 
   # Routing
   beamer: ^1.5.3
@@ -76,18 +76,18 @@ dependencies:
   isar_flutter_libs: ^3.0.5
 
   # Google/Firebase deps
-  firebase_core: ^2.5.0
+  firebase_core: ^2.6.0
   google_mobile_ads: ^2.3.0
-  firebase_app_check: ^0.1.1+9
-  firebase_messaging: ^14.2.2
+  firebase_app_check: ^0.1.1+10
+  firebase_messaging: ^14.2.3
 
   # Plugins
   flutter_tts: ^3.6.3
   system_settings: ^2.1.0
-  connectivity_plus: ^3.0.2
-  package_info_plus: ^3.0.2
+  connectivity_plus: ^3.0.3
+  package_info_plus: ^3.0.3
   permission_handler: ^10.2.0
-  flutter_secure_storage: ^7.0.1
+  flutter_secure_storage: ^8.0.0
   youtube_player_flutter: ^8.1.2
   flutter_inappwebview: ^5.7.2+3
   native_device_orientation: ^1.1.4
