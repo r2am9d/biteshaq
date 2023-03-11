@@ -4,7 +4,7 @@ import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:biteshaq/src/utils/app_utils.dart';
+import 'package:biteshaq/src/utils/app_util.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 
 class DetailsWidget extends StatelessWidget {
@@ -48,7 +48,7 @@ class DetailsWidget extends StatelessWidget {
               ),
               const SizedBox(width: 8.0),
               Text(
-                AppUtils().capitalizeFirst(details['course']),
+                AppUtil().capitalizeFirst(details['course']),
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
@@ -82,7 +82,7 @@ class DetailsWidget extends StatelessWidget {
               ),
               const SizedBox(width: 8.0),
               Text(
-                AppUtils().capitalizeFirst(details['cuisine']),
+                AppUtil().capitalizeFirst(details['cuisine']),
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
@@ -114,7 +114,7 @@ class DetailsWidget extends StatelessWidget {
                 crossAxisAlignment: WrapCrossAlignment.center,
                 children: <Widget>[
                   Text(
-                    AppUtils().capitalizeFirst(details['chef']),
+                    AppUtil().capitalizeFirst(details['chef']),
                     style: theme.textTheme.bodyLarge?.copyWith(
                       color: AppColor().black,
                     ),

@@ -1,15 +1,15 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class FssUtils {
-  FssUtils._internal();
+class FssUtil {
+  FssUtil._internal();
 
   static final _fss = FlutterSecureStorage(
     aOptions: _androidOptions(),
     iOptions: _iosOptions(),
   );
-  static final FssUtils _instance = FssUtils._internal();
+  static final FssUtil _instance = FssUtil._internal();
 
-  factory FssUtils() => _instance;
+  factory FssUtil() => _instance;
 
   static AndroidOptions _androidOptions() =>
       const AndroidOptions(encryptedSharedPreferences: true);

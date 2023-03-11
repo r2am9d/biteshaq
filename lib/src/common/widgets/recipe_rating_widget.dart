@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:biteshaq/src/utils/app_utils.dart';
+import 'package:biteshaq/src/utils/app_util.dart';
 
 class RecipeRatingWidget extends StatelessWidget {
   const RecipeRatingWidget({
@@ -14,7 +14,7 @@ class RecipeRatingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = AppUtils().determineColor(rating);
+    final color = AppUtil().determineColor(rating);
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 4.0),

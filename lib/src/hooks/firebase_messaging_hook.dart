@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-import 'package:biteshaq/src/utils/notif_utils.dart';
+import 'package:biteshaq/src/utils/notif_util.dart';
 
 void useFirebaseMessaging() => use(const _FirebaseMessagingHook());
 
@@ -21,9 +21,9 @@ class _FirebaseMessagingHookState
   @override
   void initHook() {
     super.initHook();
-    FirebaseMessaging.onMessage.listen(NotifUtils().showRemoteNotification);
+    FirebaseMessaging.onMessage.listen(NotifUtil().showRemoteNotification);
     FirebaseMessaging.onMessageOpenedApp
-        .listen(NotifUtils().onBackgroundNotificationTapped);
+        .listen(NotifUtil().onBackgroundNotificationTapped);
   }
 
   @override

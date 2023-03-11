@@ -8,7 +8,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:biteshaq/src/utils/app_utils.dart';
+import 'package:biteshaq/src/utils/app_util.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
 import 'package:biteshaq/src/features/cook/bloc/cook_bloc.dart';
@@ -86,7 +86,7 @@ class CookScreen extends HookWidget {
                       controller: scrollCtrl,
                       showItemInterval: const Duration(milliseconds: 100),
                       showItemDuration: const Duration(milliseconds: 100),
-                      itemBuilder: AppUtils().animationItemBuilder(
+                      itemBuilder: AppUtil().animationItemBuilder(
                         (index) {
                           if (index.isEven) {
                             return _CookItem(cookScreenContext: context);

@@ -5,8 +5,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:biteshaq/src/themes/app_color.dart';
 
-class NotifUtils {
-  NotifUtils._internal();
+class NotifUtil {
+  NotifUtil._internal();
 
   static const String BITESHAQ_CHANNEL = 'biteshaq_channel';
   static const String BITESHAQ_GROUP_CHANNEL = 'biteshaq_group_channel';
@@ -14,14 +14,14 @@ class NotifUtils {
   static final FirebaseMessaging _firebaseMsg = FirebaseMessaging.instance;
   static final FlutterLocalNotificationsPlugin _flutterLocalNotif =
       FlutterLocalNotificationsPlugin();
-  static final NotifUtils _instance = NotifUtils._internal();
+  static final NotifUtil _instance = NotifUtil._internal();
 
-  factory NotifUtils() => _instance;
+  factory NotifUtil() => _instance;
 
   static NotificationDetails _notificationDetails() {
     return NotificationDetails(
       android: AndroidNotificationDetails(
-        NotifUtils.BITESHAQ_CHANNEL,
+        NotifUtil.BITESHAQ_CHANNEL,
         'Basic Notifications',
         channelDescription: 'Notification channel for basic notifications',
         priority: Priority.max,

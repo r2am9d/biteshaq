@@ -123,6 +123,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.1
+  logger: ^1.2.2
 
 flutter_native_splash:
   image: "assets/logos/logo_1024.png"

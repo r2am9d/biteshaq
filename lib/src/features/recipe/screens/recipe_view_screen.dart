@@ -4,7 +4,7 @@ import 'package:loading_icon_button/loading_icon_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import 'package:biteshaq/src/utils/app_utils.dart';
+import 'package:biteshaq/src/utils/app_util.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/common/widgets/media_widget.dart';
 import 'package:biteshaq/src/common/widgets/details_widget.dart';
@@ -151,7 +151,7 @@ class RecipeViewScreen extends HookWidget {
                     child: LoadingButton(
                       iconData: FontAwesomeIcons.solidHeart,
                       onPressed: () =>
-                          AppUtils().btnLoadingCtrlOnPressed([favoriteBtnCtrl]),
+                          AppUtil().btnLoadingCtrlOnPressed([favoriteBtnCtrl]),
                       controller: favoriteBtnCtrl,
                       elevation: 0,
                       primaryColor: AppColor().red,
@@ -163,7 +163,7 @@ class RecipeViewScreen extends HookWidget {
                     child: LoadingButton(
                       iconData: FontAwesomeIcons.solidHatChef,
                       onPressed: () =>
-                          AppUtils().btnLoadingCtrlOnPressed([cookBtnCtrl]),
+                          AppUtil().btnLoadingCtrlOnPressed([cookBtnCtrl]),
                       controller: cookBtnCtrl,
                       elevation: 0,
                       primaryColor: AppColor().secondary,

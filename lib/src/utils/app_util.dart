@@ -15,12 +15,12 @@ import 'package:biteshaq/src/router/locations/game_location.dart';
 import 'package:biteshaq/src/router/locations/recipe_location.dart';
 import 'package:biteshaq/src/router/locations/favorite_location.dart';
 
-class AppUtils {
-  AppUtils._internal();
+class AppUtil {
+  AppUtil._internal();
 
-  static final AppUtils _instance = AppUtils._internal();
+  static final AppUtil _instance = AppUtil._internal();
 
-  factory AppUtils() => _instance;
+  factory AppUtil() => _instance;
 
   double randomizeRating() =>
       double.parse(((Random().nextDouble() * 4.0) + 1.0).toStringAsFixed(1));

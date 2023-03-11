@@ -6,7 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:biteshaq/src/utils/app_utils.dart';
+import 'package:biteshaq/src/utils/app_util.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/common/bloc/bottom_navbar/bottom_navbar_bloc.dart';
 
@@ -21,7 +21,7 @@ class BottomNavbarWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final tabIndex = useMemoized(
-      () => AppUtils().determineTabIndex(beamerDelegate.currentBeamLocation),
+      () => AppUtil().determineTabIndex(beamerDelegate.currentBeamLocation),
       [beamerDelegate.currentBeamLocation],
     );
 
@@ -47,7 +47,7 @@ class BottomNavbarWidget extends HookWidget {
                   currentIndex: tabIndex,
                   onTap: (index) {
                     beamerDelegate.beamToNamed(
-                      AppUtils().determineRoute(index),
+                      AppUtil().determineRoute(index),
                     );
                   },
                   items: <SalomonBottomBarItem>[

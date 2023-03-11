@@ -7,7 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:biteshaq/src/utils/app_utils.dart';
+import 'package:biteshaq/src/utils/app_util.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/router/app_router.dart';
 import 'package:biteshaq/src/common/widgets/failure_widget.dart';
@@ -73,7 +73,7 @@ class RecipeScreen extends HookWidget {
                         controller: scrollCtrl,
                         showItemInterval: const Duration(milliseconds: 150),
                         showItemDuration: const Duration(milliseconds: 150),
-                        itemBuilder: AppUtils().animationItemBuilder(
+                        itemBuilder: AppUtil().animationItemBuilder(
                           (index) => _RecipeCard(
                             title: index.toString(),
                             recipeScreenContext: context,
@@ -212,7 +212,7 @@ class _RecipeCard extends StatelessWidget {
                       Expanded(
                         flex: 3,
                         child: RecipeRatingWidget(
-                          rating: AppUtils().randomizeRating(),
+                          rating: AppUtil().randomizeRating(),
                         ),
                       ),
                     ],

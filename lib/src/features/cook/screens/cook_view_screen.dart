@@ -11,7 +11,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 
 import 'package:biteshaq/src/hooks/tts_hook.dart';
-import 'package:biteshaq/src/utils/app_utils.dart';
+import 'package:biteshaq/src/utils/app_util.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/variables/app_variables.dart';
 import 'package:biteshaq/src/common/bloc/fab/fab_bloc.dart';
@@ -180,7 +180,7 @@ class CookViewScreen extends HookWidget {
                 child: FloatingActionButton(
                   foregroundColor: AppColor().white,
                   onPressed: ttsState.value == TtsState.playing
-                      ? () => AppUtils().ttsPause([tts])
+                      ? () => AppUtil().ttsPause([tts])
                       : () async {
                           await showModalBottomSheet(
                             context: context,
@@ -198,12 +198,11 @@ class CookViewScreen extends HookWidget {
                                 ttsState: ttsState,
                                 bottomSheetContext: bottomSheetContext,
                                 description: description,
-                                details:
-                                    AppUtils().convertJsonToString(details),
+                                details: AppUtil().convertJsonToString(details),
                                 ingredients:
-                                    AppUtils().convertListToString(ingredients),
+                                    AppUtil().convertListToString(ingredients),
                                 procedure:
-                                    AppUtils().convertListToString(procedure),
+                                    AppUtil().convertListToString(procedure),
                               );
                             },
                           );
@@ -279,7 +278,7 @@ class CookViewScreen extends HookWidget {
                     child: LoadingButton(
                       iconData: FontAwesomeIcons.solidCauldron,
                       onPressed: () =>
-                          AppUtils().btnLoadingCtrlOnPressed([cookBtnCtrl]),
+                          AppUtil().btnLoadingCtrlOnPressed([cookBtnCtrl]),
                       controller: cookBtnCtrl,
                       elevation: 0,
                       primaryColor: AppColor().secondary,
@@ -433,7 +432,7 @@ class _CookViewBottomSheet extends StatelessWidget {
                                     color: Colors.transparent,
                                     child: InkWell(
                                       onTap: () {
-                                        AppUtils().ttsSpeak([
+                                        AppUtil().ttsSpeak([
                                           description,
                                           tts,
                                           ttsText,
@@ -484,7 +483,7 @@ class _CookViewBottomSheet extends StatelessWidget {
                                     color: Colors.transparent,
                                     child: InkWell(
                                       onTap: () {
-                                        AppUtils().ttsSpeak(
+                                        AppUtil().ttsSpeak(
                                             [details, tts, ttsText, ttsState]);
                                         navigator.pop();
                                       },
@@ -537,7 +536,7 @@ class _CookViewBottomSheet extends StatelessWidget {
                                     color: Colors.transparent,
                                     child: InkWell(
                                       onTap: () {
-                                        AppUtils().ttsSpeak([
+                                        AppUtil().ttsSpeak([
                                           ingredients,
                                           tts,
                                           ttsText,
@@ -588,7 +587,7 @@ class _CookViewBottomSheet extends StatelessWidget {
                                     color: Colors.transparent,
                                     child: InkWell(
                                       onTap: () {
-                                        AppUtils().ttsSpeak([
+                                        AppUtil().ttsSpeak([
                                           procedure,
                                           tts,
                                           ttsText,

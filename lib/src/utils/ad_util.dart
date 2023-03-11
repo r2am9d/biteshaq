@@ -2,13 +2,13 @@ import 'dart:io' show Platform;
 
 import 'package:biteshaq/src/variables/app_variables.dart';
 
-class AdUtils {
-  AdUtils._internal();
+class AdUtil {
+  AdUtil._internal();
 
   static late String _platform;
-  static final AdUtils _instance = AdUtils._internal();
+  static final AdUtil _instance = AdUtil._internal();
 
-  factory AdUtils() {
+  factory AdUtil() {
     if (Platform.isAndroid) {
       _platform = 'android';
     } else if (Platform.isIOS) {

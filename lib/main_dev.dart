@@ -8,12 +8,12 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:biteshaq/app.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 import 'package:biteshaq/src/themes/app_theme.dart';
-import 'package:biteshaq/src/utils/notif_utils.dart';
+import 'package:biteshaq/src/utils/notif_util.dart';
 import 'package:biteshaq/src/firebase/config/dev.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async =>
-    NotifUtils().showRemoteNotification;
+    NotifUtil().showRemoteNotification;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +34,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  NotifUtils().init();
+  NotifUtil().init();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await FirebaseAppCheck.instance.activate();
   AppTheme appTheme = await AppTheme.instance;
