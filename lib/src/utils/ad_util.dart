@@ -3,20 +3,18 @@ import 'dart:io' show Platform;
 import 'package:biteshaq/src/variables/app_variables.dart';
 
 class AdUtil {
-  AdUtil._internal();
+  factory AdUtil() => _instance;
 
-  static late String _platform;
-  static final AdUtil _instance = AdUtil._internal();
-
-  factory AdUtil() {
+  AdUtil._internal() {
     if (Platform.isAndroid) {
       _platform = 'android';
     } else if (Platform.isIOS) {
       _platform = 'ios';
     }
-
-    return _instance;
   }
+
+  static late String _platform;
+  static final AdUtil _instance = AdUtil._internal();
 
   String getUnitId({
     required Environment env,

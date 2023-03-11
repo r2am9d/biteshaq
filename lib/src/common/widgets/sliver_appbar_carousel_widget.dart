@@ -33,7 +33,7 @@ class SliverAppbarCarouselWidget extends StatelessWidget {
             StretchMode.zoomBackground,
             StretchMode.fadeTitle
           ],
-          titlePadding: const EdgeInsets.only(),
+          titlePadding: EdgeInsets.zero,
           title: ConstrainedBox(
             constraints: const BoxConstraints(
               minHeight: kToolbarHeight,
@@ -70,7 +70,7 @@ class SliverAppbarCarouselWidget extends StatelessWidget {
                     child: Padding(
                       padding: (reference == 0)
                           ? const EdgeInsets.only(left: 16.0)
-                          : const EdgeInsets.only(),
+                          : EdgeInsets.zero,
                       child: const Text(
                         'Pork Adobo',
                       ),

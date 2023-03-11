@@ -35,20 +35,20 @@ class DetailsWidget extends StatelessWidget {
           Row(
             children: <Widget>[
               FaIcon(
-                size: 18.0,
+                size: 18,
                 color: AppColor().secondary,
                 FontAwesomeIcons.solidBellConcierge,
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
                 'Course:',
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
-                AppUtil().capitalizeFirst(details['course']),
+                AppUtil().capitalizeFirst(details['course'] as String),
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
@@ -56,33 +56,33 @@ class DetailsWidget extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 8),
 
           /// Cuisine
           Row(
             children: <Widget>[
               FaIcon(
-                size: 18.0,
+                size: 18,
                 color: AppColor().secondary,
                 FontAwesomeIcons.solidBowlHot,
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
                 'Cuisine:',
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Flag.fromCode(
                 FlagsCode.PH,
-                height: 12.0,
-                width: 12.0,
+                height: 12,
+                width: 12,
                 fit: BoxFit.fill,
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
-                AppUtil().capitalizeFirst(details['cuisine']),
+                AppUtil().capitalizeFirst(details['cuisine'] as String),
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
@@ -90,42 +90,42 @@ class DetailsWidget extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 8),
 
           /// Chef
           Row(
             children: <Widget>[
               FaIcon(
-                size: 18.0,
+                size: 18,
                 color: AppColor().secondary,
                 FontAwesomeIcons.solidHatChef,
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
                 'Chef:',
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Wrap(
-                spacing: 8.0,
-                runSpacing: 8.0,
+                spacing: 8,
+                runSpacing: 8,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 children: <Widget>[
                   Text(
-                    AppUtil().capitalizeFirst(details['chef']),
+                    AppUtil().capitalizeFirst(details['chef'] as String),
                     style: theme.textTheme.bodyLarge?.copyWith(
                       color: AppColor().black,
                     ),
                   ),
                   FaIcon(
-                    size: 12.0,
+                    size: 12,
                     color: AppColor().green,
                     FontAwesomeIcons.solidShieldCheck,
                   ),
                   FaIcon(
-                    size: 12.0,
+                    size: 12,
                     color: AppColor().yellow,
                     FontAwesomeIcons.solidGem,
                   ),
@@ -140,20 +140,20 @@ class DetailsWidget extends StatelessWidget {
           Row(
             children: <Widget>[
               FaIcon(
-                size: 18.0,
+                size: 18,
                 color: AppColor().secondary,
                 FontAwesomeIcons.solidKnifeKitchen,
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
                 'Prep Time:',
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
-                details['prep_time'],
+                details['prep_time'] as String,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
@@ -161,26 +161,26 @@ class DetailsWidget extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 8),
 
           /// Cook Time
           Row(
             children: <Widget>[
               FaIcon(
-                size: 18.0,
+                size: 18,
                 color: AppColor().secondary,
                 FontAwesomeIcons.solidCauldron,
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
                 'Cook Time:',
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
-                details['cook_time'],
+                details['cook_time'] as String,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
@@ -188,26 +188,26 @@ class DetailsWidget extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 8),
 
           /// Total Time
           Row(
             children: <Widget>[
               FaIcon(
-                size: 18.0,
+                size: 18,
                 color: AppColor().secondary,
                 FontAwesomeIcons.solidHourglass,
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
                 'Total Time:',
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
-                details['total_time'],
+                details['total_time'] as String,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
@@ -221,20 +221,20 @@ class DetailsWidget extends StatelessWidget {
           Row(
             children: <Widget>[
               FaIcon(
-                size: 18.0,
+                size: 18,
                 color: AppColor().secondary,
                 FontAwesomeIcons.solidUtensils,
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
                 'Servings:',
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
-                details['servings'],
+                details['servings'] as String,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
@@ -242,26 +242,26 @@ class DetailsWidget extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 8),
 
           /// Calories
           Row(
             children: <Widget>[
               FaIcon(
-                size: 18.0,
+                size: 18,
                 color: AppColor().secondary,
                 FontAwesomeIcons.solidFireFlameCurved,
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
                 'Calories:',
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
-                details['calories'],
+                details['calories'] as String,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: AppColor().black,
                 ),

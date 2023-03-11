@@ -5,15 +5,15 @@ part 'bottom_navbar_event.dart';
 part 'bottom_navbar_state.dart';
 
 class BottomNavbarBloc extends Bloc<BottomNavbarEvent, BottomNavbarState> {
+  factory BottomNavbarBloc() => _instance;
+
   BottomNavbarBloc._internal() : super(const BottomNavbarInitial()) {
     on<BottomNavbarToggle>(_toggle);
   }
 
   static final BottomNavbarBloc _instance = BottomNavbarBloc._internal();
 
-  factory BottomNavbarBloc() => _instance;
-
-  void _toggle(BottomNavbarToggle event, emit) {
+  void _toggle(BottomNavbarToggle event, Emitter<BottomNavbarState> emit) {
     event.isHidden
         ? emit(const BottomNavbarHidden())
         : emit(const BottomNavbarShown());

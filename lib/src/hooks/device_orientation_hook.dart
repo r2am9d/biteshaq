@@ -20,11 +20,11 @@ class _DeviceOrientationHook extends Hook<void> {
 class _DeviceOrientationHookState
     extends HookState<void, _DeviceOrientationHook> {
   // Set default values
-  late StreamSubscription _streamSubs;
+  late StreamSubscription<dynamic> _streamSubs;
   final NativeDeviceOrientationCommunicator _orientationCommunicator =
       NativeDeviceOrientationCommunicator();
 
-  void _disposeSubs() async => await _streamSubs.cancel();
+  Future<void> _disposeSubs() async => _streamSubs.cancel();
 
   @override
   void initHook() {
@@ -47,8 +47,8 @@ class _DeviceOrientationHookState
   void build(BuildContext context) {}
 
   @override
-  void dispose() {
-    _disposeSubs();
+  Future<void> dispose() async {
+    await _disposeSubs();
     super.dispose();
   }
 }

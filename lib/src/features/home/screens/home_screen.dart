@@ -68,7 +68,7 @@ class HomeScreen extends HookWidget {
                                 ),
                                 const SizedBox(width: 8.0),
                                 Text(
-                                  'You are currently offline :\'(',
+                                  'You are currently offline :(',
                                   style: TextStyle(
                                     color: AppColor().red,
                                     fontWeight: FontWeight.bold,

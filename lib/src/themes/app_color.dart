@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
+  factory AppColor() => _instance;
+
   AppColor._internal();
 
   static final AppColor _instance = AppColor._internal();
-
-  factory AppColor() => _instance;
 
   Color get primary => const Color(0xFF246c8a);
   Color get secondary => const Color(0xFF8a4324); // 93571f

@@ -6,7 +6,7 @@ import 'package:biteshaq/src/themes/app_color.dart';
 class RecipeLoadingScreen extends StatelessWidget {
   const RecipeLoadingScreen({super.key});
 
-  final int itemCount = 8;
+  static const int itemCount = 8;
 
   @override
   Widget build(BuildContext context) {

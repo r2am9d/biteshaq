@@ -1,3 +1,5 @@
+// ignore_for_file: use_setters_to_change_properties
+
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -44,16 +46,16 @@ class _FlutterTtsHookState extends HookState<FlutterTts, _FlutterTtsHook> {
     if (kDebugMode) print('TTS_HOOK_ERROR: $message');
   }
 
-  void _checkTts() async {
+  Future<void> _checkTts() async {
     final voices = await _flutterTts.getVoices as List;
     final languages = await _flutterTts.getLanguages as List;
 
     if (voices.isEmpty || languages.isEmpty) {
-      SystemSettings.accessibility();
+      await SystemSettings.accessibility();
     }
   }
 
-  void _initTts() async {
+  Future<void> _initTts() async {
     await _flutterTts.setPitch(_pitch);
     await _flutterTts.setVolume(_volume);
     await _flutterTts.setSpeechRate(_speechRate);
@@ -79,21 +81,21 @@ class _FlutterTtsHookState extends HookState<FlutterTts, _FlutterTtsHook> {
     _flutterTts.setErrorHandler(_onError);
   }
 
-  void _stopTts() async => await _flutterTts.stop();
+  Future<void> _stopTts() async => _flutterTts.stop();
 
   @override
-  void initHook() {
+  Future<void> initHook() async {
     super.initHook();
-    _checkTts();
-    _initTts();
+    await _checkTts();
+    await _initTts();
   }
 
   @override
   FlutterTts build(BuildContext context) => _flutterTts;
 
   @override
-  void dispose() {
-    _stopTts();
+  Future<void> dispose() async {
+    await _stopTts();
     super.dispose();
   }
 }

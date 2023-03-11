@@ -42,7 +42,7 @@ class RecipeViewScreen extends HookWidget {
       'country_code': 'ph',
       'cuisine': 'filipino',
       'chef': 'cardo dalisay',
-      'badges': [],
+      'badges': <dynamic>[],
       'prep_time': '10 mins',
       'cook_time': '1 hr',
       'total_time': '1 hr & 10 mins',
@@ -150,7 +150,7 @@ class RecipeViewScreen extends HookWidget {
                   Expanded(
                     child: LoadingButton(
                       iconData: FontAwesomeIcons.solidHeart,
-                      onPressed: () =>
+                      onPressed: () async =>
                           AppUtil().btnLoadingCtrlOnPressed([favoriteBtnCtrl]),
                       controller: favoriteBtnCtrl,
                       elevation: 0,
@@ -162,7 +162,7 @@ class RecipeViewScreen extends HookWidget {
                   Expanded(
                     child: LoadingButton(
                       iconData: FontAwesomeIcons.solidHatChef,
-                      onPressed: () =>
+                      onPressed: () async =>
                           AppUtil().btnLoadingCtrlOnPressed([cookBtnCtrl]),
                       controller: cookBtnCtrl,
                       elevation: 0,

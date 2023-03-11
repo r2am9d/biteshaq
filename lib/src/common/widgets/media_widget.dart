@@ -29,7 +29,7 @@ class MediaWidget extends StatelessWidget {
           const SizedBox(height: 8),
 
           /// Content
-          Container(
+          DecoratedBox(
             decoration: BoxDecoration(
               border: Border.all(
                 width: 1,

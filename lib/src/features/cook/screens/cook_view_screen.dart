@@ -30,7 +30,7 @@ import 'package:biteshaq/src/common/widgets/sliver_appbar_carousel_widget.dart';
 class CookViewScreen extends HookWidget {
   const CookViewScreen({super.key});
 
-  final progressBarHeight = kToolbarHeight / 10;
+  static const progressBarHeight = kToolbarHeight / 10;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class CookViewScreen extends HookWidget {
       'country_code': 'ph',
       'cuisine': 'filipino',
       'chef': 'cardo dalisay',
-      'badges': [],
+      'badges': <dynamic>[],
       'prep_time': '10 mins',
       'cook_time': '1 hr',
       'total_time': '1 hr & 10 mins',
@@ -121,7 +121,7 @@ class CookViewScreen extends HookWidget {
                 automaticallyImplyLeading: false,
                 toolbarHeight: progressBarHeight,
                 flexibleSpace: FlexibleSpaceBar(
-                  titlePadding: const EdgeInsets.only(),
+                  titlePadding: EdgeInsets.zero,
                   title: SizedBox(
                     height: progressBarHeight,
                     child: LinearProgressIndicator(
@@ -180,9 +180,9 @@ class CookViewScreen extends HookWidget {
                 child: FloatingActionButton(
                   foregroundColor: AppColor().white,
                   onPressed: ttsState.value == TtsState.playing
-                      ? () => AppUtil().ttsPause([tts])
+                      ? () async => AppUtil().ttsPause([tts])
                       : () async {
-                          await showModalBottomSheet(
+                          await showModalBottomSheet<void>(
                             context: context,
                             barrierColor:
                                 AppColor().primaryDark20.withOpacity(.9),
@@ -277,7 +277,7 @@ class CookViewScreen extends HookWidget {
                   Expanded(
                     child: LoadingButton(
                       iconData: FontAwesomeIcons.solidCauldron,
-                      onPressed: () =>
+                      onPressed: () async =>
                           AppUtil().btnLoadingCtrlOnPressed([cookBtnCtrl]),
                       controller: cookBtnCtrl,
                       elevation: 0,
@@ -431,8 +431,8 @@ class _CookViewBottomSheet extends StatelessWidget {
                                   child: Material(
                                     color: Colors.transparent,
                                     child: InkWell(
-                                      onTap: () {
-                                        AppUtil().ttsSpeak([
+                                      onTap: () async {
+                                        await AppUtil().ttsSpeak([
                                           description,
                                           tts,
                                           ttsText,
@@ -482,8 +482,8 @@ class _CookViewBottomSheet extends StatelessWidget {
                                   child: Material(
                                     color: Colors.transparent,
                                     child: InkWell(
-                                      onTap: () {
-                                        AppUtil().ttsSpeak(
+                                      onTap: () async {
+                                        await AppUtil().ttsSpeak(
                                             [details, tts, ttsText, ttsState]);
                                         navigator.pop();
                                       },
@@ -535,8 +535,8 @@ class _CookViewBottomSheet extends StatelessWidget {
                                   child: Material(
                                     color: Colors.transparent,
                                     child: InkWell(
-                                      onTap: () {
-                                        AppUtil().ttsSpeak([
+                                      onTap: () async {
+                                        await AppUtil().ttsSpeak([
                                           ingredients,
                                           tts,
                                           ttsText,
@@ -586,8 +586,8 @@ class _CookViewBottomSheet extends StatelessWidget {
                                   child: Material(
                                     color: Colors.transparent,
                                     child: InkWell(
-                                      onTap: () {
-                                        AppUtil().ttsSpeak([
+                                      onTap: () async {
+                                        await AppUtil().ttsSpeak([
                                           procedure,
                                           tts,
                                           ttsText,

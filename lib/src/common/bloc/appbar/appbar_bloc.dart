@@ -5,15 +5,15 @@ part 'appbar_event.dart';
 part 'appbar_state.dart';
 
 class AppbarBloc extends Bloc<AppbarEvent, AppbarState> {
+  factory AppbarBloc() => _instance;
+
   AppbarBloc._internal() : super(const AppbarInitial()) {
     on<AppbarToggle>(_toggle);
   }
 
   static final AppbarBloc _instance = AppbarBloc._internal();
 
-  factory AppbarBloc() => _instance;
-
-  void _toggle(AppbarToggle event, emit) {
+  void _toggle(AppbarToggle event, Emitter<AppbarState> emit) {
     event.isHidden ? emit(const AppbarHidden()) : emit(const AppbarShown());
   }
 }

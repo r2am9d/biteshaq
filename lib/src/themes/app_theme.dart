@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 class AppTheme {
   AppTheme._internal();
 
-  static String? _themeString;
+  static late String? _themeString;
   static dynamic _themeJson;
   static ThemeData? _theme;
   static final AppTheme _instance = AppTheme._internal();

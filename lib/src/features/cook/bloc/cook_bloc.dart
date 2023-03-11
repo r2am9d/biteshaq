@@ -15,12 +15,12 @@ class CookBloc extends Bloc<CookEvent, CookState> {
 
   static final CookRepository _repository = CookRepository();
 
-  void _fetch(CookFetch event, emit) async {
+  Future<void> _fetch(CookFetch event, Emitter<CookState> emit) async {
     try {
       if (event.request is Future) {
         emit(const CookLoading());
-        final data = await (event.request as Future<dynamic>);
-        if (data != null && data.isNotEmpty) {
+        final data = await (event.request as Future<dynamic>) as String;
+        if (data.isNotEmpty) {
           emit(CookSuccess(data));
         }
       }

@@ -14,7 +14,7 @@ import 'package:biteshaq/src/themes/app_theme.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    AppTheme appTheme = await AppTheme.instance;
+    final appTheme = await AppTheme.instance;
     await tester.pumpWidget(App(theme: appTheme.theme));
 
     // Verify that our counter starts at 0.

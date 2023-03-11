@@ -21,7 +21,7 @@ class _PackageInfoHookState extends HookState<PackageInfo, _PackageInfoHook> {
     buildSignature: '',
   );
 
-  void _initPackageInfo() async {
+  Future<void> _initPackageInfo() async {
     super.initHook();
     final info = await PackageInfo.fromPlatform();
     setState(() {
@@ -30,8 +30,8 @@ class _PackageInfoHookState extends HookState<PackageInfo, _PackageInfoHook> {
   }
 
   @override
-  void initHook() {
-    _initPackageInfo();
+  Future<void> initHook() async {
+    await _initPackageInfo();
   }
 
   @override

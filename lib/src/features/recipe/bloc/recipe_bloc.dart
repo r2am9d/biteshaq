@@ -15,12 +15,12 @@ class RecipeBloc extends Bloc<RecipeEvent, RecipeState> {
 
   static final RecipeRepository _repository = RecipeRepository();
 
-  void _fetch(RecipeFetch event, emit) async {
+  Future<void> _fetch(RecipeFetch event, Emitter<RecipeState> emit) async {
     try {
       if (event.request is Future) {
         emit(const RecipeLoading());
-        final data = await (event.request as Future<dynamic>);
-        if (data != null && data.isNotEmpty) {
+        final data = await (event.request as Future<dynamic>) as String;
+        if (data.isNotEmpty) {
           emit(RecipeSuccess(data));
         }
       }

@@ -16,16 +16,16 @@ import 'package:biteshaq/src/router/locations/recipe_location.dart';
 import 'package:biteshaq/src/router/locations/favorite_location.dart';
 
 class AppUtil {
+  factory AppUtil() => _instance;
+
   AppUtil._internal();
 
   static final AppUtil _instance = AppUtil._internal();
 
-  factory AppUtil() => _instance;
-
   double randomizeRating() =>
       double.parse(((Random().nextDouble() * 4.0) + 1.0).toStringAsFixed(1));
 
-  Map<String, Color> determineColor(rating) {
+  Map<String, Color> determineColor(double rating) {
     Map<String, Color> color = {};
 
     if (rating <= 2.9) {
@@ -86,7 +86,7 @@ class AppUtil {
     return route;
   }
 
-  void ttsSpeak(List<dynamic> args) async {
+  Future<void> ttsSpeak(List<dynamic> args) async {
     // * [text, tts, ttsText, ttsState]
     final text = args[0] as String;
     final tts = args[1] as FlutterTts;
@@ -101,21 +101,21 @@ class AppUtil {
     await tts.speak(text);
   }
 
-  void ttsPause(List<dynamic> args) async {
+  Future<void> ttsPause(List<dynamic> args) async {
     // * [tts]
     final tts = args[0] as FlutterTts;
 
     await tts.pause();
   }
 
-  void ttsStop(List<dynamic> args) async {
+  Future<void> ttsStop(List<dynamic> args) async {
     // * [tts]
     final tts = args[0] as FlutterTts;
 
     await tts.stop();
   }
 
-  void btnLoadingCtrlOnPressed(List<dynamic> args) async {
+  Future<void> btnLoadingCtrlOnPressed(List<dynamic> args) async {
     // * [loadingBtnCtrl]
     final loadingBtnCtrl = args[0] as LoadingButtonController;
 
@@ -123,9 +123,8 @@ class AppUtil {
       // TODO: Close request properly if navigation is triggered
       await Future.delayed(const Duration(milliseconds: 500), () async {
         loadingBtnCtrl.success();
-        await Future.delayed(const Duration(milliseconds: 500), () {
-          loadingBtnCtrl.reset();
-        });
+        await Future.delayed(
+            const Duration(milliseconds: 500), loadingBtnCtrl.reset);
       });
     } catch (e) {
       if (kDebugMode) print(e);
@@ -158,16 +157,16 @@ class AppUtil {
   }
 
   String capitalizeFirst(String text) {
-    final str = text.trim().split(" ");
+    final str = text.trim().split(' ');
 
     if (str.isEmpty) return '';
     if (str.length == 1) return toBeginningOfSentenceCase(str.first)!;
-    return str.map(toBeginningOfSentenceCase).join(" ");
+    return str.map(toBeginningOfSentenceCase).join(' ');
   }
 
   String convertListToString(List<String> list) => list
       .map((str) => str.endsWith('.') || str.endsWith('!') ? str : '$str.')
-      .join(" ");
+      .join(' ');
 
   String convertJsonToString(Map<String, dynamic> json) {
     final excludedKeys = ['country_code', 'badges'];

@@ -6,6 +6,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:biteshaq/src/themes/app_color.dart';
 
 class NotifUtil {
+  factory NotifUtil() => _instance;
+
   NotifUtil._internal();
 
   static const String BITESHAQ_CHANNEL = 'biteshaq_channel';
@@ -15,8 +17,6 @@ class NotifUtil {
   static final FlutterLocalNotificationsPlugin _flutterLocalNotif =
       FlutterLocalNotificationsPlugin();
   static final NotifUtil _instance = NotifUtil._internal();
-
-  factory NotifUtil() => _instance;
 
   static NotificationDetails _notificationDetails() {
     return NotificationDetails(
@@ -33,7 +33,7 @@ class NotifUtil {
     );
   }
 
-  void init() async {
+  Future<void> init() async {
     await _firebaseMsg.setForegroundNotificationPresentationOptions(
       alert: true,
       badge: true,
@@ -61,11 +61,11 @@ class NotifUtil {
     );
   }
 
-  void _showRemoteNotification(RemoteMessage message) async {
-    Map<String, dynamic> data = message.data;
-    RemoteNotification? remoteNotif = message.notification;
-    AndroidNotification? androidNotif = remoteNotif?.android;
-    AppleNotification? appleNotif = remoteNotif?.apple;
+  Future<void> _showRemoteNotification(RemoteMessage message) async {
+    final data = message.data;
+    final remoteNotif = message.notification;
+    final androidNotif = remoteNotif?.android;
+    final appleNotif = remoteNotif?.apple;
 
     if (remoteNotif != null && (androidNotif != null || appleNotif != null)) {
       await _flutterLocalNotif.show(
@@ -78,14 +78,15 @@ class NotifUtil {
     }
   }
 
-  Future<String?> getToken() async => await _firebaseMsg.getToken();
+  Future<String?> getToken() async => _firebaseMsg.getToken();
 
-  void _onIosForegroundNotifTapped(
+  Future<void> _onIosForegroundNotifTapped(
       int id, String? title, String? body, String? payload) async {
     // TODO: IOS_NOTIFICATION_TAPPED
   }
 
-  void _onAndroidForegroundNotifTapped(NotificationResponse notifResp) async {
+  Future<void> _onAndroidForegroundNotifTapped(
+      NotificationResponse notifResp) async {
     // TODO: ANDR_NOTIFICATION_TAPPED
     final notifPayload = notifResp.payload;
     switch (notifResp.notificationResponseType) {
@@ -96,7 +97,7 @@ class NotifUtil {
     }
   }
 
-  void _onBackgroundNotificationTapped(RemoteMessage message) async {
+  Future<void> _onBackgroundNotificationTapped(RemoteMessage message) async {
     // TODO: BG_NOTIFICATION_TAPPED
   }
 

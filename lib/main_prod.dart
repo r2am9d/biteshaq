@@ -17,8 +17,8 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async =>
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-  SystemChrome.setPreferredOrientations([
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
@@ -34,10 +34,10 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  NotifUtil().init();
+  await NotifUtil().init();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await FirebaseAppCheck.instance.activate();
-  AppTheme appTheme = await AppTheme.instance;
+  final appTheme = await AppTheme.instance;
 
   runApp(App(theme: appTheme.theme));
 }

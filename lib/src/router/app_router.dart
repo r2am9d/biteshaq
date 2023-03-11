@@ -6,11 +6,11 @@ import 'package:biteshaq/src/router/locations/recipe_location.dart';
 import 'package:biteshaq/src/router/locations/favorite_location.dart';
 
 class AppRouter {
+  factory AppRouter() => _instance;
+
   AppRouter._internal();
 
   static final AppRouter _instance = AppRouter._internal();
-
-  factory AppRouter() => _instance;
 
   // Named Routes
   String get homeRoute => '/';
@@ -37,7 +37,7 @@ class AppRouter {
           GameLocation(),
           FavoriteLocation(),
         ],
-      ),
+      ).call,
     );
   }
 }

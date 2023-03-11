@@ -9,7 +9,7 @@ class FailureWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
           color: AppColor().red,
         ),

@@ -22,10 +22,11 @@ class _BannerAdHookState extends HookState<BannerAd, _BannerAdHook> {
 
   // Ad Listeners
   void _onAddLoaded(Ad ad) => _setStateListener();
-  void _onAdFailedToLoad(Ad ad, LoadAdError error) => ad.dispose();
+  Future<void> _onAdFailedToLoad(Ad ad, LoadAdError error) async =>
+      ad.dispose();
 
   @override
-  void initHook() {
+  Future<void> initHook() async {
     super.initHook();
     _bannerAdListener = BannerAdListener(
       onAdLoaded: _onAddLoaded,
@@ -40,15 +41,15 @@ class _BannerAdHookState extends HookState<BannerAd, _BannerAdHook> {
       request: const AdRequest(),
     );
 
-    _bannerAd.load();
+    await _bannerAd.load();
   }
 
   @override
   BannerAd build(BuildContext context) => _bannerAd;
 
   @override
-  void dispose() {
-    _bannerAd.dispose();
+  Future<void> dispose() async {
+    await _bannerAd.dispose();
     super.dispose();
   }
 }

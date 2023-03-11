@@ -21,9 +21,9 @@ class _PermissionHookState extends HookState<void, _PermissionHook> {
     Permission.notification,
   ];
 
-  void _initPermission() async {
-    List<PermissionStatus> status = [];
-    for (var permission in _permissions) {
+  Future<void> _initPermission() async {
+    final status = <PermissionStatus>[];
+    for (final permission in _permissions) {
       final state = await permission.request();
       if (state != PermissionStatus.granted) {
         status.add(state);
@@ -38,9 +38,9 @@ class _PermissionHookState extends HookState<void, _PermissionHook> {
   }
 
   @override
-  void initHook() {
+  Future<void> initHook() async {
     super.initHook();
-    _initPermission();
+    await _initPermission();
   }
 
   @override

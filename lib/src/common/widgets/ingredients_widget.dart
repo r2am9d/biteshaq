@@ -169,9 +169,7 @@ class _IngredientsListDialog extends HookWidget {
                       padding: const EdgeInsets.all(16.0),
                       backgroundColor: AppColor().secondary,
                     ),
-                    onPressed: () {
-                      navigator.pop();
-                    },
+                    onPressed: navigator.pop,
                     // icon: const FaIcon(FontAwesomeIcons.solidCheck),
                     child: const Text('Confirm'),
                   ),
