@@ -21,14 +21,14 @@ class NetworkRepository {
   }
 
   void observeNetwork() {
-    if (!NetworkBloc().isClosed) {
-      Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+      if (!NetworkBloc().isClosed) {
         if (result == ConnectivityResult.none) {
           NetworkBloc().add(const NetworkNotify());
         } else {
           NetworkBloc().add(const NetworkNotify(isConnected: true));
         }
-      });
-    }
+      }
+    });
   }
 }

@@ -5,9 +5,9 @@ class LoggerUtil {
 
   LoggerUtil._internal();
 
-  final Logger _logger = Logger(printer: PrettyPrinter(printEmojis: false));
-
   static final LoggerUtil _instance = LoggerUtil._internal();
+
+  final Logger _logger = Logger(printer: PrettyPrinter(printEmojis: false));
 
   void debug(dynamic message) {
     _logger.wtf(message);
